@@ -20,6 +20,7 @@ import {
   FaCheck,
   FaTimes
 } from 'react-icons/fa';
+import { userData } from '../../../data/userData';
 import './ProfileDetails.css';
 import { showSuccessToast, showInfoToast } from '../../../App';
 
@@ -32,18 +33,18 @@ function ProfileDetails() {
   const [formData, setFormData] = useState(() => {
     const savedData = localStorage.getItem('profileDetails');
     return savedData ? JSON.parse(savedData) : {
-      fullName: 'Ravi Kumar',
-      email: 'ravi.kumar@example.com',
-      phone: '+91 98765 43210',
-      gender: 'Male',
-      dateOfBirth: '1990-05-15',
-      occupation: 'Software Developer',
-      address: '12-3-45, Gandhi Nagar',
-      city: 'Vijayawada',
-      state: 'Andhra Pradesh',
-      zipCode: '520003',
-      landmark: 'Near Krishna River',
-      country: 'India'
+      fullName: userData.fullName,
+      email: userData.email,
+      phone: userData.phone,
+      gender: userData.gender,
+      dateOfBirth: userData.dateOfBirth,
+      occupation: userData.occupation,
+      address: userData.address,
+      city: userData.city,
+      state: userData.state,
+      zipCode: userData.zipCode,
+      landmark: userData.landmark,
+      country: userData.country
     };
   });
 
@@ -63,7 +64,20 @@ function ProfileDetails() {
   const handleCancel = (section) => {
     setIsEditing(prev => ({ ...prev, [section]: false }));
     const savedData = JSON.parse(localStorage.getItem('profileDetails'));
-    setFormData(savedData);
+    setFormData(savedData || {
+      fullName: userData.fullName,
+      email: userData.email,
+      phone: userData.phone,
+      gender: userData.gender,
+      dateOfBirth: userData.dateOfBirth,
+      occupation: userData.occupation,
+      address: userData.address,
+      city: userData.city,
+      state: userData.state,
+      zipCode: userData.zipCode,
+      landmark: userData.landmark,
+      country: userData.country
+    });
     showInfoToast('Changes discarded');
   };
 
@@ -77,7 +91,6 @@ function ProfileDetails() {
         <div className="profile-details__header">
           <div className="profile-details__header-content">
             <h1 className="profile-details__title">Profile Details</h1>
-            <p className="profile-details__subtitle">Manage your personal information and account settings</p>
           </div>
         </div>
 
@@ -88,7 +101,7 @@ function ProfileDetails() {
                 <div className="profile-details__avatar-section">
                   <div className="profile-details__avatar-wrapper">
                     <img
-                      src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&dpr=1"
+                      src={userData.profileImage}
                       alt="Profile"
                       className="profile-details__avatar"
                     />
@@ -99,8 +112,10 @@ function ProfileDetails() {
                   <div className="profile-details__user-info">
                     <h3 className="profile-details__user-name">{formData.fullName}</h3>
                     <div className="profile-details__user-badge">
-                      <span className="profile-details__badge">Member since June 2023</span>
+                      <span className="profile-details__badge">{userData.membership.title} - {userData.membership.info}</span>
                     </div>
+                    <p className="profile-details__user-business">{userData.businessName}</p>
+                    <p className="profile-details__user-location">{userData.location}</p>
                   </div>
                 </div>
                 <div className="profile-details__quick-actions">
@@ -111,6 +126,9 @@ function ProfileDetails() {
                   <button className="profile-details__action-btn profile-details__action-btn--danger">
                     <FaTrashAlt className="profile-details__action-icon" />
                     Delete Account
+                  </button>
+                  <button className="profile-details__action-btn profile-details__action-btn--secondary">
+                    {userData.membership.buttonText}
                   </button>
                 </div>
               </div>

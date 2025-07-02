@@ -3,66 +3,28 @@ import { Link } from 'react-router-dom';
 import { FaBell, FaArrowLeft, FaCheck, FaTrash, FaGift, FaStar, FaMoneyBillWave, FaCalendarAlt, FaEye } from 'react-icons/fa';
 import './Notifications.css';
 import { showSuccessToast } from '../../App.jsx';
+import notificationsData from '../../data/Notifications.js';
 
 const Notifications = () => {
-  const [notifications, setNotifications] = useState([
-    {
-      id: 1,
-      type: 'offer',
-      title: 'New Customer Inquiry',
-      message: 'A customer is interested in your Screen Replacement Special offer. They want to know about pricing and availability.',
-      time: '2 hours ago',
-      isRead: false,
-      icon: FaGift,
-      iconColor: '#8b5cf6',
-      actionText: 'View Offer'
-    },
-    {
-      id: 2,
-      type: 'review',
-      title: 'New 5-Star Review!',
-      message: 'Priya Sharma left you a 5-star review for Mobile Screen Replacement service. "Excellent service! Highly recommended!"',
-      time: '1 day ago',
-      isRead: false,
-      icon: FaStar,
-      iconColor: '#f59e0b',
-      actionText: 'View Review'
-    },
-    {
-      id: 3,
-      type: 'payment',
-      title: 'Payment Received',
-      message: 'You received ₹2,500 payment for Booking ID: BK001234 - Mobile Screen Replacement service.',
-      time: '2 days ago',
-      isRead: true,
-      icon: FaMoneyBillWave,
-      iconColor: '#10b981',
-      actionText: 'View Payment'
-    }
-  ]);
-
-  const unreadCount = notifications.filter(n => !n.isRead).length;
+  const [notifications, setNotifications] = useState(notificationsData);
+  const unreadCount = notifications.filter((n) => !n.isRead).length;
 
   const markAsRead = (id) => {
-    setNotifications(prev => 
-      prev.map(notification => 
-        notification.id === id 
-          ? { ...notification, isRead: true }
-          : notification
+    setNotifications((prev) =>
+      prev.map((notification) =>
+        notification.id === id ? { ...notification, isRead: true } : notification
       )
     );
     showSuccessToast('Notification marked as read');
   };
 
   const markAllAsRead = () => {
-    setNotifications(prev => 
-      prev.map(notification => ({ ...notification, isRead: true }))
-    );
+    setNotifications((prev) => prev.map((notification) => ({ ...notification, isRead: true })));
     showSuccessToast('All notifications marked as read');
   };
 
   const deleteNotification = (id) => {
-    setNotifications(prev => prev.filter(notification => notification.id !== id));
+    setNotifications((prev) => prev.filter((notification) => notification.id !== id));
     showSuccessToast('Notification deleted');
   };
 
@@ -103,7 +65,7 @@ const Notifications = () => {
         </div>
         {unreadCount > 0 && (
           <div className="notifications__actions">
-            <button 
+            <button
               className="notifications__action-btn notifications__action-btn--primary"
               onClick={markAllAsRead}
             >
@@ -115,58 +77,61 @@ const Notifications = () => {
         <div className="notifications__content">
           {notifications.length > 0 ? (
             <div className="notifications__list">
-              {notifications.map((notification) => (
-                <div 
-                  key={notification.id} 
-                  className={`notifications__item ${!notification.isRead ? 'notifications__item--unread' : ''}`}
-                >
-                  <div className="notifications__item-content">
-                    <div className="notifications__item-icon" style={{ backgroundColor: notification.iconColor }}>
-                      <notification.icon />
-                    </div>
-                    <div className="notifications__item-body">
-                      <div className="notifications__item-header">
-                        <h3 className="notifications__item-title">{notification.title}</h3>
-                        <div className="notifications__item-meta">
-                          <span className="notifications__item-time">
-                            <FaCalendarAlt className="notifications__meta-icon" />
-                            {notification.time}
-                          </span>
-                          {!notification.isRead && (
-                            <span className="notifications__unread-indicator">New</span>
-                          )}
-                        </div>
+              {notifications.map((notification) => {
+                const IconComponent = notification.icon; // Get the icon component from notification data
+                return (
+                  <div
+                    key={notification.id}
+                    className={`notifications__item ${!notification.isRead ? 'notifications__item--unread' : ''}`}
+                  >
+                    <div className="notifications__item-content">
+                      <div className="notifications__item-icon" style={{ backgroundColor: notification.iconColor }}>
+                        <IconComponent />
                       </div>
-                      <p className="notifications__item-message">{notification.message}</p>
-                      <div className="notifications__item-actions">
-                        <Link 
-                          to={getActionLink(notification)}
-                          className="notifications__item-action-btn notifications__item-action-btn--primary"
-                        >
-                          <FaEye className="notifications__item-action-icon" />
-                          {notification.actionText}
-                        </Link>
-                        {!notification.isRead && (
-                          <button 
-                            className="notifications__item-action-btn notifications__item-action-btn--secondary"
-                            onClick={() => markAsRead(notification.id)}
+                      <div className="notifications__item-body">
+                        <div className="notifications__item-header">
+                          <h3 className="notifications__item-title">{notification.title}</h3>
+                          <div className="notifications__item-meta">
+                            <span className="notifications__item-time">
+                              <FaCalendarAlt className="notifications__meta-icon" />
+                              {notification.time}
+                            </span>
+                            {!notification.isRead && (
+                              <span className="notifications__unread-indicator">New</span>
+                            )}
+                          </div>
+                        </div>
+                        <p className="notifications__item-message">{notification.message}</p>
+                        <div className="notifications__item-actions">
+                          <Link
+                            to={getActionLink(notification)}
+                            className="notifications__item-action-btn notifications__item-action-btn--primary"
                           >
-                            <FaCheck className="notifications__item-action-icon" />
-                            Mark as Read
+                            <FaEye className="notifications__item-action-icon" />
+                            {notification.actionText}
+                          </Link>
+                          {!notification.isRead && (
+                            <button
+                              className="notifications__item-action-btn notifications__item-action-btn--secondary"
+                              onClick={() => markAsRead(notification.id)}
+                            >
+                              <FaCheck className="notifications__item-action-icon" />
+                              Mark as Read
+                            </button>
+                          )}
+                          <button
+                            className="notifications__item-action-btn notifications__item-action-btn--danger"
+                            onClick={() => deleteNotification(notification.id)}
+                          >
+                            <FaTrash className="notifications__item-action-icon" />
+                            Delete
                           </button>
-                        )}
-                        <button 
-                          className="notifications__item-action-btn notifications__item-action-btn--danger"
-                          onClick={() => deleteNotification(notification.id)}
-                        >
-                          <FaTrash className="notifications__item-action-icon" />
-                          Delete
-                        </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <div className="notifications__empty-state">

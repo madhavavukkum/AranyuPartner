@@ -8,7 +8,6 @@ import {
   FaTags,
   FaUser,
   FaIdCard,
-  FaComment,
   FaTimes,
   FaSave,
   FaAddressBook,
@@ -30,67 +29,72 @@ import {
   FaPlus,
   FaTrash,
 } from 'react-icons/fa';
+import { shopData } from '../../../data/shopData';
 import './ShopDetails.css';
 import { showSuccessToast, showInfoToast } from '../../../App';
 
 const ShopDetails = () => {
   const [bannerImage, setBannerImage] = useState(() => {
-    return localStorage.getItem('shopBannerImage') || 'https://images.pexels.com/photos/1591373/pexels-photo-1591373.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
+    try {
+      return localStorage.getItem('shopBannerImage') || shopData.bannerImage;
+    } catch {
+      return shopData.bannerImage;
+    }
   });
   const [profileImage, setProfileImage] = useState(() => {
-    return localStorage.getItem('shopProfileImage') || 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1';
+    try {
+      return localStorage.getItem('shopProfileImage') || shopData.profileImage;
+    } catch {
+      return shopData.profileImage;
+    }
   });
   const [businessDetails, setBusinessDetails] = useState(() => {
-    const saved = localStorage.getItem('shopBusinessDetails');
-    return saved ? JSON.parse(saved) : {
-      businessName: 'Madhava Tours & Travels',
-      businessType: 'Tours & Travel',
-      ownerName: 'Ravi Kumar',
-      gstNumber: '183939292',
-    };
+    try {
+      const saved = localStorage.getItem('shopBusinessDetails');
+      return saved ? JSON.parse(saved) : shopData.businessDetails;
+    } catch {
+      return shopData.businessDetails;
+    }
   });
   const [contactDetails, setContactDetails] = useState(() => {
-    const saved = localStorage.getItem('shopContactDetails');
-    return saved ? JSON.parse(saved) : {
-      mobileNumber: '+91 98765 43210',
-      email: 'ravi.kumar@example.com',
-      whatsapp: '+91 98765 43210',
-    };
+    try {
+      const saved = localStorage.getItem('shopContactDetails');
+      return saved ? JSON.parse(saved) : shopData.contactDetails;
+    } catch {
+      return shopData.contactDetails;
+    }
   });
   const [locationDetails, setLocationDetails] = useState(() => {
-    const saved = localStorage.getItem('shopLocationDetails');
-    return saved ? JSON.parse(saved) : {
-      address: '12-3-45, Gandhi Nagar',
-      landmark: 'Near Krishna River',
-      city: 'Vijayawada',
-      state: 'Andhra Pradesh',
-      country: 'India',
-      pincode: '520003',
-    };
+    try {
+      const saved = localStorage.getItem('shopLocationDetails');
+      return saved ? JSON.parse(saved) : shopData.locationDetails;
+    } catch {
+      return shopData.locationDetails;
+    }
   });
   const [availabilityDetails, setAvailabilityDetails] = useState(() => {
-    const saved = localStorage.getItem('shopAvailabilityDetails');
-    return saved ? JSON.parse(saved) : {
-      seasonalAvailability: 'All Year',
-      openingTime: '07:30:00',
-      closingTime: '18:50:00',
-    };
+    try {
+      const saved = localStorage.getItem('shopAvailabilityDetails');
+      return saved ? JSON.parse(saved) : shopData.availabilityDetails;
+    } catch {
+      return shopData.availabilityDetails;
+    }
   });
   const [shopPhotos, setShopPhotos] = useState(() => {
-    const saved = localStorage.getItem('shopPhotos');
-    return saved ? JSON.parse(saved) : [
-      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      'https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      'https://plus.unsplash.com/premium_photo-1676139860466-8b8f71c0a737?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    ];
+    try {
+      const saved = localStorage.getItem('shopPhotos');
+      return saved ? JSON.parse(saved) : shopData.shopPhotos;
+    } catch {
+      return shopData.shopPhotos;
+    }
   });
   const [cataloguePhotos, setCataloguePhotos] = useState(() => {
-    const saved = localStorage.getItem('shopCataloguePhotos');
-    return saved ? JSON.parse(saved) : [
-      'https://images.unsplash.com/photo-1484821582734-6c6c9f99a672?q=80&w=1333&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      'https://plus.unsplash.com/premium_photo-1683133963821-a499e44dbeae?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      'https://plus.unsplash.com/premium_photo-1661962836485-79ceb0ec7017?q=80&w=1166&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    ];
+    try {
+      const saved = localStorage.getItem('shopCataloguePhotos');
+      return saved ? JSON.parse(saved) : shopData.cataloguePhotos;
+    } catch {
+      return shopData.cataloguePhotos;
+    }
   });
   const [editMode, setEditMode] = useState({
     business: false,
@@ -107,30 +111,39 @@ const ShopDetails = () => {
   const cataloguePhotoInputRef = useRef(null);
 
   useEffect(() => {
-    localStorage.setItem('shopBannerImage', bannerImage);
-    localStorage.setItem('shopProfileImage', profileImage);
-    localStorage.setItem('shopBusinessDetails', JSON.stringify(businessDetails));
-    localStorage.setItem('shopContactDetails', JSON.stringify(contactDetails));
-    localStorage.setItem('shopLocationDetails', JSON.stringify(locationDetails));
-    localStorage.setItem('shopAvailabilityDetails', JSON.stringify(availabilityDetails));
-    localStorage.setItem('shopPhotos', JSON.stringify(shopPhotos));
-    localStorage.setItem('shopCataloguePhotos', JSON.stringify(cataloguePhotos));
+    try {
+      localStorage.setItem('shopBannerImage', bannerImage);
+      localStorage.setItem('shopProfileImage', profileImage);
+      localStorage.setItem('shopBusinessDetails', JSON.stringify(businessDetails));
+      localStorage.setItem('shopContactDetails', JSON.stringify(contactDetails));
+      localStorage.setItem('shopLocationDetails', JSON.stringify(locationDetails));
+      localStorage.setItem('shopAvailabilityDetails', JSON.stringify(availabilityDetails));
+      localStorage.setItem('shopPhotos', JSON.stringify(shopPhotos));
+      localStorage.setItem('shopCataloguePhotos', JSON.stringify(cataloguePhotos));
+    } catch (error) {
+      console.error('Error saving to localStorage:', error);
+    }
   }, [bannerImage, profileImage, businessDetails, contactDetails, locationDetails, availabilityDetails, shopPhotos, cataloguePhotos]);
 
   const editBannerImage = () => {
-    bannerInputRef.current.click();
+    bannerInputRef.current?.click();
   };
 
   const editProfileImage = () => {
-    profileInputRef.current.click();
+    profileInputRef.current?.click();
   };
 
   const updateBanner = (e) => {
     if (e.target.files && e.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        setBannerImage(event.target.result);
-        showSuccessToast('Banner image updated successfully!');
+        if (event.target?.result) {
+          setBannerImage(event.target.result);
+          showSuccessToast('Banner image updated successfully!');
+        }
+      };
+      reader.onerror = () => {
+        showInfoToast('Error uploading banner image');
       };
       reader.readAsDataURL(e.target.files[0]);
     }
@@ -140,19 +153,24 @@ const ShopDetails = () => {
     if (e.target.files && e.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        setProfileImage(event.target.result);
-        showSuccessToast('Profile image updated successfully!');
+        if (event.target?.result) {
+          setProfileImage(event.target.result);
+          showSuccessToast('Profile image updated successfully!');
+        }
+      };
+      reader.onerror = () => {
+        showInfoToast('Error uploading profile image');
       };
       reader.readAsDataURL(e.target.files[0]);
     }
   };
 
   const addShopPhoto = () => {
-    shopPhotoInputRef.current.click();
+    shopPhotoInputRef.current?.click();
   };
 
   const addCataloguePhoto = () => {
-    cataloguePhotoInputRef.current.click();
+    cataloguePhotoInputRef.current?.click();
   };
 
   const handleShopPhotoUpload = (e) => {
@@ -160,8 +178,13 @@ const ShopDetails = () => {
       Array.from(e.target.files).forEach((file) => {
         const reader = new FileReader();
         reader.onload = (event) => {
-          setShopPhotos((prev) => [...prev, event.target.result]);
-          showSuccessToast('Shop photo added successfully!');
+          if (event.target?.result) {
+            setShopPhotos((prev) => [...prev, event.target.result]);
+            showSuccessToast('Shop photo added successfully!');
+          }
+        };
+        reader.onerror = () => {
+          showInfoToast('Error uploading shop photo');
         };
         reader.readAsDataURL(file);
       });
@@ -173,8 +196,13 @@ const ShopDetails = () => {
       Array.from(e.target.files).forEach((file) => {
         const reader = new FileReader();
         reader.onload = (event) => {
-          setCataloguePhotos((prev) => [...prev, event.target.result]);
-          showSuccessToast('Catalogue photo added successfully!');
+          if (event.target?.result) {
+            setCataloguePhotos((prev) => [...prev, event.target.result]);
+            showSuccessToast('Catalogue photo added successfully!');
+          }
+        };
+        reader.onerror = () => {
+          showInfoToast('Error uploading catalogue photo');
         };
         reader.readAsDataURL(file);
       });
@@ -190,7 +218,7 @@ const ShopDetails = () => {
     if (type === 'shop') {
       setShopPhotos((prev) => prev.filter((_, i) => i !== index));
       showSuccessToast('Shop photo removed successfully!');
-    } else {
+    } else if (type === 'catalogue') {
       setCataloguePhotos((prev) => prev.filter((_, i) => i !== index));
       showSuccessToast('Catalogue photo removed successfully!');
     }
@@ -212,10 +240,18 @@ const ShopDetails = () => {
   };
 
   const saveEdit = (section) => {
-    if (section === 'business') setBusinessDetails(tempDetails.business);
-    if (section === 'contact') setContactDetails(tempDetails.contact);
-    if (section === 'location') setLocationDetails(tempDetails.location);
-    if (section === 'availability') setAvailabilityDetails(tempDetails.availability);
+    if (section === 'business' && tempDetails.business) {
+      setBusinessDetails(tempDetails.business);
+    }
+    if (section === 'contact' && tempDetails.contact) {
+      setContactDetails(tempDetails.contact);
+    }
+    if (section === 'location' && tempDetails.location) {
+      setLocationDetails(tempDetails.location);
+    }
+    if (section === 'availability' && tempDetails.availability) {
+      setAvailabilityDetails(tempDetails.availability);
+    }
     setEditMode((prev) => ({ ...prev, [section]: false }));
     setTempDetails({});
     showSuccessToast(`${section.charAt(0).toUpperCase() + section.slice(1)} details saved successfully!`);
@@ -230,7 +266,7 @@ const ShopDetails = () => {
   const handleInputChange = (section, field, value) => {
     setTempDetails((prev) => ({
       ...prev,
-      [section]: { ...prev[section], [field]: value },
+      [section]: { ...prev[section] || {}, [field]: value },
     }));
   };
 
@@ -326,12 +362,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">Business Name</label>
                     {!editMode.business ? (
-                      <p className="shop-details__field-value">{businessDetails.businessName}</p>
+                      <p className="shop-details__field-value">{businessDetails.businessName || ''}</p>
                     ) : (
                       <input
                         type="text"
                         className="shop-details__field-input"
-                        value={tempDetails.business?.businessName || businessDetails.businessName}
+                        value={tempDetails.business?.businessName || businessDetails.businessName || ''}
                         onChange={(e) => handleInputChange('business', 'businessName', e.target.value)}
                       />
                     )}
@@ -345,12 +381,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">Business Type</label>
                     {!editMode.business ? (
-                      <p className="shop-details__field-value">{businessDetails.businessType}</p>
+                      <p className="shop-details__field-value">{businessDetails.businessType || ''}</p>
                     ) : (
                       <input
                         type="text"
                         className="shop-details__field-input"
-                        value={tempDetails.business?.businessType || businessDetails.businessType}
+                        value={tempDetails.business?.businessType || businessDetails.businessType || ''}
                         onChange={(e) => handleInputChange('business', 'businessType', e.target.value)}
                       />
                     )}
@@ -364,12 +400,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">Owner's Name</label>
                     {!editMode.business ? (
-                      <p className="shop-details__field-value">{businessDetails.ownerName}</p>
+                      <p className="shop-details__field-value">{businessDetails.ownerName || ''}</p>
                     ) : (
                       <input
                         type="text"
                         className="shop-details__field-input"
-                        value={tempDetails.business?.ownerName || businessDetails.ownerName}
+                        value={tempDetails.business?.ownerName || businessDetails.ownerName || ''}
                         onChange={(e) => handleInputChange('business', 'ownerName', e.target.value)}
                       />
                     )}
@@ -383,12 +419,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">GST Number</label>
                     {!editMode.business ? (
-                      <p className="shop-details__field-value">{businessDetails.gstNumber}</p>
+                      <p className="shop-details__field-value">{businessDetails.gstNumber || ''}</p>
                     ) : (
                       <input
                         type="text"
                         className="shop-details__field-input"
-                        value={tempDetails.business?.gstNumber || businessDetails.gstNumber}
+                        value={tempDetails.business?.gstNumber || businessDetails.gstNumber || ''}
                         onChange={(e) => handleInputChange('business', 'gstNumber', e.target.value)}
                       />
                     )}
@@ -448,12 +484,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">Mobile Number</label>
                     {!editMode.contact ? (
-                      <p className="shop-details__field-value">{contactDetails.mobileNumber}</p>
+                      <p className="shop-details__field-value">{contactDetails.mobileNumber || ''}</p>
                     ) : (
                       <input
                         type="tel"
                         className="shop-details__field-input"
-                        value={tempDetails.contact?.mobileNumber || contactDetails.mobileNumber}
+                        value={tempDetails.contact?.mobileNumber || contactDetails.mobileNumber || ''}
                         onChange={(e) => handleInputChange('contact', 'mobileNumber', e.target.value)}
                       />
                     )}
@@ -467,12 +503,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">Email (optional)</label>
                     {!editMode.contact ? (
-                      <p className="shop-details__field-value">{contactDetails.email}</p>
+                      <p className="shop-details__field-value">{contactDetails.email || ''}</p>
                     ) : (
                       <input
                         type="email"
                         className="shop-details__field-input"
-                        value={tempDetails.contact?.email || contactDetails.email}
+                        value={tempDetails.contact?.email || contactDetails.email || ''}
                         onChange={(e) => handleInputChange('contact', 'email', e.target.value)}
                       />
                     )}
@@ -486,12 +522,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">WhatsApp (optional)</label>
                     {!editMode.contact ? (
-                      <p className="shop-details__field-value">{contactDetails.whatsapp}</p>
+                      <p className="shop-details__field-value">{contactDetails.whatsapp || ''}</p>
                     ) : (
                       <input
                         type="tel"
                         className="shop-details__field-input"
-                        value={tempDetails.contact?.whatsapp || contactDetails.whatsapp}
+                        value={tempDetails.contact?.whatsapp || contactDetails.whatsapp || ''}
                         onChange={(e) => handleInputChange('contact', 'whatsapp', e.target.value)}
                       />
                     )}
@@ -503,6 +539,7 @@ const ShopDetails = () => {
             {editMode.contact && (
               <div className="shop-details__edit-actions">
                 <button
+                  Undefined
                   className="shop-details__action-btn shop-details__action-btn--cancel"
                   onClick={() => cancelEdit('contact')}
                 >
@@ -551,12 +588,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">Address</label>
                     {!editMode.location ? (
-                      <p className="shop-details__field-value">{locationDetails.address}</p>
+                      <p className="shop-details__field-value">{locationDetails.address || ''}</p>
                     ) : (
                       <input
                         type="text"
                         className="shop-details__field-input"
-                        value={tempDetails.location?.address || locationDetails.address}
+                        value={tempDetails.location?.address || locationDetails.address || ''}
                         onChange={(e) => handleInputChange('location', 'address', e.target.value)}
                       />
                     )}
@@ -570,12 +607,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">Landmark</label>
                     {!editMode.location ? (
-                      <p className="shop-details__field-value">{locationDetails.landmark}</p>
+                      <p className="shop-details__field-value">{locationDetails.landmark || ''}</p>
                     ) : (
                       <input
                         type="text"
                         className="shop-details__field-input"
-                        value={tempDetails.location?.landmark || locationDetails.landmark}
+                        value={tempDetails.location?.landmark || locationDetails.landmark || ''}
                         onChange={(e) => handleInputChange('location', 'landmark', e.target.value)}
                       />
                     )}
@@ -589,12 +626,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">City</label>
                     {!editMode.location ? (
-                      <p className="shop-details__field-value">{locationDetails.city}</p>
+                      <p className="shop-details__field-value">{locationDetails.city || ''}</p>
                     ) : (
                       <input
                         type="text"
                         className="shop-details__field-input"
-                        value={tempDetails.location?.city || locationDetails.city}
+                        value={tempDetails.location?.city || locationDetails.city || ''}
                         onChange={(e) => handleInputChange('location', 'city', e.target.value)}
                       />
                     )}
@@ -608,12 +645,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">State</label>
                     {!editMode.location ? (
-                      <p className="shop-details__field-value">{locationDetails.state}</p>
+                      <p className="shop-details__field-value">{locationDetails.state || ''}</p>
                     ) : (
                       <input
                         type="text"
                         className="shop-details__field-input"
-                        value={tempDetails.location?.state || locationDetails.state}
+                        value={tempDetails.location?.state || locationDetails.state || ''}
                         onChange={(e) => handleInputChange('location', 'state', e.target.value)}
                       />
                     )}
@@ -627,12 +664,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">Country</label>
                     {!editMode.location ? (
-                      <p className="shop-details__field-value">{locationDetails.country}</p>
+                      <p className="shop-details__field-value">{locationDetails.country || ''}</p>
                     ) : (
                       <input
                         type="text"
                         className="shop-details__field-input"
-                        value={tempDetails.location?.country || locationDetails.country}
+                        value={tempDetails.location?.country || locationDetails.country || ''}
                         onChange={(e) => handleInputChange('location', 'country', e.target.value)}
                       />
                     )}
@@ -646,12 +683,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">Pincode</label>
                     {!editMode.location ? (
-                      <p className="shop-details__field-value">{locationDetails.pincode}</p>
+                      <p className="shop-details__field-value">{locationDetails.pincode || ''}</p>
                     ) : (
                       <input
                         type="text"
                         className="shop-details__field-input"
-                        value={tempDetails.location?.pincode || locationDetails.pincode}
+                        value={tempDetails.location?.pincode || locationDetails.pincode || ''}
                         onChange={(e) => handleInputChange('location', 'pincode', e.target.value)}
                       />
                     )}
@@ -711,11 +748,11 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">Seasonal Availability</label>
                     {!editMode.availability ? (
-                      <p className="shop-details__field-value">{availabilityDetails.seasonalAvailability}</p>
+                      <p className="shop-details__field-value">{availabilityDetails.seasonalAvailability || ''}</p>
                     ) : (
                       <select
                         className="shop-details__field-input"
-                        value={tempDetails.availability?.seasonalAvailability || availabilityDetails.seasonalAvailability}
+                        value={tempDetails.availability?.seasonalAvailability || availabilityDetails.seasonalAvailability || ''}
                         onChange={(e) => handleInputChange('availability', 'seasonalAvailability', e.target.value)}
                       >
                         <option value="All Year">All Year</option>
@@ -734,12 +771,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">Opening Time</label>
                     {!editMode.availability ? (
-                      <p className="shop-details__field-value">{availabilityDetails.openingTime}</p>
+                      <p className="shop-details__field-value">{availabilityDetails.openingTime || ''}</p>
                     ) : (
                       <input
                         type="time"
                         className="shop-details__field-input"
-                        value={tempDetails.availability?.openingTime || availabilityDetails.openingTime}
+                        value={tempDetails.availability?.openingTime || availabilityDetails.openingTime || ''}
                         onChange={(e) => handleInputChange('availability', 'openingTime', e.target.value)}
                       />
                     )}
@@ -753,12 +790,12 @@ const ShopDetails = () => {
                   <div className="shop-details__field-text">
                     <label className="shop-details__field-label">Closing Time</label>
                     {!editMode.availability ? (
-                      <p className="shop-details__field-value">{availabilityDetails.closingTime}</p>
+                      <p className="shop-details__field-value">{availabilityDetails.closingTime || ''}</p>
                     ) : (
                       <input
                         type="time"
                         className="shop-details__field-input"
-                        value={tempDetails.availability?.closingTime || availabilityDetails.closingTime}
+                        value={tempDetails.availability?.closingTime || availabilityDetails.closingTime || ''}
                         onChange={(e) => handleInputChange('availability', 'closingTime', e.target.value)}
                       />
                     )}
