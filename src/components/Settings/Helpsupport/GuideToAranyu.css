@@ -1,0 +1,414 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Guide to Aranyu Component */
+.guide-to-aranyu {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.guide-to-aranyu__container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Header */
+.guide-to-aranyu__header {
+  margin-bottom: 2rem;
+}
+
+.guide-to-aranyu__header-content {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 121, 148, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.guide-to-aranyu__back-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #007994, #005f73);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 121, 148, 0.3);
+  flex-shrink: 0;
+}
+
+.guide-to-aranyu__back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 121, 148, 0.4);
+}
+
+.guide-to-aranyu__header-text {
+  flex: 1;
+}
+
+.guide-to-aranyu__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #007994, #005f73);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.guide-to-aranyu__subtitle {
+  font-size: 1.125rem;
+  color: #64748b;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Content */
+.guide-to-aranyu__content {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 121, 148, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2rem;
+}
+
+/* Welcome Section */
+.guide-to-aranyu__welcome {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(0, 121, 148, 0.1);
+}
+
+.guide-to-aranyu__welcome-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(0, 121, 148, 0.1), rgba(0, 121, 148, 0.05));
+  border: 1px solid rgba(0, 121, 148, 0.2);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: #007994;
+  font-size: 2rem;
+}
+
+.guide-to-aranyu__welcome-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.guide-to-aranyu__welcome-text {
+  font-size: 1.125rem;
+  color: #64748b;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Features Section */
+.guide-to-aranyu__features {
+  margin-bottom: 3rem;
+}
+
+.guide-to-aranyu__features-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.guide-to-aranyu__features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.guide-to-aranyu__feature-card {
+  padding: 2rem;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.guide-to-aranyu__feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.guide-to-aranyu__feature-card--blue {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
+}
+
+.guide-to-aranyu__feature-card--purple {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));
+}
+
+.guide-to-aranyu__feature-card--green {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+}
+
+.guide-to-aranyu__feature-card--yellow {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+}
+
+.guide-to-aranyu__feature-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.guide-to-aranyu__feature-card--blue .guide-to-aranyu__feature-icon {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+}
+
+.guide-to-aranyu__feature-card--purple .guide-to-aranyu__feature-icon {
+  background: rgba(139, 92, 246, 0.2);
+  color: #8b5cf6;
+}
+
+.guide-to-aranyu__feature-card--green .guide-to-aranyu__feature-icon {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.guide-to-aranyu__feature-card--yellow .guide-to-aranyu__feature-icon {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.guide-to-aranyu__feature-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.guide-to-aranyu__feature-description {
+  font-size: 1rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Getting Started */
+.guide-to-aranyu__getting-started {
+  margin-bottom: 3rem;
+}
+
+.guide-to-aranyu__getting-started-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.guide-to-aranyu__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.guide-to-aranyu__step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(0, 121, 148, 0.02);
+  border: 1px solid rgba(0, 121, 148, 0.1);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.guide-to-aranyu__step:hover {
+  background: rgba(0, 121, 148, 0.05);
+  transform: translateX(8px);
+}
+
+.guide-to-aranyu__step-number {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #007994, #005f73);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.guide-to-aranyu__step-content {
+  flex: 1;
+}
+
+.guide-to-aranyu__step-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.guide-to-aranyu__step-description {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Quote */
+.guide-to-aranyu__quote {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(0, 121, 148, 0.05);
+  border: 1px solid rgba(0, 121, 148, 0.1);
+  border-radius: 16px;
+  position: relative;
+}
+
+.guide-to-aranyu__quote-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: #ef4444;
+  font-size: 1.5rem;
+}
+
+.guide-to-aranyu__quote-text {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: #475569;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.guide-to-aranyu__quote-text::before,
+.guide-to-aranyu__quote-text::after {
+  content: '"';
+  font-size: 3rem;
+  color: rgba(0, 121, 148, 0.2);
+  position: absolute;
+  font-family: serif;
+}
+
+.guide-to-aranyu__quote-text::before {
+  top: -1rem;
+  left: -2rem;
+}
+
+.guide-to-aranyu__quote-text::after {
+  bottom: -2rem;
+  right: -2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .guide-to-aranyu {
+    padding: 1rem;
+  }
+  
+  .guide-to-aranyu__header-content {
+    padding: 1.5rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .guide-to-aranyu__title {
+    font-size: 2rem;
+  }
+  
+  .guide-to-aranyu__subtitle {
+    font-size: 1rem;
+  }
+  
+  .guide-to-aranyu__content {
+    padding: 1.5rem;
+  }
+  
+  .guide-to-aranyu__welcome {
+    margin-bottom: 2rem;
+  }
+  
+  .guide-to-aranyu__welcome-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 1.75rem;
+  }
+  
+  .guide-to-aranyu__welcome-title {
+    font-size: 1.5rem;
+  }
+  
+  .guide-to-aranyu__welcome-text {
+    font-size: 1rem;
+  }
+  
+  .guide-to-aranyu__features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .guide-to-aranyu__step {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .guide-to-aranyu__quote-text::before,
+  .guide-to-aranyu__quote-text::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .guide-to-aranyu__title {
+    font-size: 1.75rem;
+  }
+  
+  .guide-to-aranyu__welcome-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  
+  .guide-to-aranyu__welcome-title {
+    font-size: 1.25rem;
+  }
+  
+  .guide-to-aranyu__quote-text {
+    font-size: 1.125rem;
+  }
+}

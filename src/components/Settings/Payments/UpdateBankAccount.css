@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Update Bank Account Component */
+.update-bank-account {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.update-bank-account__container {
+  max-width: 600px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 121, 148, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.update-bank-account__container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px rgba(0, 121, 148, 0.2);
+}
+
+.update-bank-account__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #007994, #005f73);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.update-bank-account__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.update-bank-account__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.update-bank-account__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.update-bank-account__input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.update-bank-account__input-icon {
+  position: absolute;
+  left: 1rem;
+  z-index: 2;
+  color: #007994;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.update-bank-account__input {
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 3rem;
+  border: 2px solid rgba(0, 121, 148, 0.2);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1e293b;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.update-bank-account__input:focus {
+  border-color: #007994;
+  box-shadow: 0 0 0 3px rgba(0, 121, 148, 0.1);
+  background: white;
+}
+
+.update-bank-account__input--error {
+  border-color: #ef4444;
+}
+
+.update-bank-account__input--error:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.update-bank-account__error {
+  font-size: 0.75rem;
+  color: #ef4444;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.update-bank-account__info {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
+.update-bank-account__actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 121, 148, 0.1);
+}
+
+.update-bank-account__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 2px solid;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  flex: 1;
+}
+
+.update-bank-account__btn--outline {
+  background: transparent;
+  color: #374151;
+  border-color: #374151;
+}
+
+.update-bank-account__btn--outline:hover {
+  background: #374151;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(55, 65, 81, 0.3);
+}
+
+.update-bank-account__btn--primary {
+  background: linear-gradient(135deg, #007994, #005f73);
+  color: white;
+  border-color: #007994;
+}
+
+.update-bank-account__btn--primary:hover {
+  background: linear-gradient(135deg, #005f73, #004a5a);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 121, 148, 0.4);
+}
+
+.update-bank-account__btn-icon {
+  font-size: 0.875rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .update-bank-account {
+    padding: 1rem;
+  }
+  
+  .update-bank-account__container {
+    padding: 2rem;
+  }
+  
+  .update-bank-account__title {
+    font-size: 1.75rem;
+  }
+  
+  .update-bank-account__actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .update-bank-account__container {
+    padding: 1.5rem;
+  }
+  
+  .update-bank-account__title {
+    font-size: 1.5rem;
+  }
+  
+  .update-bank-account__input {
+    padding: 0.75rem 1rem 0.75rem 2.75rem;
+    font-size: 0.95rem;
+  }
+  
+  .update-bank-account__input-icon {
+    left: 0.875rem;
+    font-size: 0.9rem;
+  }
+}

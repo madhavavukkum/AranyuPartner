@@ -1,0 +1,174 @@
+.payment-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 121, 148, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.payment-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 121, 148, 0.15);
+}
+
+.payment-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 121, 148, 0.1);
+}
+
+.payment-card__booking-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.payment-card__booking-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.payment-card__booking-value {
+  font-size: 1rem;
+  color: #1e293b;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+}
+
+.payment-card__status-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.payment-card__status-badge--completed {
+  background: rgba(34, 197, 94, 0.1);
+  color: #16a34a;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.payment-card__status-badge--pending {
+  background: rgba(249, 115, 22, 0.1);
+  color: #ea580c;
+  border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.payment-card__status-badge--cancelled {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.payment-card__status-icon {
+  font-size: 1rem;
+}
+
+.payment-card__status-icon--completed {
+  color: #16a34a;
+}
+
+.payment-card__status-icon--pending {
+  color: #ea580c;
+}
+
+.payment-card__status-icon--cancelled {
+  color: #dc2626;
+}
+
+.payment-card__content {
+  margin-bottom: 0;
+}
+
+.payment-card__title-section {
+  margin-bottom: 1.5rem;
+}
+
+.payment-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.payment-card__info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.payment-card__info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.payment-card__info-icon {
+  color: #007994;
+  font-size: 1.125rem;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.payment-card__info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.payment-card__info-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.payment-card__info-value {
+  font-size: 0.875rem;
+  color: #1e293b;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .payment-card {
+    padding: 1.25rem;
+  }
+  
+  .payment-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .payment-card__info-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-card {
+    padding: 1rem;
+  }
+  
+  .payment-card__title {
+    font-size: 1.125rem;
+  }
+}
