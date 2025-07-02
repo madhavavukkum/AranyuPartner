@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch, FaTh, FaDollarSign, FaShoppingCart, FaUser, FaBookOpen, FaExclamationCircle, FaChevronRight } from 'react-icons/fa';
-import './HelpSupport.css';
+import './Helpsupport.css';
 
 const menuItems = [
   {
