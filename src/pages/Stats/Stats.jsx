@@ -91,28 +91,40 @@ const Stats = () => {
     }));
   }, []);
 
-  const StatCard = ({ title, value, growth, icon: Icon, color, suffix = '' }) => (
-    <div className="stats__card">
-      <div className="stats__card-header">
-        <div className="stats__card-info">
-          <p className="stats__card-title">{title}</p>
-          <div className="stats__card-value-container">
-            <span className="stats__card-value">{suffix}{value.toLocaleString('en-IN')}</span>
-            <div className={`stats__growth-indicator ${growth >= 0 ? 'stats__growth-indicator--positive' : 'stats__growth-indicator--negative'}`}>
-              <BiTrendingUp className="stats__growth-icon" />
-              <span>{growth >= 0 ? '+' : ''}{growth}%</span>
+  const StatCard = ({ title, value, growth, icon: Icon, color, suffix = '' }) => {
+    // Calculate font size based on value length
+    const valueString = `${suffix}${value.toLocaleString('en-IN')}`;
+    const getFontSize = () => {
+      if (valueString.length > 8) return '1.8rem';
+      if (valueString.length > 6) return '2.2rem';
+      return '2.5rem';
+    };
+
+    return (
+      <div className="stats__card">
+        <div className="stats__card-header">
+          <div className="stats__card-info">
+            <p className="stats__card-title">{title}</p>
+            <div className="stats__card-value-container">
+              <span className="stats__card-value" style={{ fontSize: getFontSize() }}>
+                {suffix}{value.toLocaleString('en-IN')}
+              </span>
+              <div className={`stats__growth-indicator ${growth >= 0 ? 'stats__growth-indicator--positive' : 'stats__growth-indicator--negative'}`}>
+                <BiTrendingUp className="stats__growth-icon" />
+                <span>{growth >= 0 ? '+' : ''}{growth}%</span>
+              </div>
             </div>
           </div>
+          <div className={`stats__card-icon stats__card-icon--${color}`}>
+            <Icon />
+          </div>
         </div>
-        <div className={`stats__card-icon stats__card-icon--${color}`}>
-          <Icon />
+        <div className="stats__card-footer">
+          <span className="text-muted">vs last period</span>
         </div>
       </div>
-      <div className="stats__card-footer">
-        <span className="text-muted">vs last period</span>
-      </div>
-    </div>
-  );
+    );
+  };
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
@@ -300,21 +312,18 @@ const Stats = () => {
                 <p className="stats__chart-subtitle">Monthly revenue trends</p>
               </div>
               <div className="stats__chart-header-right">
-                <div className="stats__chart-stats">
-                  <div className="stats__chart-stat-item">
-                    <span className="stats__chart-stat-value">₹2,50,000</span>
-                    <span className="stats__chart-stat-label">This Month</span>
-                  </div>
-                  <div className="stats__growth-badge stats__growth-badge--positive">
-                    <BiTrendingUp />
-                    +5.2%
-                  </div>
-                </div>
                 <ChartToggleBadges 
                   activeType={salesChartType}
                   onTypeChange={setSalesChartType}
                   chartId="sales"
                 />
+              </div>
+            </div>
+            <div className="stats__sales-stats">
+              <div className="stats__sales-amount">₹2,50,000</div>
+              <div className="stats__sales-growth">
+                <BiTrendingUp />
+                +5.2% this month
               </div>
             </div>
             <div className="stats__chart-container">

@@ -220,7 +220,7 @@
 /* Stats Grid */
 .stats__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   margin-bottom: 3rem;
   max-width: 100%;
@@ -339,6 +339,10 @@
 
 .stats__card-footer {
   font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.text-muted {
   color: #9ca3af;
 }
 
@@ -513,6 +517,30 @@
   margin-top: 1rem;
 }
 
+/* Sales Stats - Similar to Earnings */
+.stats__sales-stats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stats__sales-amount {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1;
+}
+
+.stats__sales-growth {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #10b981;
+}
+
 /* Bottom Section */
 .stats__bottom {
   display: grid;
@@ -533,28 +561,12 @@
   z-index: 1;
 }
 
-.stats__card-header {
-  margin-bottom: 2rem;
-}
-
 .stats__card-header-with-toggle {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 2rem;
   gap: 1rem;
-}
-
-.stats__card-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin-bottom: 0.25rem;
-}
-
-.stats__card-subtitle {
-  font-size: 0.875rem;
-  color: #64748b;
 }
 
 .stats__customers-list {
@@ -664,6 +676,7 @@
 .stats__customer-actions {
   display: flex;
   gap: 0.25rem;
+  flex-shrink: 0;
 }
 
 .stats__action-btn {
@@ -677,6 +690,7 @@
   cursor: pointer;
   font-size: 0.875rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
 }
 
 .stats__action-btn--email {
@@ -763,7 +777,7 @@
   margin: 0;
 }
 
-/* Responsive Design */
+/* Mobile Optimizations */
 @media (max-width: 768px) {
   .stats {
     padding: 1rem;
@@ -790,7 +804,6 @@
     font-size: 1rem;
   }
   
-  /* Keep date picker size consistent on mobile */
   .stats__date-selector {
     padding: 0.75rem;
     flex-direction: column;
@@ -800,13 +813,14 @@
   .stats__date-range {
     flex-direction: row;
     gap: 0.75rem;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
   }
   
   .stats__date-picker-input {
-    width: 140px; /* Keep original size */
-    font-size: 0.875rem; /* Keep original font size */
-    padding: 0.75rem 0.75rem 0.75rem 2.5rem; /* Keep original padding */
+    width: 140px;
+    font-size: 0.875rem;
+    padding: 0.75rem 0.75rem 0.75rem 2.5rem;
   }
   
   .stats__grid {
@@ -827,16 +841,17 @@
   }
   
   .stats__chart-header-right {
-    align-items: stretch;
+    align-items: flex-end;
+    width: 100%;
   }
   
   .stats__chart-stats {
-    justify-content: center;
+    justify-content: flex-end;
     flex-direction: row;
   }
   
   .stats__chart-toggle {
-    align-self: center;
+    align-self: flex-end;
   }
   
   .stats__customer-item {
@@ -844,11 +859,13 @@
   }
   
   .stats__customer-actions {
-    flex-direction: column;
+    flex-direction: row;
+    gap: 0.25rem;
   }
   
   .stats__visitor-number,
-  .stats__earnings-amount {
+  .stats__earnings-amount,
+  .stats__sales-amount {
     font-size: 2rem;
   }
 }
@@ -859,24 +876,29 @@
   }
   
   .stats__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .stats__chart-toggle-badge span {
     display: none;
   }
   
-  /* Keep date picker size consistent even on very small screens */
   .stats__date-picker-input {
-    width: 140px; /* Keep original size */
-    font-size: 0.875rem; /* Keep original font size */
-    padding: 0.75rem 0.75rem 0.75rem 2.5rem; /* Keep original padding */
+    width: 140px;
+    font-size: 0.875rem;
+    padding: 0.75rem 0.75rem 0.75rem 2.5rem;
   }
   
   .stats__date-range {
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.75rem;
-    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .stats__customer-actions {
+    flex-direction: row;
+    gap: 0.25rem;
   }
 }
 
@@ -886,5 +908,9 @@
   }
   .stats__bottom {
     grid-template-columns: 1fr 1fr;
+  }
+  
+  .stats__grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
