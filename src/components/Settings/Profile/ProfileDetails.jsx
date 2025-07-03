@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   FaUser,
   FaEnvelope,
@@ -18,11 +19,33 @@ import {
   FaCalendarAlt,
   FaBriefcase,
   FaCheck,
-  FaTimes
+  FaTimes,
+  FaArrowLeft
 } from 'react-icons/fa';
-import { userData } from '../../../data/userData';
 import './ProfileDetails.css';
-import { showSuccessToast, showInfoToast } from '../../../App';
+
+const userData = {
+  fullName: "Rajesh Kumar",
+  email: "rajesh.kumar@example.com",
+  phone: "+91 9876543210",
+  gender: "Male",
+  dateOfBirth: "1988-05-15",
+  occupation: "Software Engineer",
+  address: "123 Main Street, Sector 15",
+  city: "Gurgaon",
+  state: "Haryana",
+  zipCode: "122001",
+  landmark: "Near Metro Station",
+  country: "India",
+  profileImage: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=1",
+  businessName: "Madhava Tours and travels",
+  location: "Vijayawada, India",
+  membership: {
+    title: "Premium Member",
+    info: "Active",
+    buttonText: "Upgrade Plan"
+  }
+};
 
 function ProfileDetails() {
   const [isEditing, setIsEditing] = useState({
@@ -58,7 +81,7 @@ function ProfileDetails() {
 
   const handleSave = (section) => {
     setIsEditing(prev => ({ ...prev, [section]: false }));
-    showSuccessToast(`${section.charAt(0).toUpperCase() + section.slice(1)} information saved successfully!`);
+    console.log(`${section.charAt(0).toUpperCase() + section.slice(1)} information saved successfully!`);
   };
 
   const handleCancel = (section) => {
@@ -78,7 +101,7 @@ function ProfileDetails() {
       landmark: userData.landmark,
       country: userData.country
     });
-    showInfoToast('Changes discarded');
+    console.log('Changes discarded');
   };
 
   const handleInputChange = (field, value) => {
@@ -90,7 +113,13 @@ function ProfileDetails() {
       <div className="profile-details__container">
         <div className="profile-details__header">
           <div className="profile-details__header-content">
-            <h1 className="profile-details__title">Profile Details</h1>
+            <Link to="/orders" className="profile-details__back-btn">
+              <FaArrowLeft />
+            </Link>
+            <div className="profile-details__header-text">
+              <h1 className="profile-details__title">Profile Details</h1>
+              <p className="profile-details__subtitle">Manage your personal information</p>
+            </div>
           </div>
         </div>
 
@@ -126,9 +155,6 @@ function ProfileDetails() {
                   <button className="profile-details__action-btn profile-details__action-btn--danger">
                     <FaTrashAlt className="profile-details__action-icon" />
                     Delete Account
-                  </button>
-                  <button className="profile-details__action-btn profile-details__action-btn--secondary">
-                    {userData.membership.buttonText}
                   </button>
                 </div>
               </div>
@@ -453,7 +479,6 @@ function ProfileDetails() {
                             <option value="India">India</option>
                             <option value="United States">United States</option>
                             <option value="Canada">Canada</option>
-                            <option value="United Kingdom">United Kingdom</option>
                             <option value="Australia">Australia</option>
                           </select>
                         )}

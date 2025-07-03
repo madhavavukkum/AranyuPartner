@@ -210,6 +210,7 @@
   color: #1e293b;
   margin: 0;
   line-height: 1.5;
+  word-break: break-word;
 }
 
 .order-details__info-value--amount {
@@ -322,6 +323,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  min-height: 48px;
 }
 
 .order-details__btn--confirm {
@@ -406,87 +408,296 @@
   font-size: 1rem;
 }
 
-/* Responsive Design */
+/* Enhanced Mobile Responsive Design */
 @media (max-width: 768px) {
   .order-details {
     padding: 1rem;
   }
-  
+
   .order-details__header-content {
     padding: 1.5rem;
     flex-direction: column;
     text-align: center;
     gap: 1rem;
   }
-  
+
+  .order-details__back-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1rem;
+  }
+
   .order-details__title {
     font-size: 2rem;
   }
-  
+
   .order-details__subtitle {
     font-size: 1rem;
   }
-  
+
+  .order-details__status-badge {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+
   .order-details__section-header {
     padding: 1.5rem 1.5rem 0;
     flex-direction: column;
     text-align: center;
     gap: 1rem;
   }
-  
-  .order-details__section-body {
-    padding: 1.5rem;
-  }
-  
-  .order-details__info-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .order-details__info-content {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .order-details__info-icon {
-    align-self: flex-start;
-  }
-  
-  .order-details__passenger {
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
-  }
-  
-  .order-details__passenger-details {
-    justify-content: center;
-  }
-  
-  .order-details__btn-group {
-    flex-direction: column;
-  }
-  
-  .order-details__actions {
-    padding: 1.5rem;
-  }
-}
 
-@media (max-width: 480px) {
-  .order-details__title {
-    font-size: 1.75rem;
-  }
-  
   .order-details__section-icon {
     width: 50px;
     height: 50px;
     font-size: 1.25rem;
   }
-  
+
   .order-details__section-title {
     font-size: 1.25rem;
   }
-  
+
+  .order-details__section-body {
+    padding: 1.5rem;
+  }
+
+  .order-details__info-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .order-details__info-item {
+    padding: 0.75rem 0;
+  }
+
+  .order-details__info-content {
+    gap: 0.75rem;
+  }
+
+  .order-details__info-icon {
+    font-size: 1.125rem;
+  }
+
+  .order-details__info-label {
+    margin-bottom: 0.375rem;
+  }
+
+  .order-details__passenger {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+    padding: 1.25rem;
+  }
+
+  .order-details__passenger-avatar {
+    width: 45px;
+    height: 45px;
+    font-size: 1.125rem;
+  }
+
+  .order-details__passenger-details {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .order-details__btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
   .order-details__btn {
-    padding: 0.875rem 1.5rem;
-    font-size: 0.875rem;
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .order-details__actions {
+    padding: 1.5rem;
+  }
+
+  .order-details__status-message {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .order-details {
+    padding: 0.75rem;
+  }
+
+  .order-details__header-content {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+
+  .order-details__title {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  .order-details__subtitle {
+    font-size: 0.9rem;
+  }
+
+  .order-details__back-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  .order-details__status-badge {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.7rem;
+    border-radius: 16px;
+  }
+
+  .order-details__section {
+    border-radius: 16px;
+  }
+
+  .order-details__section-header {
+    padding: 1.25rem 1.25rem 0;
+  }
+
+  .order-details__section-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.125rem;
+    border-radius: 12px;
+  }
+
+  .order-details__section-title {
+    font-size: 1.125rem;
+  }
+
+  .order-details__section-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .order-details__section-body {
+    padding: 1.25rem;
+  }
+
+  .order-details__info-grid {
+    gap: 0.5rem;
+  }
+
+  .order-details__info-item {
+    padding: 0.5rem 0;
+  }
+
+  .order-details__info-content {
+    gap: 0.5rem;
+  }
+
+  .order-details__info-label {
+    font-size: 0.7rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .order-details__info-value {
+    font-size: 0.9rem;
+  }
+
+  .order-details__info-value--amount {
+    font-size: 1.125rem;
+  }
+
+  .order-details__passenger {
+    padding: 1rem;
+    border-radius: 10px;
+    gap: 0.75rem;
+  }
+
+  .order-details__passenger-name {
+    font-size: 1rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .order-details__passenger-detail {
+    font-size: 0.8rem;
+  }
+
+  .order-details__btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.85rem;
+    border-radius: 10px;
+    min-height: 44px;
+  }
+
+  .order-details__actions {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+
+  .order-details__status-message {
+    padding: 1rem;
+    font-size: 0.9rem;
+    border-radius: 10px;
+  }
+
+  .order-details__not-found {
+    padding: 3rem 1.5rem;
+  }
+}
+
+/* Ultra small devices */
+@media (max-width: 360px) {
+  .order-details {
+    padding: 0.5rem;
+  }
+
+  .order-details__header-content {
+    padding: 1rem;
+  }
+
+  .order-details__title {
+    font-size: 1.5rem;
+  }
+
+  .order-details__subtitle {
+    font-size: 0.85rem;
+  }
+
+  .order-details__section-header {
+    padding: 1rem 1rem 0;
+  }
+
+  .order-details__section-body {
+    padding: 1rem;
+  }
+
+  .order-details__info-grid {
+    gap: 0.375rem;
+  }
+
+  .order-details__info-item {
+    padding: 0.375rem 0;
+  }
+
+  .order-details__info-content {
+    gap: 0.375rem;
+  }
+
+  .order-details__info-label {
+    margin-bottom: 0.125rem;
+  }
+
+  .order-details__info-value {
+    font-size: 0.85rem;
+  }
+
+  .order-details__btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .order-details__actions {
+    padding: 1rem;
   }
 }
