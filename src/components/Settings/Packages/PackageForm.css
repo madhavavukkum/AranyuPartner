@@ -255,6 +255,28 @@
   color: #1e293b;
 }
 
+/* Textarea */
+.package-form__textarea {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 2px solid rgba(0, 121, 148, 0.2);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1e293b;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.package-form__textarea:focus {
+  border-color: #007994;
+  box-shadow: 0 0 0 3px rgba(0, 121, 148, 0.1);
+  background: white;
+}
+
 /* Add Place Button */
 .package-form__add-place-btn {
   display: flex;

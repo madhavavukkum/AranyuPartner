@@ -80,6 +80,7 @@ const Payments = () => {
             <button
               className={`payments__status-btn ${statusFilter === 'all' ? 'payments__status-btn--active' : ''}`}
               onClick={() => setStatusFilter('all')}
+              data-status="all"
             >
               <FaFilter className="payments__status-icon" />
               All Payments
@@ -88,6 +89,7 @@ const Payments = () => {
             <button
               className={`payments__status-btn ${statusFilter === 'pending' ? 'payments__status-btn--active' : ''}`}
               onClick={() => setStatusFilter('pending')}
+              data-status="pending"
             >
               Pending
               <span className="payments__status-count">{statusCounts.pending}</span>
@@ -95,6 +97,7 @@ const Payments = () => {
             <button
               className={`payments__status-btn ${statusFilter === 'completed' ? 'payments__status-btn--active' : ''}`}
               onClick={() => setStatusFilter('completed')}
+              data-status="completed"
             >
               Completed
               <span className="payments__status-count">{statusCounts.completed}</span>
@@ -102,6 +105,7 @@ const Payments = () => {
             <button
               className={`payments__status-btn ${statusFilter === 'cancelled' ? 'payments__status-btn--active' : ''}`}
               onClick={() => setStatusFilter('cancelled')}
+              data-status="cancelled"
             >
               Cancelled
               <span className="payments__status-count">{statusCounts.cancelled}</span>

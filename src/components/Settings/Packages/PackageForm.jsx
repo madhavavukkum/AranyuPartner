@@ -26,6 +26,8 @@ const PackageForm = ({ setShowForm, editPackageId, setEditPackageId }) => {
   const [formData, setFormData] = useState({
     id: '',
     name: '',
+    description: '',
+    showDescription: true,
     type: '',
     customType: '',
     numberOfDays: 1,
@@ -63,6 +65,8 @@ const PackageForm = ({ setShowForm, editPackageId, setEditPackageId }) => {
         setFormData({
           id: pkg.id,
           name: pkg.name,
+          description: pkg.description || '',
+          showDescription: pkg.showDescription !== undefined ? pkg.showDescription : true,
           type: isCustom ? 'Custom' : pkg.type,
           customType: isCustom ? (customTypeMatch ? customTypeMatch[1].trim() : '') : '',
           numberOfDays: isCustom ? parseInt(daysMatch?.[1] || 1) : 1,
@@ -79,6 +83,8 @@ const PackageForm = ({ setShowForm, editPackageId, setEditPackageId }) => {
       setFormData({
         id: '',
         name: '',
+        description: '',
+        showDescription: true,
         type: '',
         customType: '',
         numberOfDays: 1,
@@ -136,10 +142,15 @@ const PackageForm = ({ setShowForm, editPackageId, setEditPackageId }) => {
     setFormData((prev) => ({ ...prev, place: newPlaces.join(', ') }));
   };
 
+  const handleShowDescriptionChange = () => {
+    setFormData((prev) => ({ ...prev, showDescription: !prev.showDescription }));
+  };
+
   const handleSave = (e) => {
     e.preventDefault();
     if (
       !formData.name ||
+      (formData.showDescription && !formData.description) ||
       !formData.type ||
       !formData.place ||
       !formData.adultPrice ||
@@ -161,6 +172,8 @@ const PackageForm = ({ setShowForm, editPackageId, setEditPackageId }) => {
     const packageData = {
       id: formData.id || Date.now(),
       name: formData.name,
+      description: formData.description,
+      showDescription: formData.showDescription,
       type: typeDisplay,
       place: formData.place,
       services: formData.services,
@@ -235,6 +248,40 @@ const PackageForm = ({ setShowForm, editPackageId, setEditPackageId }) => {
                 required
               />
             </div>
+            <div className="package-form__form-group">
+              <label className="package-form__form-label">
+                <FaPen className="package-form__form-icon" />
+                Show Description
+              </label>
+              <label className="package-form__place-label">
+                <input
+                  type="checkbox"
+                  className="package-form__place-checkbox"
+                  checked={formData.showDescription}
+                  onChange={handleShowDescriptionChange}
+                />
+                <span className="package-form__checkbox-custom"></span>
+                <span className="package-form__place-text">
+                  {formData.showDescription ? 'Show' : 'Hide'} Description Field
+                </span>
+              </label>
+            </div>
+            {formData.showDescription && (
+              <div className="package-form__form-group">
+                <label className="package-form__form-label">
+                  <FaPen className="package-form__form-icon" />
+                  Package Description
+                </label>
+                <textarea
+                  name="description"
+                  className="package-form__form-input package-form__textarea"
+                  placeholder="Enter package description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            )}
             <div className="package-form__form-group">
               <label className="package-form__form-label">
                 <FaCalendarAlt className="package-form__form-icon" />

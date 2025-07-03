@@ -81,6 +81,7 @@ const MyOrders = () => {
             <button
               className={`my-orders__status-btn ${statusFilter === 'all' ? 'my-orders__status-btn--active' : ''}`}
               onClick={() => setStatusFilter('all')}
+              data-status="all"
             >
               <FaFilter className="my-orders__status-icon" />
               All Orders
@@ -89,6 +90,7 @@ const MyOrders = () => {
             <button
               className={`my-orders__status-btn ${statusFilter === 'pending' ? 'my-orders__status-btn--active' : ''}`}
               onClick={() => setStatusFilter('pending')}
+              data-status="pending"
             >
               Pending
               <span className="my-orders__status-count">{statusCounts.pending}</span>
@@ -96,6 +98,7 @@ const MyOrders = () => {
             <button
               className={`my-orders__status-btn ${statusFilter === 'confirmed' ? 'my-orders__status-btn--active' : ''}`}
               onClick={() => setStatusFilter('confirmed')}
+              data-status="confirmed"
             >
               Confirmed
               <span className="my-orders__status-count">{statusCounts.confirmed}</span>
@@ -103,6 +106,7 @@ const MyOrders = () => {
             <button
               className={`my-orders__status-btn ${statusFilter === 'canceled' ? 'my-orders__status-btn--active' : ''}`}
               onClick={() => setStatusFilter('canceled')}
+              data-status="canceled"
             >
               Canceled
               <span className="my-orders__status-count">{statusCounts.canceled}</span>
