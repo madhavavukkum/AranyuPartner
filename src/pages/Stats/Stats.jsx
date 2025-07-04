@@ -92,7 +92,6 @@ const Stats = () => {
   }, []);
 
   const StatCard = ({ title, value, growth, icon: Icon, color, suffix = '' }) => {
-    // Calculate font size based on value length
     const valueString = `${suffix}${value.toLocaleString('en-IN')}`;
     const getFontSize = () => {
       if (valueString.length > 8) return '1.8rem';
@@ -115,7 +114,9 @@ const Stats = () => {
               </div>
             </div>
           </div>
-          <div className={`stats__card-icon stats__card-icon--${color}`}>
+          <div className={`
+
+stats__card-icon stats__card-icon--${color}`}>
             <Icon />
           </div>
         </div>
@@ -161,67 +162,77 @@ const Stats = () => {
     </div>
   );
 
-  const DynamicChart = ({ data, chartType, color, gradientId }) => (
-    <ResponsiveContainer width="100%" height={300} minWidth={300}>
-      {chartType === 'bar' ? (
-        <BarChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#bec4cf" />
-          <XAxis 
-            dataKey="name" 
-            axisLine={{ stroke: '#6b7280' }}
-            tickLine={false}
-            tick={{ fontSize: 12, fill: '#6b7280' }}
-            label={{ value: 'Month', position: 'bottom', fill: '#6b7280' }}
-          />
-          <YAxis
-            axisLine={{ stroke: '#6b7280' }}
-            tickLine={false}
-            tick={{ fontSize: 12, fill: '#6b7280' }}
-            tickFormatter={(value) => `₹${value}k`}
-            label={{ value: 'Revenue', angle: -90, position: 'insideLeft', fill: '#6b7280' }}
-          />
-          <Tooltip content={<CustomTooltip />} />
-          <Bar
-            dataKey="value"
-            fill={color === 'primary-color' ? '#3b82f6' : '#10b981'}
-            radius={[4, 4, 0, 0]}
-          />
-        </BarChart>
-      ) : (
-        <AreaChart data={data}>
-          <defs>
-            <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor={color === 'primary-color' ? '#3b82f6' : '#10b981'} stopOpacity={0.3}/>
-              <stop offset="95%" stopColor={color === 'primary-color' ? '#3b82f6' : '#10b981'} stopOpacity={0}/>
-            </linearGradient>
-          </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="#bec4cf" />
-          <XAxis 
-            dataKey="name" 
-            axisLine={{ stroke: '#6b7280' }}
-            tickLine={false}
-            tick={{ fontSize: 12, fill: '#6b7280' }}
-            label={{ value: 'Month', position: 'bottom', fill: '#6b7280' }}
-          />
-          <YAxis
-            axisLine={{ stroke: '#6b7280' }}
-            tickLine={false}
-            tick={{ fontSize: 12, fill: '#6b7280' }}
-            tickFormatter={(value) => `₹${value}k`}
-            label={{ value: 'Revenue', angle: -90, position: 'insideLeft', fill: '#6b7280' }}
-          />
-          <Tooltip content={<CustomTooltip />} />
-          <Area
-            type="monotone"
-            dataKey="value"
-            stroke={color === 'primary-color' ? '#3b82f6' : '#10b981'}
-            strokeWidth={3}
-            fill={`url(#${gradientId})`}
-          />
-        </AreaChart>
-      )}
-    </ResponsiveContainer>
-  );
+  const DynamicChart = ({ data, chartType, color, gradientId }) => {
+    // Calculate the maximum value for Y-axis domain
+    const maxValue = Math.max(...data.map(item => item.value), 1); // Ensure at least 1 to avoid zero range
+    const yAxisDomain = [0, maxValue * 1.2]; // Add 20% padding above max value
+
+    return (
+      <ResponsiveContainer width="100%" height={300} minWidth={300}>
+        {chartType === 'bar' ? (
+          <BarChart data={data} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#bec4cf" />
+            <XAxis 
+              dataKey="name" 
+              axisLine={{ stroke: '#6b7280' }}
+              tickLine={false}
+              tick={{ fontSize: 12, fill: '#6b7280' }}
+              label={{ value: 'Month', position: 'bottom', offset: 10, fill: '#6b7280' }}
+              padding={{ left: 10, right: 10 }}
+            />
+            <YAxis
+              axisLine={{ stroke: '#6b7280' }}
+              tickLine={false}
+              tick={{ fontSize: 12, fill: '#6b7280' }}
+              tickFormatter={(value) => `₹${value}k`}
+              domain={yAxisDomain}
+              label={{ value: 'Revenue', angle: -90, position: 'insideLeft', offset: -10, fill: '#6b7280' }}
+            />
+            <Tooltip content={<CustomTooltip />} />
+            <Bar
+              dataKey="value"
+              fill={color === 'primary-color' ? '#3b82f6' : '#10b981'}
+              radius={[4, 4, 0, 0]}
+            />
+          </BarChart>
+        ) : (
+          <AreaChart data={data} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+            <defs>
+              <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor={color === 'primary-color' ? '#3b82f6' : '#10b981'} stopOpacity={0.3}/>
+                <stop offset="95%" stopColor={color === 'primary-color' ? '#3b82f6' : '#10b981'} stopOpacity={0}/>
+              </linearGradient>
+            </defs>
+            <CartesianGrid strokeDasharray="3 3" stroke="#bec4cf" />
+            <XAxis 
+              dataKey="name" 
+              axisLine={{ stroke: '#6b7280' }}
+              tickLine={false}
+              tick={{ fontSize: 12, fill: '#6b7280' }}
+              label={{ value: 'Month', position: 'bottom', offset: 10, fill: '#6b7280' }}
+              padding={{ left: 10, right: 10 }}
+            />
+            <YAxis
+              axisLine={{ stroke: '#6b7280' }}
+              tickLine={false}
+              tick={{ fontSize: 12, fill: '#6b7280' }}
+              tickFormatter={(value) => `₹${value}k`}
+              domain={yAxisDomain}
+              label={{ value: 'Revenue', angle: -90, position: 'insideLeft', offset: -10, fill: '#6b7280' }}
+            />
+            <Tooltip content={<CustomTooltip />} />
+            <Area
+              type="monotone"
+              dataKey="value"
+              stroke={color === 'primary-color' ? '#3b82f6' : '#10b981'}
+              strokeWidth={3}
+              fill={`url(#${gradientId})`}
+            />
+          </AreaChart>
+        )}
+      </ResponsiveContainer>
+    );
+  };
 
   return (
     <div className="stats">
@@ -338,8 +349,10 @@ const Stats = () => {
 
           <div className="stats__chart-card stats__chart-card--secondary">
             <div className="stats__chart-header">
-              <h3 className="stats__chart-title">Visitor Growth</h3>
-              <p className="stats__chart-subtitle">Annual overview</p>
+              <div className="stats__chart-title-section">
+                <h3 className="stats__chart-title">Visitor Growth</h3>
+                <p className="stats__chart-subtitle">Annual overview</p>
+              </div>
             </div>
             <div className="stats__visitor-stats">
               <div className="stats__visitor-number">500</div>
@@ -357,14 +370,16 @@ const Stats = () => {
                     axisLine={{ stroke: '#6b7280' }}
                     tickLine={false}
                     tick={{ fontSize: 10, fill: '#6b7280' }}
-                    label={{ value: 'Month', position: 'bottom', fill: '#6b7280', fontSize: 10 }}
+                    label={{ value: 'Month', position: 'bottom', offset: 10, fill: '#6b7280' }}
+                    padding={{ left: 10, right: 10 }}
                   />
                   <YAxis
                     axisLine={{ stroke: '#6b7280' }}
                     tickLine={false}
                     tick={{ fontSize: 10, fill: '#6b7280' }}
                     tickFormatter={(value) => `${value.toFixed(0)}`}
-                    label={{ value: 'Visitors', angle: -90, position: 'insideLeft', fill: '#6b7280', fontSize: 10 }}
+                    domain={[0, 'auto']}
+                    label={{ value: 'Visitors', angle: -90, position: 'insideLeft', offset: -10, fill: '#6b7280', fontSize: 10 }}
                   />
                   <Tooltip
                     formatter={(value) => `${value.toFixed(0)} Visitors`}
@@ -387,7 +402,6 @@ const Stats = () => {
           <div className="stats__customers-card">
             <div className="stats__card-header">
               <h3 className="stats__card-title">Top Customers</h3>
-              <p className="stats__card-subtitle">High-value client relationships</p>
             </div>
             <div className="stats__customers-list">
               {customers.map((customer, index) => (
@@ -421,21 +435,23 @@ const Stats = () => {
             </button>
           </div>
 
-          <div className="stats__earnings-card">
-            <div className="stats__card-header-with-toggle">
-              <div className="stats__card-header">
-                <h3 className="stats__card-title">Earnings History</h3>
-                <p className="stats__card-subtitle">Revenue breakdown</p>
+          <div className="stats__chart-card stats__chart-card--secondary">
+            <div className="stats__chart-header">
+              <div className="stats__chart-title-section">
+                <h3 className="stats__chart-title">Earnings History</h3>
+                <p className="stats__chart-subtitle">Revenue breakdown</p>
               </div>
-              <ChartToggleBadges 
-                activeType={earningsChartType}
-                onTypeChange={setEarningsChartType}
-                chartId="earnings"
-              />
+              <div className="stats__chart-header-right">
+                <ChartToggleBadges 
+                  activeType={earningsChartType}
+                  onTypeChange={setEarningsChartType}
+                  chartId="earnings"
+                />
+              </div>
             </div>
-            <div className="stats__earnings-stats">
-              <div className="stats__earnings-amount">₹2,00,000</div>
-              <div className="stats__earnings-growth">
+            <div className="stats__sales-stats">
+              <div className="stats__sales-amount">₹2,00,000</div>
+              <div className="stats__sales-growth">
                 <BiTrendingUp />
                 +8% this month
               </div>
