@@ -284,7 +284,7 @@
   text-align: center;
 }
 
-.add-discount__preview-card {
+.add-discount__preview-card { 
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
