@@ -180,8 +180,8 @@
 }
 
 .settings__sidebar-item--logout {
-  margin-top: 2rem;
-  padding-top: 1rem;
+  margin-top: 0.25rem;
+  padding-top: 0.25rem;
   border-top: 1px solid rgba(0, 121, 148, 0.1);
 }
 

@@ -31,8 +31,8 @@
 }
 
 .package-form__back-btn {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: linear-gradient(135deg, #007994, #005f73);
   color: white;
@@ -56,22 +56,30 @@
 }
 
 .package-form__title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: #1e293b;
   margin-bottom: 0.5rem;
   background: linear-gradient(135deg, #007994, #005f73);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .package-form__subtitle {
-  font-size: 1.125rem;
-  color: #64748b;
+  font-size: 0.9rem;
   margin: 0;
   font-weight: 400;
   line-height: 1.5;
+  background: linear-gradient(135deg, #007994, #005f73);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Content */
@@ -422,21 +430,30 @@
   
   .package-form__header-content {
     padding: 1.5rem;
-    flex-direction: column;
-    text-align: center;
+    display: flex;
+    align-items: center;
     gap: 1rem;
+    border-radius: 16px;
+  }
+  
+  .package-form__back-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+    border-radius: 50%;
   }
   
   .package-form__title {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
   
   .package-form__subtitle {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
   
   .package-form__content {
     padding: 1.5rem;
+    border-radius: 16px;
   }
   
   .package-form__form-row {
@@ -453,13 +470,71 @@
 }
 
 @media (max-width: 480px) {
+  .package-form {
+    padding: 0.75rem;
+  }
+  
+  .package-form__header-content {
+    padding: 1.25rem;
+    gap: 0.75rem;
+    border-radius: 14px;
+  }
+  
+  .package-form__back-btn {
+    width: 33px;
+    height: 33px;
+    font-size: 0.8rem;
+    border-radius: 50%;
+  }
+  
   .package-form__title {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
+  }
+  
+  .package-form__subtitle {
+    font-size: 0.75rem;
+  }
+  
+  .package-form__content {
+    padding: 1.25rem;
+    border-radius: 14px;
   }
   
   .package-form__service-label {
     flex-direction: column;
     text-align: center;
     gap: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .package-form {
+    padding: 0.5rem;
+  }
+  
+  .package-form__header-content {
+    padding: 1rem;
+    gap: 0.5rem;
+    border-radius: 12px;
+  }
+  
+  .package-form__back-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+    border-radius: 50%;
+  }
+  
+  .package-form__title {
+    font-size: 1.2rem;
+  }
+  
+  .package-form__subtitle {
+    font-size: 0.7rem;
+  }
+  
+  .package-form__content {
+    padding: 1rem;
+    border-radius: 12px;
   }
 }

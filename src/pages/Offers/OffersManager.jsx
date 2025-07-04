@@ -93,7 +93,12 @@ const OffersManager = () => {
           ) : (
             <div className="offers-manager__offers-section">
               <div className="offers-manager__section-header">
-                <h2 className="offers-manager__section-title">Your Active Offers</h2>
+                <div className="offers-manager__section-header-content">
+                  <div className="offers-manager__section-header-icon">
+                    <FaGift />
+                  </div>
+                  <h2 className="offers-manager__section-title">Your Active Offers</h2>
+                </div>
                 <Link to="/offers/add" className="offers-manager__add-btn offers-manager__add-btn--secondary">
                   <FaPlus className="offers-manager__btn-icon" />
                   Add Discounts

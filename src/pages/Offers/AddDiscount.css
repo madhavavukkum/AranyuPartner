@@ -31,10 +31,10 @@
 }
 
 .add-discount__back-btn {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: #007994;
+  background: linear-gradient(135deg, #007994, #005f73);
   color: white;
   border: none;
   display: flex;
@@ -56,22 +56,30 @@
 }
 
 .add-discount__title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: #1e293b;
   margin-bottom: 0.5rem;
-  background: #007994;
+  background: linear-gradient(135deg, #007994, #005f73);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .add-discount__subtitle {
-  font-size: 1.125rem;
-  color: #64748b;
+  font-size: 0.9rem;
   margin: 0;
   font-weight: 400;
   line-height: 1.5;
+  background: linear-gradient(135deg, #007994, #005f73);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Content */
@@ -340,22 +348,31 @@
   
   .add-discount__header-content {
     padding: 1.5rem;
-    flex-direction: column;
-    text-align: center;
+    display: flex;
+    align-items: center;
     gap: 1rem;
+    border-radius: 16px;
+  }
+  
+  .add-discount__back-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+    border-radius: 50%;
   }
   
   .add-discount__title {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
   
   .add-discount__subtitle {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
   
   .add-discount__form-section,
   .add-discount__preview-section {
     padding: 1.5rem;
+    border-radius: 16px;
   }
   
   .add-discount__form-row {
@@ -368,8 +385,35 @@
 }
 
 @media (max-width: 480px) {
+  .add-discount {
+    padding: 0.75rem;
+  }
+  
+  .add-discount__header-content {
+    padding: 1.25rem;
+    gap: 0.75rem;
+    border-radius: 14px;
+  }
+  
+  .add-discount__back-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 0.8rem;
+    border-radius: 50%;
+  }
+  
   .add-discount__title {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
+  }
+  
+  .add-discount__subtitle {
+    font-size: 0.75rem;
+  }
+  
+  .add-discount__form-section,
+  .add-discount__preview-section {
+    padding: 1.25rem;
+    border-radius: 14px;
   }
   
   .add-discount__color-input-wrapper {
@@ -380,5 +424,38 @@
   .add-discount__color-input {
     width: 100%;
     height: 50px;
+  }
+}
+
+@media (max-width: 360px) {
+  .add-discount {
+    padding: 0.5rem;
+  }
+  
+  .add-discount__header-content {
+    padding: 1rem;
+    gap: 0.5rem;
+    border-radius: 12px;
+  }
+  
+  .add-discount__back-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+    border-radius: 50%;
+  }
+  
+  .add-discount__title {
+    font-size: 1.2rem;
+  }
+  
+  .add-discount__subtitle {
+    font-size: 0.7rem;
+  }
+  
+  .add-discount__form-section,
+  .add-discount__preview-section {
+    padding: 1rem;
+    border-radius: 12px;
   }
 }

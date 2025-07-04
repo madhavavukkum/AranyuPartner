@@ -49,17 +49,17 @@ const Notifications = () => {
             <Link to="/" className="notifications__back-btn">
               <FaArrowLeft />
             </Link>
-            <div className="notifications__header-text">
-              <h1 className="notifications__title">Notifications</h1>
-              <p className="notifications__subtitle">
-                {unreadCount > 0 ? `${unreadCount} unread notification${unreadCount !== 1 ? 's' : ''}` : 'All caught up!'}
-              </p>
-            </div>
             <div className="notifications__header-icon">
               <FaBell />
               {unreadCount > 0 && (
                 <span className="notifications__header-badge">{unreadCount}</span>
               )}
+            </div>
+            <div className="notifications__header-text">
+              <h1 className="notifications__title">Notifications</h1>
+              <p className="notifications__subtitle">
+                {unreadCount > 0 ? `${unreadCount} unread notification${unreadCount !== 1 ? 's' : ''}` : 'All caught up!'}
+              </p>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@ const Notifications = () => {
           {notifications.length > 0 ? (
             <div className="notifications__list">
               {notifications.map((notification) => {
-                const IconComponent = notification.icon; // Get the icon component from notification data
+                const IconComponent = notification.icon;
                 return (
                   <div
                     key={notification.id}
