@@ -159,12 +159,14 @@ const OrderDetails = () => {
         {/* Header */}
         <div className="order-details__header">
           <div className="order-details__header-content">
-            <Link to="/orders" className="order-details__back-btn">
-              <FaArrowLeft />
-            </Link>
-            <div className="order-details__header-text">
-              <h1 className="order-details__title">Order Details</h1>
-              <p className="order-details__subtitle">Manage booking information and status</p>
+            <div className="order-details__header-row">
+              <Link to="/orders" className="order-details__back-btn">
+                <FaArrowLeft />
+              </Link>
+              <div className="order-details__header-text">
+                <h1 className="order-details__title">Order Details</h1>
+                <p className="order-details__subtitle">Manage booking information and status</p>
+              </div>
             </div>
             <div 
               className="order-details__status-badge"
