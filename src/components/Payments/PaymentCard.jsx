@@ -29,6 +29,23 @@ const PaymentCard = ({ payment }) => {
     }
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-IN', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  };
+
+  const formatAmount = (amount) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0
+    }).format(amount);
+  };
+
   return (
     <div className="payment-card">
       <div className="payment-card__header">
@@ -52,7 +69,7 @@ const PaymentCard = ({ payment }) => {
             <FaRupeeSign className="payment-card__info-icon" />
             <div className="payment-card__info-text">
               <span className="payment-card__info-label">Amount</span>
-              <span className="payment-card__info-value">{payment.amount}</span>
+              <span className="payment-card__info-value">{formatAmount(payment.amount)}</span>
             </div>
           </div>
           
@@ -60,7 +77,7 @@ const PaymentCard = ({ payment }) => {
             <FaCalendarAlt className="payment-card__info-icon" />
             <div className="payment-card__info-text">
               <span className="payment-card__info-label">Payment Date</span>
-              <span className="payment-card__info-value">{payment.date}</span>
+              <span className="payment-card__info-value">{formatDate(payment.date)}</span>
             </div>
           </div>
           

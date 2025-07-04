@@ -13,227 +13,376 @@
 }
 
 .order-card {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 121, 148, 0.1);
+  padding: 1.25rem;
+  box-shadow: 0 4px 20px rgba(0, 121, 148, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
   border-left: 3px solid #007994;
-  margin: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0.75rem;
 }
 
 .order-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 121, 148, 0.15);
-  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 32px rgba(0, 121, 148, 0.15);
 }
 
 .order-card__header {
-  padding: 1rem;
-  border-bottom: 1px solid rgba(0, 121, 148, 0.1);
-  margin-bottom: 1rem;
-}
-
-.order-card__id-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 0.75rem;
+  margin-bottom: 0.875rem;
 }
 
-.order-card__id {
-  font-size: calc(1rem + 0.5vw);
-  font-weight: 700;
+.order-card__booking-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.order-card__booking-label {
+  font-size: calc(0.65rem + 0.2vw);
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.order-card__booking-value {
+  font-size: calc(0.9rem + 0.2vw);
   color: #007994;
-  margin: 0;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
 }
 
-.order-card__status {
-  display: inline-block;
+.order-card__status-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 0.4rem 0.8rem;
   border-radius: 16px;
-  font-size: calc(0.65rem + 0.2vw);
+  font-size: calc(0.75rem + 0.2vw);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
+  text-transform: capitalize;
+  white-space: nowrap;
 }
 
-.order-card__status--confirmed {
+.order-card__status-badge--confirmed {
   background: rgba(34, 197, 94, 0.1);
   color: #16a34a;
   border: 1px solid rgba(34, 197, 94, 0.2);
 }
 
-.order-card__status--pending {
+.order-card__status-badge--pending {
   background: rgba(245, 158, 11, 0.1);
   color: #d97706;
   border: 1px solid rgba(245, 158, 11, 0.2);
 }
 
-.order-card__status--canceled {
+.order-card__status-badge--canceled {
   background: rgba(239, 68, 68, 0.1);
   color: #dc2626;
   border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
-.order-card__body {
-  padding: 0 1rem 1rem;
-}
-
-.order-card__details {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.order-card__detail {
-  display: flex;
-  flex-direction: column;
-}
-
-.order-card__detail-content {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-}
-
-.order-card__detail-icon {
-  font-size: calc(1rem + 0.3vw);
-  color: #007994;
-  margin-top: 0.2rem;
-  flex-shrink: 0;
-}
-
-.order-card__detail-text {
-  flex: 1;
-}
-
-.order-card__detail-label {
-  display: block;
-  font-size: calc(0.65rem + 0.2vw);
-  font-weight: 600;
-  color: #64748b;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  margin-bottom: 0.4rem;
-}
-
-.order-card__detail-value {
+.order-card__status-icon {
   font-size: calc(0.9rem + 0.2vw);
-  font-weight: 600;
+}
+
+.order-card__status-icon--confirmed {
+  color: #16a34a;
+}
+
+.order-card__status-icon--pending {
+  color: #d97706;
+}
+
+.order-card__status-icon--canceled {
+  color: #dc2626;
+}
+
+.order-card__content {
+  margin-bottom: 0;
+}
+
+.order-card__title-section {
+  margin-bottom: 0.875rem;
+}
+
+.order-card__title {
+  font-size: calc(1.1rem + 0.3vw);
+  font-weight: 700;
   color: #1e293b;
   margin: 0;
   line-height: 1.4;
 }
 
-.order-card__detail-value--amount {
-  color: #007994;
-  font-size: calc(1rem + 0.3vw);
-  font-weight: 700;
+.order-card__info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
 }
 
-/* Mobile-First Responsive Design */
-@media (max-width: 768px) {
+.order-card__info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.order-card__info-icon {
+  color: #007994;
+  font-size: calc(1rem + 0.3vw);
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.order-card__info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.order-card__info-label {
+  font-size: calc(0.65rem + 0.2vw);
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.order-card__info-value {
+  font-size: calc(0.8rem + 0.2vw);
+  color: #1e293b;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
   .order-card {
-    margin: 0.75rem;
-    border-radius: 10px;
+    padding: 1rem;
+    margin: 0.6rem;
   }
 
   .order-card__header {
-    padding: 0.75rem;
+    margin-bottom: 0.7rem;
   }
 
-  .order-card__body {
-    padding: 0 0.75rem 0.75rem;
+  .order-card__title-section {
+    margin-bottom: 0.7rem;
   }
 
-  .order-card__details {
-    grid-template-columns: repeat(2, 1fr); /* Two columns on mobile */
-    gap: 0.75rem;
+  .order-card__title {
+    font-size: calc(1rem + 0.3vw);
   }
 
-  .order-card__id-section {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+  .order-card__info-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
   }
 
-  .order-card__id {
-    font-size: calc(0.95rem + 0.5vw);
+  .order-card__info-icon {
+    font-size: calc(0.9rem + 0.3vw);
   }
 
-  .order-card__status {
-    padding: 0.3rem 0.7rem;
+  .order-card__info-label {
     font-size: calc(0.6rem + 0.2vw);
   }
 
-  .order-card__detail-content {
-    align-items: flex-start; /* Maintain large-screen alignment */
+  .order-card__info-value {
+    font-size: calc(0.75rem + 0.2vw);
+  }
+
+  .order-card__status-badge {
+    padding: 0.35rem 0.7rem;
+    font-size: calc(0.7rem + 0.2vw);
+  }
+
+  .order-card__status-icon {
+    font-size: calc(0.85rem + 0.2vw);
+  }
+
+  .order-card__booking-label {
+    font-size: calc(0.6rem + 0.2vw);
+  }
+
+  .order-card__booking-value {
+    font-size: calc(0.85rem + 0.2vw);
+  }
+}
+
+@media (max-width: 768px) {
+  .order-card {
+    padding: 0.875rem;
+    margin: 0.5rem;
+  }
+
+  .order-card__header {
+    margin-bottom: 0.6rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .order-card__title-section {
+    margin-bottom: 0.6rem;
+  }
+
+  .order-card__title {
+    font-size: calc(0.95rem + 0.3vw);
+  }
+
+  .order-card__info-grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
+  }
+
+  .order-card__info-icon {
+    font-size: calc(0.85rem + 0.3vw);
+  }
+
+  .order-card__info-text {
+    gap: 0.15rem;
+  }
+
+  .order-card__info-label {
+    font-size: calc(0.55rem + 0.2vw);
+  }
+
+  .order-card__info-value {
+    font-size: calc(0.7rem + 0.2vw);
+  }
+
+  .order-card__status-badge {
+    padding: 0.3rem 0.6rem;
+    font-size: calc(0.65rem + 0.2vw);
+  }
+
+  .order-card__status-icon {
+    font-size: calc(0.8rem + 0.2vw);
+  }
+
+  .order-card__booking-label {
+    font-size: calc(0.55rem + 0.2vw);
+  }
+
+  .order-card__booking-value {
+    font-size: calc(0.8rem + 0.2vw);
   }
 }
 
 @media (max-width: 480px) {
   .order-card {
-    margin: 0.5rem;
-    border-left-width: 2px;
+    padding: 0.75rem;
+    margin: 0.4rem;
   }
 
-  .order-card__details {
-    grid-template-columns: repeat(2, 1fr); /* Maintain two columns */
-    gap: 0.6rem;
+  .order-card__header {
+    margin-bottom: 0.5rem;
   }
 
-  .order-card__detail-icon {
-    font-size: calc(0.85rem + 0.3vw);
+  .order-card__title-section {
+    margin-bottom: 0.5rem;
   }
 
-  .order-card__detail-label {
-    font-size: calc(0.55rem + 0.2vw);
-  }
-
-  .order-card__detail-value {
-    font-size: calc(0.8rem + 0.2vw);
-  }
-
-  .order-card__detail-value--amount {
+  .order-card__title {
     font-size: calc(0.9rem + 0.3vw);
   }
 
-  .order-card__link {
-    min-height: 48px; /* Ensure touch target size */
+  .order-card__info-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+  }
+
+  .order-card__info-icon {
+    font-size: calc(0.8rem + 0.3vw);
+  }
+
+  .order-card__info-text {
+    gap: 0.1rem;
+  }
+
+  .order-card__info-label {
+    font-size: calc(0.5rem + 0.2vw);
+  }
+
+  .order-card__info-value {
+    font-size: calc(0.65rem + 0.2vw);
+  }
+
+  .order-card__status-badge {
+    padding: 0.25rem 0.5rem;
+    font-size: calc(0.6rem + 0.2vw);
+  }
+
+  .order-card__status-icon {
+    font-size: calc(0.75rem + 0.2vw);
+  }
+
+  .order-card__booking-label {
+    font-size: calc(0.5rem + 0.2vw);
+  }
+
+  .order-card__booking-value {
+    font-size: calc(0.75rem + 0.2vw);
   }
 }
 
 @media (max-width: 360px) {
   .order-card {
-    margin: 0.4rem;
+    padding: 0.6rem;
+    margin: 0.3rem;
   }
 
   .order-card__header {
-    padding: 0.6rem;
+    margin-bottom: 0.4rem;
   }
 
-  .order-card__body {
-    padding: 0 0.6rem 0.6rem;
+  .order-card__title-section {
+    margin-bottom: 0.4rem;
   }
 
-  .order-card__details {
-    grid-template-columns: repeat(2, 1fr); /* Maintain two columns */
-    gap: 0.5rem;
+  .order-card__title {
+    font-size: calc(0.85rem + 0.3vw);
   }
 
-  .order-card__detail-icon {
-    font-size: calc(0.8rem + 0.3vw);
+  .order-card__info-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.3rem;
   }
 
-  .order-card__detail-label {
-    font-size: calc(0.5rem + 0.2vw);
+  .order-card__info-icon {
+    font-size: calc(0.75rem + 0.3vw);
   }
 
-  .order-card__detail-value {
-    font-size: calc(0.75rem + 0.2vw);
+  .order-card__info-text {
+    gap: 0.1rem;
+  }
+
+  .order-card__info-label {
+    font-size: calc(0.45rem + 0.2vw);
+  }
+
+  .order-card__info-value {
+    font-size: calc(0.6rem + 0.2vw);
+  }
+
+  .order-card__status-badge {
+    padding: 0.2rem 0.4rem;
+    font-size: calc(0.55rem + 0.2vw);
+  }
+
+  .order-card__status-icon {
+    font-size: calc(0.7rem + 0.2vw);
+  }
+
+  .order-card__booking-label {
+    font-size: calc(0.45rem + 0.2vw);
+  }
+
+  .order-card__booking-value {
+    font-size: calc(0.7rem + 0.2vw);
   }
 }
