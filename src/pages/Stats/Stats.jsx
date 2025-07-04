@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { LineChart, Line, AreaChart, Area, BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import { 
   BiListUl, 
@@ -23,6 +23,16 @@ const Stats = () => {
   const [earningsChartType, setEarningsChartType] = useState('area');
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [isMediumOrSmaller, setIsMediumOrSmaller] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMediumOrSmaller(window.innerWidth <= 1024);
+    };
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const finalValues = {
     orders: 120,
@@ -168,9 +178,9 @@ stats__card-icon stats__card-icon--${color}`}>
     const yAxisDomain = [0, maxValue * 1.2]; // Add 20% padding above max value
 
     return (
-      <ResponsiveContainer width="100%" height={300} minWidth={300}>
+      <ResponsiveContainer width="100%" height={300}>
         {chartType === 'bar' ? (
-          <BarChart data={data} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+          <BarChart data={data} margin={{ top: 20, right: isMediumOrSmaller ? 10 : 20, bottom: 25, left: isMediumOrSmaller ? 10 : 20 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#bec4cf" />
             <XAxis 
               dataKey="name" 
@@ -178,7 +188,8 @@ stats__card-icon stats__card-icon--${color}`}>
               tickLine={false}
               tick={{ fontSize: 12, fill: '#6b7280' }}
               label={{ value: 'Month', position: 'bottom', offset: 10, fill: '#6b7280' }}
-              padding={{ left: 10, right: 10 }}
+              padding={{ left: 0, right: 0 }}
+              interval={0} // Ensure all months are shown
             />
             <YAxis
               axisLine={{ stroke: '#6b7280' }}
@@ -186,7 +197,7 @@ stats__card-icon stats__card-icon--${color}`}>
               tick={{ fontSize: 12, fill: '#6b7280' }}
               tickFormatter={(value) => `₹${value}k`}
               domain={yAxisDomain}
-              label={{ value: 'Revenue', angle: -90, position: 'insideLeft', offset: -10, fill: '#6b7280' }}
+              label={{ value: isMediumOrSmaller ? null : 'Revenue', angle: -90, position: 'insideLeft', offset: -10, fill: '#6b7280' }}
             />
             <Tooltip content={<CustomTooltip />} />
             <Bar
@@ -196,7 +207,7 @@ stats__card-icon stats__card-icon--${color}`}>
             />
           </BarChart>
         ) : (
-          <AreaChart data={data} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+          <AreaChart data={data} margin={{ top: 20, right: isMediumOrSmaller ? 10 : 20, bottom: 25, left: isMediumOrSmaller ? 10 : 20 }}>
             <defs>
               <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor={color === 'primary-color' ? '#3b82f6' : '#10b981'} stopOpacity={0.3}/>
@@ -210,7 +221,8 @@ stats__card-icon stats__card-icon--${color}`}>
               tickLine={false}
               tick={{ fontSize: 12, fill: '#6b7280' }}
               label={{ value: 'Month', position: 'bottom', offset: 10, fill: '#6b7280' }}
-              padding={{ left: 10, right: 10 }}
+              padding={{ left: 0, right: 0 }}
+              interval={0} // Ensure all months are shown
             />
             <YAxis
               axisLine={{ stroke: '#6b7280' }}
@@ -218,7 +230,7 @@ stats__card-icon stats__card-icon--${color}`}>
               tick={{ fontSize: 12, fill: '#6b7280' }}
               tickFormatter={(value) => `₹${value}k`}
               domain={yAxisDomain}
-              label={{ value: 'Revenue', angle: -90, position: 'insideLeft', offset: -10, fill: '#6b7280' }}
+              label={{ value: isMediumOrSmaller ? null : 'Revenue', angle: -90, position: 'insideLeft', offset: -10, fill: '#6b7280' }}
             />
             <Tooltip content={<CustomTooltip />} />
             <Area
@@ -227,6 +239,7 @@ stats__card-icon stats__card-icon--${color}`}>
               stroke={color === 'primary-color' ? '#3b82f6' : '#10b981'}
               strokeWidth={3}
               fill={`url(#${gradientId})`}
+              connectNulls={true} // Ensure the line connects across all points
             />
           </AreaChart>
         )}
@@ -371,7 +384,8 @@ stats__card-icon stats__card-icon--${color}`}>
                     tickLine={false}
                     tick={{ fontSize: 10, fill: '#6b7280' }}
                     label={{ value: 'Month', position: 'bottom', offset: 10, fill: '#6b7280' }}
-                    padding={{ left: 10, right: 10 }}
+                    padding={{ left: 0, right: 0 }}
+                    interval={0}
                   />
                   <YAxis
                     axisLine={{ stroke: '#6b7280' }}
@@ -379,7 +393,7 @@ stats__card-icon stats__card-icon--${color}`}>
                     tick={{ fontSize: 10, fill: '#6b7280' }}
                     tickFormatter={(value) => `${value.toFixed(0)}`}
                     domain={[0, 'auto']}
-                    label={{ value: 'Visitors', angle: -90, position: 'insideLeft', offset: -10, fill: '#6b7280', fontSize: 10 }}
+                    label={{ value: isMediumOrSmaller ? null : 'Visitors', angle: -90, position: 'insideLeft', offset: -10, fill: '#6b7280', fontSize: 10 }}
                   />
                   <Tooltip
                     formatter={(value) => `${value.toFixed(0)} Visitors`}

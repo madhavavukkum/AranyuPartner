@@ -357,7 +357,7 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 16px;
-  padding: 2rem;
+  padding: 1.5rem;
   box-shadow: 0 4px 20px rgba(0, 121, 148, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
@@ -379,6 +379,7 @@
   margin-bottom: 2rem;
   flex-wrap: wrap;
   gap: 1rem;
+  padding-left: 20px;
 }
 
 .stats__chart-title-section {
@@ -446,12 +447,13 @@
   width: 100%;
   min-height: 300px;
   max-height: 400px;
-  overflow: visible; /* Changed from hidden to visible to prevent axis clipping */
+  overflow: visible; /* Ensure no clipping */
+  position: relative; /* Ensure proper stacking */
 }
 
 .stats__chart-card--secondary .stats__chart-container {
-  min-height: 300px; /* Match primary chart height */
-  max-height: 400px; /* Match primary chart height */
+  min-height: 300px;
+  max-height: 400px;
 }
 
 .stats__sales-stats {
@@ -466,6 +468,7 @@
   font-weight: 800;
   color: #1e293b;
   line-height: 1;
+  padding-left: 20px;
 }
 
 .stats__sales-growth {
@@ -479,6 +482,10 @@
 
 .stats__visitor-stats {
   margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Space between count and growth */
+  flex-wrap: nowrap; /* Prevent wrapping */
 }
 
 .stats__visitor-number {
@@ -486,15 +493,17 @@
   font-weight: 800;
   color: #1e293b;
   line-height: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
+  padding-left: 20px;
 }
 
 .stats__visitor-growth {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
   font-size: 0.875rem;
   font-weight: 600;
+  flex-wrap: nowrap; /* Ensure no wrapping */
 }
 
 .stats__visitor-growth--positive {
@@ -505,6 +514,8 @@
   min-height: 80px;
   max-height: 100px;
   margin-top: 1rem;
+  margin-left: -28px;
+  width: 100%;
 }
 
 /* Bottom Section */
@@ -746,6 +757,7 @@
     height: 70px;
     font-size: 1.75rem;
     border-radius: 17.5px;
+    margin-top: -10px; /* Move icon up by 10px */
   }
 
   .stats__title {
@@ -806,7 +818,7 @@
   }
 
   .stats__chart-card {
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   .stats__chart-header {
@@ -847,6 +859,29 @@
     width: 0.7rem;
     height: 0.7rem;
   }
+
+  .stats__chart-container {
+    width: 100%;
+    margin-left: -30px;
+  }
+
+  .stats__sparkline-container {
+    margin-left: -70px;
+    width: 100%;
+  }
+
+  .stats__visitor-stats {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+  }
+
+  .stats__visitor-number {
+    font-size: 2.5rem;
+    margin-bottom: 0;
+  }
 }
 
 @media (max-width: 768px) {
@@ -870,6 +905,7 @@
     height: 60px;
     font-size: 1.5rem;
     border-radius: 15px;
+    margin-top: -10px; /* Move icon up by 10px */
   }
 
   .stats__title {
@@ -926,7 +962,7 @@
   }
 
   .stats__chart-card {
-    padding: 1.25rem;
+    padding: 1rem;
   }
 
   .stats__chart-header {
@@ -982,6 +1018,29 @@
     padding: 0.875rem 1.25rem;
     font-size: 0.85rem;
   }
+
+  .stats__chart-container {
+    width: 100%;
+    margin-left: -30px;
+  }
+
+  .stats__sparkline-container {
+    margin-left: -70px;
+    width: 100%;
+  }
+
+  .stats__visitor-stats {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+  }
+
+  .stats__visitor-number {
+    font-size: 2.25rem;
+    margin-bottom: 0;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1004,6 +1063,7 @@
     height: 50px;
     font-size: 1.25rem;
     border-radius: 12.5px;
+    margin-top: -10px; /* Move icon up by 10px */
   }
 
   .stats__title {
@@ -1060,11 +1120,12 @@
   }
 
   .stats__chart-card {
-    padding: 1rem;
+    padding: 0.75rem 0.25rem;
   }
 
   .stats__chart-header {
     margin-bottom: 1rem;
+    padding-left: 20px;
   }
 
   .stats__chart-title {
@@ -1079,9 +1140,45 @@
     display: none;
   }
 
-  .stats__sales-amount,
+  .stats__sales-amount {
+    font-size: 2rem;
+    padding-left: 20px;
+  }
+
+  .stats__sales-growth {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #10b981;
+  }
+
+  .stats__visitor-stats {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+  }
+
   .stats__visitor-number {
     font-size: 2rem;
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+
+  .stats__visitor-growth {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    flex-wrap: nowrap;
+  }
+
+  .stats__visitor-growth--positive {
+    color: #10b981;
   }
 
   .stats__bottom {
@@ -1115,5 +1212,17 @@
   .stats__load-more-btn {
     padding: 0.75rem 1rem;
     font-size: 0.8rem;
+  }
+
+  .stats__chart-container {
+    width: 100%;
+    margin-left: -28px;
+    margin-right: -20px;
+  }
+
+  .stats__sparkline-container {
+    width: 100%;
+    margin-left: -28px;
+    margin-right: -20px;
   }
 }
