@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaPlus, FaEdit, FaTrash, FaGift } from 'react-icons/fa';
 import ConfirmationModal from './ConfirmationModal';
 import './OffersManager.css';
-import { showSuccessToast, showErrorToast } from '../../App.jsx';
+import { showSuccessToast,showInfoToast, showErrorToast } from '../../App.jsx';
 
 const OffersManager = () => {
   const [offers, setOffers] = useState([]);
