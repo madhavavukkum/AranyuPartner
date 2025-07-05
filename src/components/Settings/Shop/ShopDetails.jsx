@@ -3,13 +3,12 @@ import {
   FaEdit,
   FaCamera,
   FaBriefcase,
-  FaPencilAlt,
   FaSign,
   FaTags,
   FaUser,
   FaIdCard,
   FaTimes,
-  FaSave,
+  FaCheck,
   FaAddressBook,
   FaPhone,
   FaEnvelope,
@@ -336,22 +335,39 @@ const ShopDetails = () => {
           <div className="shop-details__section-header">
             <div className="shop-details__section-title-wrapper">
               <div className="shop-details__section-icon-wrapper shop-details__section-icon-wrapper--business">
-                <FaBriefcase className="shop-details__section-icon" />
+                <FaEdit className="shop-details__section-icon" />
               </div>
               <div className="shop-details__section-title-content">
                 <h2 className="shop-details__section-title">Business Details</h2>
                 <p className="shop-details__section-subtitle">Manage your business information</p>
               </div>
             </div>
-            {!editMode.business && (
-              <button
-                className="shop-details__edit-btn"
-                onClick={() => toggleEdit('business')}
-              >
-                <FaPencilAlt className="shop-details__edit-btn-icon" />
-                Edit
-              </button>
-            )}
+            <div className="shop-details__button-container">
+              {!editMode.business ? (
+                <button
+                  className="shop-details__edit-btn"
+                  onClick={() => toggleEdit('business')}
+                >
+                  <FaEdit className="shop-details__edit-btn-icon" />
+                  <span className="shop-details__edit-text">Edit</span>
+                </button>
+              ) : (
+                <div className="shop-details__edit-actions">
+                  <button
+                    className="shop-details__action-btn shop-details__action-btn--save"
+                    onClick={() => saveEdit('business')}
+                  >
+                    <FaCheck />
+                  </button>
+                  <button
+                    className="shop-details__action-btn shop-details__action-btn--cancel"
+                    onClick={() => cancelEdit('business')}
+                  >
+                    <FaTimes />
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="shop-details__section-body">
@@ -432,25 +448,6 @@ const ShopDetails = () => {
                 </div>
               </div>
             </div>
-
-            {editMode.business && (
-              <div className="shop-details__edit-actions">
-                <button
-                  className="shop-details__action-btn shop-details__action-btn--cancel"
-                  onClick={() => cancelEdit('business')}
-                >
-                  <FaTimes className="shop-details__action-btn-icon" />
-                  Cancel
-                </button>
-                <button
-                  className="shop-details__action-btn shop-details__action-btn--save"
-                  onClick={() => saveEdit('business')}
-                >
-                  <FaSave className="shop-details__action-btn-icon" />
-                  Save
-                </button>
-              </div>
-            )}
           </div>
         </div>
 
@@ -465,15 +462,32 @@ const ShopDetails = () => {
                 <p className="shop-details__section-subtitle">Manage your contact information</p>
               </div>
             </div>
-            {!editMode.contact && (
-              <button
-                className="shop-details__edit-btn"
-                onClick={() => toggleEdit('contact')}
-              >
-                <FaPencilAlt className="shop-details__edit-btn-icon" />
-                Edit
-              </button>
-            )}
+            <div className="shop-details__button-container">
+              {!editMode.contact ? (
+                <button
+                  className="shop-details__edit-btn"
+                  onClick={() => toggleEdit('contact')}
+                >
+                  <FaEdit className="shop-details__edit-btn-icon" />
+                  <span className="shop-details__edit-text">Edit</span>
+                </button>
+              ) : (
+                <div className="shop-details__edit-actions">
+                  <button
+                    className="shop-details__action-btn shop-details__action-btn--save"
+                    onClick={() => saveEdit('contact')}
+                  >
+                    <FaCheck />
+                  </button>
+                  <button
+                    className="shop-details__action-btn shop-details__action-btn--cancel"
+                    onClick={() => cancelEdit('contact')}
+                  >
+                    <FaTimes />
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="shop-details__section-body">
@@ -535,26 +549,6 @@ const ShopDetails = () => {
                 </div>
               </div>
             </div>
-
-            {editMode.contact && (
-              <div className="shop-details__edit-actions">
-                <button
-                  Undefined
-                  className="shop-details__action-btn shop-details__action-btn--cancel"
-                  onClick={() => cancelEdit('contact')}
-                >
-                  <FaTimes className="shop-details__action-btn-icon" />
-                  Cancel
-                </button>
-                <button
-                  className="shop-details__action-btn shop-details__action-btn--save"
-                  onClick={() => saveEdit('contact')}
-                >
-                  <FaSave className="shop-details__action-btn-icon" />
-                  Save
-                </button>
-              </div>
-            )}
           </div>
         </div>
 
@@ -569,15 +563,32 @@ const ShopDetails = () => {
                 <p className="shop-details__section-subtitle">Manage your location information</p>
               </div>
             </div>
-            {!editMode.location && (
-              <button
-                className="shop-details__edit-btn"
-                onClick={() => toggleEdit('location')}
-              >
-                <FaPencilAlt className="shop-details__edit-btn-icon" />
-                Edit
-              </button>
-            )}
+            <div className="shop-details__button-container">
+              {!editMode.location ? (
+                <button
+                  className="shop-details__edit-btn"
+                  onClick={() => toggleEdit('location')}
+                >
+                  <FaEdit className="shop-details__edit-btn-icon" />
+                  <span className="shop-details__edit-text">Edit</span>
+                </button>
+              ) : (
+                <div className="shop-details__edit-actions">
+                  <button
+                    className="shop-details__action-btn shop-details__action-btn--save"
+                    onClick={() => saveEdit('location')}
+                  >
+                    <FaCheck />
+                  </button>
+                  <button
+                    className="shop-details__action-btn shop-details__action-btn--cancel"
+                    onClick={() => cancelEdit('location')}
+                  >
+                    <FaTimes />
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="shop-details__section-body">
@@ -696,25 +707,6 @@ const ShopDetails = () => {
                 </div>
               </div>
             </div>
-
-            {editMode.location && (
-              <div className="shop-details__edit-actions">
-                <button
-                  className="shop-details__action-btn shop-details__action-btn--cancel"
-                  onClick={() => cancelEdit('location')}
-                >
-                  <FaTimes className="shop-details__action-btn-icon" />
-                  Cancel
-                </button>
-                <button
-                  className="shop-details__action-btn shop-details__action-btn--save"
-                  onClick={() => saveEdit('location')}
-                >
-                  <FaSave className="shop-details__action-btn-icon" />
-                  Save
-                </button>
-              </div>
-            )}
           </div>
         </div>
 
@@ -729,15 +721,32 @@ const ShopDetails = () => {
                 <p className="shop-details__section-subtitle">Manage your availability information</p>
               </div>
             </div>
-            {!editMode.availability && (
-              <button
-                className="shop-details__edit-btn"
-                onClick={() => toggleEdit('availability')}
-              >
-                <FaPencilAlt className="shop-details__edit-btn-icon" />
-                Edit
-              </button>
-            )}
+            <div className="shop-details__button-container">
+              {!editMode.availability ? (
+                <button
+                  className="shop-details__edit-btn"
+                  onClick={() => toggleEdit('availability')}
+                >
+                  <FaEdit className="shop-details__edit-btn-icon" />
+                  <span className="shop-details__edit-text">Edit</span>
+                </button>
+              ) : (
+                <div className="shop-details__edit-actions">
+                  <button
+                    className="shop-details__action-btn shop-details__action-btn--save"
+                    onClick={() => saveEdit('availability')}
+                  >
+                    <FaCheck />
+                  </button>
+                  <button
+                    className="shop-details__action-btn shop-details__action-btn--cancel"
+                    onClick={() => cancelEdit('availability')}
+                  >
+                    <FaTimes />
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="shop-details__section-body">
@@ -803,25 +812,6 @@ const ShopDetails = () => {
                 </div>
               </div>
             </div>
-
-            {editMode.availability && (
-              <div className="shop-details__edit-actions">
-                <button
-                  className="shop-details__action-btn shop-details__action-btn--cancel"
-                  onClick={() => cancelEdit('availability')}
-                >
-                  <FaTimes className="shop-details__action-btn-icon" />
-                  Cancel
-                </button>
-                <button
-                  className="shop-details__action-btn shop-details__action-btn--save"
-                  onClick={() => saveEdit('availability')}
-                >
-                  <FaSave className="shop-details__action-btn-icon" />
-                  Save
-                </button>
-              </div>
-            )}
           </div>
         </div>
 
