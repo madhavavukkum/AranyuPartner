@@ -60,7 +60,7 @@ const EmptyState = ({ onAddNew }) => {
       <p className="packages__empty-description">You haven't created any packages yet.</p>
       <button className="packages__add-btn" onClick={onAddNew}>
         <FaPlus className="packages__btn-icon" />
-        Add New Package
+        Add
       </button>
     </div>
   );
@@ -150,7 +150,7 @@ const Packages = ({ setShowForm, setEditPackageId }) => {
                 <h3 className="packages__content-title">Your Packages</h3>
                 <button className="packages__add-btn" onClick={handleAddNew}>
                   <FaPlus className="packages__btn-icon" />
-                  Add New Package
+                  Add
                 </button>
               </div>
               <div className="packages__list">
