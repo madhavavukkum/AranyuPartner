@@ -46,9 +46,6 @@ const Faqs = () => {
         {/* Header */}
         <div className="faqs__header">
           <div className="faqs__header-content">
-            <div className="faqs__header-icon">
-              <FaQuestionCircle />
-            </div>
             <div className="faqs__header-text">
               <h1 className="faqs__title">Frequently Asked Questions</h1>
               <p className="faqs__subtitle">Find answers to common questions about our platform</p>

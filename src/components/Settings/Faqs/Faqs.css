@@ -36,20 +36,6 @@
   flex-direction: row;
 }
 
-.faqs__header-icon {
-  width: clamp(60px, 8vw, 80px);
-  height: clamp(60px, 8vw, 80px);
-  background: linear-gradient(135deg, #007994, #005f73);
-  border-radius: clamp(12px, 2vw, 20px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  box-shadow: 0 8px 25px rgba(0, 121, 148, 0.3);
-  flex-shrink: 0;
-}
-
 .faqs__header-text {
   flex: 1;
 }
@@ -248,8 +234,8 @@
     gap: clamp(0.75rem, 2vw, 1rem);
   }
 
-  .faqs__header-icon {
-    margin: 0 auto;
+  .faqs__subtitle {
+    display: none;
   }
 
   .faqs__question {

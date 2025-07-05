@@ -5,7 +5,7 @@
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   min-height: 100vh;
-  padding: 2rem;
+  padding: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,32 +18,32 @@
 
 /* Header */
 .logout__header {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .logout__header-content {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 121, 148, 0.1);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 121, 148, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .logout__header-icon {
-  width: 80px;
-  height: 80px;
+  width: clamp(70px, 15vw, 75px);
+  height: clamp(70px, 15vw, 75px);
   background: linear-gradient(135deg, #f59e0b, #d97706);
-  border-radius: 20px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 2rem;
-  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+  font-size: clamp(1.75rem, 5vw, 1.9rem);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
   flex-shrink: 0;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .logout__title {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 2.25rem);
   font-weight: 700;
   color: #1e293b;
   margin-bottom: 0.5rem;
@@ -63,7 +63,7 @@
 }
 
 .logout__subtitle {
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 3vw, 1.1rem);
   color: #64748b;
   margin: 0;
   font-weight: 400;
@@ -72,35 +72,35 @@
 
 /* Content */
 .logout__content {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .logout__card {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 121, 148, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 121, 148, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
 }
 
 .logout__card-body {
-  padding: 3rem;
+  padding: 2.5rem;
   text-align: center;
 }
 
 .logout__icon-wrapper {
-  width: 120px;
-  height: 120px;
+  width: clamp(100px, 20vw, 110px);
+  height: clamp(100px, 20vw, 110px);
   background: linear-gradient(135deg, rgba(0, 121, 148, 0.1), rgba(0, 121, 148, 0.05));
   border: 1px solid rgba(0, 121, 148, 0.2);
-  border-radius: 20px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1.5rem;
   color: #007994;
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 6vw, 2.75rem);
 }
 
 .logout__icon {
@@ -112,18 +112,18 @@
 }
 
 .logout__heading {
-  font-size: 2rem;
+  font-size: clamp(1.75rem, 4.5vw, 1.9rem);
   font-weight: 700;
   color: #1e293b;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .logout__description {
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 3vw, 1.05rem);
   color: #64748b;
   line-height: 1.6;
-  margin-bottom: 2rem;
-  max-width: 600px;
+  margin-bottom: 1.5rem;
+  max-width: 90%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -131,23 +131,23 @@
 /* Actions */
 .logout__actions {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   justify-content: center;
 }
 
 .logout__btn {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 2rem;
-  border-radius: 12px;
+  gap: 0.5rem;
+  padding: 0.9rem 1.5rem;
+  border-radius: 10px;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 0.95rem);
   border: 2px solid;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: none;
-  min-width: 160px;
+  min-width: clamp(140px, 30vw, 150px);
   justify-content: center;
 }
 
@@ -155,12 +155,12 @@
   background: linear-gradient(135deg, #ef4444, #dc2626);
   color: white;
   border-color: #ef4444;
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+  box-shadow: 0 3px 12px rgba(239, 68, 68, 0.3);
 }
 
 .logout__btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
   background: linear-gradient(135deg, #dc2626, #b91c1c);
 }
 
@@ -174,11 +174,11 @@
   background: #64748b;
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(100, 116, 139, 0.3);
+  box-shadow: 0 6px 20px rgba(100, 116, 139, 0.3);
 }
 
 .logout__btn-icon {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 0.95rem);
 }
 
 /* Responsive Design */
@@ -186,64 +186,72 @@
   .logout {
     padding: 1rem;
   }
-  
+
+  .logout__container {
+    max-width: 100%;
+  }
+
   .logout__header-content {
-    padding: 1.5rem;
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: 14px;
   }
-  
-  .logout__header-icon {
-    width: 70px;
-    height: 70px;
-    font-size: 1.75rem;
-  }
-  
-  .logout__title {
-    font-size: 2rem;
-  }
-  
-  .logout__subtitle {
-    font-size: 1rem;
-  }
-  
+
   .logout__card-body {
     padding: 2rem;
   }
-  
-  .logout__icon-wrapper {
-    width: 100px;
-    height: 100px;
-    font-size: 2.5rem;
-  }
-  
-  .logout__heading {
-    font-size: 1.75rem;
-  }
-  
-  .logout__description {
-    font-size: 1rem;
-  }
-  
+
   .logout__actions {
-    flex-direction: column;
+    gap: 0.5rem;
   }
 }
 
 @media (max-width: 480px) {
+  .logout {
+    padding: 0.75rem;
+  }
+
+  .logout__header-content {
+    padding: 1rem;
+    gap: 0.75rem;
+    border-radius: 12px;
+  }
+
+  .logout__header-icon {
+    width: clamp(60px, 15vw, 65px);
+    height: clamp(60px, 15vw, 65px);
+    font-size: clamp(1.5rem, 4vw, 1.6rem);
+  }
+
   .logout__title {
-    font-size: 1.75rem;
+    font-size: clamp(1.8rem, 4.5vw, 2rem);
   }
-  
+
+  .logout__subtitle {
+    font-size: clamp(0.9rem, 2.5vw, 0.95rem);
+  }
+
+  .logout__card-body {
+    padding: 1.5rem;
+  }
+
+  .logout__icon-wrapper {
+    width: clamp(90px, 20vw, 100px);
+    height: clamp(90px, 20vw, 100px);
+    font-size: clamp(2.25rem, 5.5vw, 2.5rem);
+  }
+
   .logout__heading {
-    font-size: 1.5rem;
+    font-size: clamp(1.5rem, 4vw, 1.6rem);
   }
-  
+
+  .logout__description {
+    font-size: clamp(0.9rem, 2.5vw, 0.95rem);
+  }
+
   .logout__btn {
-    padding: 0.875rem 1.5rem;
-    font-size: 0.875rem;
-    min-width: 140px;
+    padding: 0.8rem 1.2rem;
+    font-size: clamp(0.85rem, 2.2vw, 0.9rem);
+    min-width: clamp(120px, 28vw, 130px);
   }
 }
 
@@ -251,7 +259,7 @@
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -261,13 +269,13 @@
 
 .logout__header,
 .logout__content {
-  animation: fadeInUp 0.6s ease forwards;
+  animation: fadeInUp 0.5s ease forwards;
 }
 
 .logout__header {
-  animation-delay: 0.1s;
+  animation-delay: 0.05s;
 }
 
 .logout__content {
-  animation-delay: 0.2s;
+  animation-delay: 0.1s;
 }
