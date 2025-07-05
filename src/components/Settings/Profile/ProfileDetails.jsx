@@ -19,8 +19,7 @@ import {
   FaCalendarAlt,
   FaBriefcase,
   FaCheck,
-  FaTimes,
-  FaArrowLeft
+  FaTimes
 } from 'react-icons/fa';
 import './ProfileDetails.css';
 
@@ -113,9 +112,6 @@ function ProfileDetails() {
       <div className="profile-details__container">
         <div className="profile-details__header">
           <div className="profile-details__header-content">
-            <Link to="/orders" className="profile-details__back-btn">
-              <FaArrowLeft />
-            </Link>
             <div className="profile-details__header-text">
               <h1 className="profile-details__title">Profile Details</h1>
               <p className="profile-details__subtitle">Manage your personal information</p>
@@ -180,7 +176,7 @@ function ProfileDetails() {
                       onClick={() => handleEdit('personal')}
                     >
                       <FaEdit className="profile-details__edit-icon" />
-                      Edit
+                      <span className="profile-details__edit-text">Edit</span>
                     </button>
                   ) : (
                     <div className="profile-details__edit-actions">
@@ -346,7 +342,7 @@ function ProfileDetails() {
                       onClick={() => handleEdit('address')}
                     >
                       <FaEdit className="profile-details__edit-icon" />
-                      Edit
+                      <span className="profile-details__edit-text">Edit</span>
                     </button>
                   ) : (
                     <div className="profile-details__edit-actions">
