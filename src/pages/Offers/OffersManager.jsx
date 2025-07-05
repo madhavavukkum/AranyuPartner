@@ -101,7 +101,7 @@ const OffersManager = () => {
                 </div>
                 <Link to="/offers/add" className="offers-manager__add-btn offers-manager__add-btn--secondary">
                   <FaPlus className="offers-manager__btn-icon" />
-                  Add Discounts
+                  Add
                 </Link>
               </div>
               <div className="offers-manager__offers-grid">

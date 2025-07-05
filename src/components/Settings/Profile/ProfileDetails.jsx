@@ -137,7 +137,11 @@ function ProfileDetails() {
                   <div className="profile-details__user-info">
                     <h3 className="profile-details__user-name">{formData.fullName}</h3>
                     <div className="profile-details__user-badge">
-                      <span className="profile-details__badge">{userData.membership.title} - {userData.membership.info}</span>
+
+                    <span className={`profile-details__badge ${userData.membership.info === 'Active' ? 'profile-details__badge--active' : 'profile-details__badge--inactive'}`}>
+                      {userData.membership.title} - {userData.membership.info}
+                    </span>
+
                     </div>
                     <p className="profile-details__user-business">{userData.businessName}</p>
                     <p className="profile-details__user-location">{userData.location}</p>
