@@ -58,10 +58,13 @@ const EmptyState = ({ onAddNew }) => {
       </div>
       <h3 className="packages__empty-title">No Packages</h3>
       <p className="packages__empty-description">You haven't created any packages yet.</p>
+      <div className="d-flex justify-content-center">
       <button className="packages__add-btn" onClick={onAddNew}>
         <FaPlus className="packages__btn-icon" />
-        Add
+        Add new Package
       </button>
+    </div>
+
     </div>
   );
 };

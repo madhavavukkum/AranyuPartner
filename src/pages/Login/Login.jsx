@@ -67,7 +67,7 @@ const Login = () => {
             style: {
               background: '#e0f2fe',
               color: '#0c4a6e',
-              border: '1px solidrgb(255, 255, 255)',
+              border: '1px solid rgb(255, 255, 255)',
               borderRadius: '8px',
               fontFamily: 'Poppins, sans-serif',
               fontWeight: 500,
@@ -105,17 +105,27 @@ const Login = () => {
       const hasErrors = Object.values(formErrors).some((error) => error);
 
       if (!hasErrors) {
-        toast.error('Signup is disabled. Please use existing credentials to login.', {
-          duration: 3000,
+        // Simulate saving the new user to accounts
+        accounts.push({
+          email: formData.signupEmail,
+          password: formData.signupPassword,
+          name: formData.signupName,
+          phoneNumber: formData.signupPhoneNumber,
+          state: formData.signupState,
+        });
+        login({ email: formData.signupEmail });
+        toast.success('Sign up successful! Redirecting to onboarding...', {
+          duration: 2500,
           style: {
-            background: '#fee2e2',
-            color: '#991b1b',
-            border: '1px solid #dc3545',
+            background: '#e0f2fe',
+            color: '#0c4a6e',
+            border: '1px solid rgb(255, 255, 255)',
             borderRadius: '8px',
             fontFamily: 'Poppins, sans-serif',
             fontWeight: 500,
           },
         });
+        setTimeout(() => navigate('/onboarding'), 2500);
       }
     }
   };

@@ -30,6 +30,8 @@ import AddDiscount from './pages/Offers/AddDiscount';
 import Payments from './pages/Payments/Payments.jsx';
 import CustomerRatings from './pages/CustomerRatings/CustomerRatings.jsx';
 import Notifications from './pages/Notifications/Notifications.jsx';
+import OnboardingPage from './pages/Onboarding/OnboardingPage.jsx';
+import BusinessRegistrationForm from './pages/Onboarding/BusinessRegistrationForm.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -48,7 +50,7 @@ const ProtectedRoute = ({ children }) => {
 export const showSuccessToast = (message) => {
   toast.success(message, {
     duration: 2500,
-    position: 'bottom-right',
+    position: window.innerWidth < 768 ? 'top-center' : 'bottom-right',
     style: {
       background: '#e0f2fe',
       color: '#0c4a6e',
@@ -63,7 +65,7 @@ export const showSuccessToast = (message) => {
 export const showInfoToast = (message) => {
   toast(message, {
     duration: 3000,
-    position: 'bottom-right',
+    position: window.innerWidth < 768 ? 'top-center' : 'bottom-right',
     style: {
       background: '#f0f9ff',
       color: '#1e40af',
@@ -78,7 +80,7 @@ export const showInfoToast = (message) => {
 export const showErrorToast = (message) => {
   toast.error(message, {
     duration: 3000,
-    position: 'bottom-right',
+    position: window.innerWidth < 768 ? 'top-center' : 'bottom-right',
     style: {
       background: '#fee2e2',
       color: '#991b1b',
@@ -97,17 +99,21 @@ const AppContent = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Only redirect to /login if not authenticated and not on allowed public routes
   useEffect(() => {
-    if (!isAuthenticated && location.pathname !== '/login' && location.pathname !== '/logout') {
+    const publicRoutes = ['/login', '/logout', '/onboarding', '/business-registration'];
+    if (!isAuthenticated && !publicRoutes.includes(location.pathname)) {
       navigate('/login', { replace: true, state: { from: location } });
     }
-  }, [isAuthenticated, location, navigate]);
+  }, [isAuthenticated, location.pathname, navigate]);
 
   const isLoginPage = location.pathname === '/login';
   const isSettingsPage = location.pathname.startsWith('/settings');
   const isLogoutPage = location.pathname === '/logout';
+  const isOnboardingPage = location.pathname === '/onboarding';
+  const isBusinessRegistrationPage = location.pathname === '/business-registration';
 
-  const showNavigation = !isLoginPage && !isLogoutPage;
+  const showNavigation = !isLoginPage && !isLogoutPage && !isOnboardingPage && !isBusinessRegistrationPage;
 
   return (
     <div className="d-flex flex-column min-vh-100">
@@ -115,6 +121,8 @@ const AppContent = () => {
       <main className={showNavigation && !isSettingsPage ? 'main-content' : ''}>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/onboarding" element={<OnboardingPage />} />
+          <Route path="/business-registration" element={<BusinessRegistrationForm />} />
           <Route
             path="/logout"
             element={
