@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Outlet, NavLink } from 'react-router-dom';
 import { RiMenu3Line } from 'react-icons/ri';
-import { FaCog, FaUser, FaStore, FaCreditCard, FaWallet, FaConciergeBell, FaTags, FaBoxOpen, FaQuestionCircle, FaInfoCircle, FaHeadset, FaSignOutAlt, FaChevronLeft, FaChevronRight, FaTimes, FaHome } from 'react-icons/fa';
+import { FaCog,FaHotel, FaUser, FaStore, FaCreditCard, FaWallet, FaConciergeBell, FaTags, FaBoxOpen, FaQuestionCircle, FaInfoCircle, FaHeadset, FaSignOutAlt, FaChevronLeft, FaChevronRight, FaTimes, FaHome } from 'react-icons/fa';
 import './Settings.css';
 
 function Settings() {
@@ -57,6 +57,7 @@ function Settings() {
     { key: 'service', icon: FaConciergeBell, label: 'Manage Service', color: '#6f42c1' },
     { key: 'category', icon: FaTags, label: 'Manage Category', color: '#e83e8c' },
     { key: 'packages', icon: FaBoxOpen, label: 'Packages', color: '#fd7e14' },
+    { key: 'rooms', icon: FaHotel, label: 'Rooms', color: '#3f51b5' },
     { key: 'faqs', icon: FaQuestionCircle, label: 'FAQs', color: '#20c997' },
     { key: 'about', icon: FaInfoCircle, label: 'About Aranyu', color: '#6c757d' },
     { key: 'help', icon: FaHeadset, label: 'Help & Support', color: '#dc3545' },
