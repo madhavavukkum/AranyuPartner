@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link for back button
 import { Modal, Button, Form, InputGroup } from 'react-bootstrap';
-import { FaHotel, FaPlus, FaEdit, FaTrash, FaSearch, FaBed, FaUsers, FaHome, FaCrown } from 'react-icons/fa';
+import { FaArrowLeft, FaPlus, FaEdit, FaTrash, FaSearch, FaBed, FaUsers, FaHome, FaCrown } from 'react-icons/fa'; // Use FaArrowLeft, remove FaHotel
 import toast from 'react-hot-toast';
 import './MyRooms.css';
 
 const MyRooms = () => {
+  const navigate = useNavigate();
   const [hotelData, setHotelData] = useState(
     JSON.parse(localStorage.getItem('hotelData')) || {
       floors: [
@@ -28,7 +30,6 @@ const MyRooms = () => {
   );
 
   const [roomTypes, setRoomTypes] = useState([]);
-
   const [showAddFloorModal, setShowAddFloorModal] = useState(false);
   const [showAddRoomModal, setShowAddRoomModal] = useState(false);
   const [showEditRoomModal, setShowEditRoomModal] = useState(false);
@@ -42,7 +43,6 @@ const MyRooms = () => {
   const [filters, setFilters] = useState({ type: '', floor: '', search: '' });
 
   useEffect(() => {
-    // Merge room types from 'hotelData' and 'rooms'
     const hotelRoomTypes = [
       ...new Set(
         hotelData.floors
@@ -212,8 +212,15 @@ const MyRooms = () => {
       <div className="room-management__container">
         <div className="room-management__header">
           <div className="room-management__header-content">
-            <h1 className="room-management__title">My Rooms</h1>
-            <p className="room-management__subtitle">Efficiently manage your hotel's room layout, floors, and room types</p>
+            <div className="room-management__header-row">
+              <Link to="/settings/rooms" className="room-management__back-btn">
+                <FaArrowLeft />
+              </Link>
+              <div className="room-management__header-text">
+                <h1 className="room-management__title">My Rooms</h1>
+                <p className="room-management__subtitle">Efficiently manage your hotel's room layout, floors, and room types</p>
+              </div>
+            </div>
           </div>
         </div>
         <div className="room-management__content">
@@ -286,7 +293,7 @@ const MyRooms = () => {
             {filteredFloors.length === 0 ? (
               <div className="room-management__empty-state">
                 <div className="room-management__empty-icon">
-                  <FaHotel />
+                  <FaArrowLeft />
                 </div>
                 <h3 className="room-management__empty-title">No Floors</h3>
                 <p className="room-management__empty-description">You haven't created any floors yet.</p>

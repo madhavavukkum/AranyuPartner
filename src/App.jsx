@@ -39,7 +39,6 @@ import AddRoom from './components/Settings/Rooms/AddRoom';
 import EditRoom from './components/Settings/Rooms/EditRoom';
 import AvailabilityCalendar from './components/Settings/Rooms/AvailabilityCalendar';
 import PreviewRoom from './components/Settings/Rooms/PreviewRoom';
-
 import MyRooms from './components/Settings/Rooms/MyRooms/MyRooms.jsx';
 
 

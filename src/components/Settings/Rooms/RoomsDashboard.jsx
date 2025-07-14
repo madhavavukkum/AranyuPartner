@@ -256,22 +256,23 @@ const RoomsDashboard = () => {
             >
               <FaList /> My Listings
             </button>
+            
+            <Link
+              to="/settings/my-rooms"
+              className={`roomsdashboard__nav-tab ${activeTab === 'myRooms' ? 'roomsdashboard__nav-tab--active' : ''}`}
+              onClick={() => {
+                setActiveTab('myRooms');
+              }}
+            >
+              <FaList /> MY ROOMS
+            </Link>
+            
             <button 
               className={`roomsdashboard__nav-tab ${activeTab === 'calendar' ? 'roomsdashboard__nav-tab--active' : ''}`}
               onClick={() => setActiveTab('calendar')}
             >
               <FaCalendarAlt /> Availability Calendar
             </button>
-            <Link 
-              to="/settings/my-rooms"
-              className={`roomsdashboard__nav-tab ${activeTab === 'myRooms' ? 'roomsdashboard__nav-tab--active' : ''}`}
-              onClick={() => {
-                setActiveTab('myRooms');
-                navigate('/settings/my-rooms');
-              }}
-            >
-              <FaList /> MY ROOMS
-            </Link>
           </div>
         </div>
 
