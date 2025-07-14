@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaUniversity, FaHeadset, FaChevronRight, FaMoneyBillWave, FaCreditCard } from 'react-icons/fa';
+import { FaUniversity, FaHeadset, FaChevronRight, FaWallet, FaMoneyBillWave, FaCreditCard } from 'react-icons/fa';
 import './WalletDetails.css';
 
 const WalletDetails = () => {
@@ -17,9 +17,12 @@ const WalletDetails = () => {
         {/* Header Section */}
         <div className="wallet-details__header">
           <div className="wallet-details__header-content">
+            <div className="wallet-details__header-icon">
+              <FaWallet />
+            </div>
             <div className="wallet-details__header-text">
               <h1 className="wallet-details__title">My Wallet</h1>
-              <p className="wallet-details__subtitle">Check the amount that you have earned</p>
+              <p className="wallet-details__subtitle">Manage your wallet information</p>
             </div>
           </div>
         </div>

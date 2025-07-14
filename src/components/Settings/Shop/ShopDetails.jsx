@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import {
   FaEdit,
   FaCamera,
-  FaBriefcase,
+  FaStore,
   FaSign,
   FaTags,
   FaUser,
@@ -294,8 +294,15 @@ const ShopDetails = () => {
       )}
       <div className="shop-details__container">
         <div className="shop-details__header">
-          <h1 className="shop-details__title">Shop Details</h1>
-          <p className="shop-details__subtitle">Here you can view and edit your shop information</p>
+          <div className="shop-details__header-content">
+            <div className="shop-details__header-icon">
+              <FaStore />
+            </div>
+            <div className="shop-details__header-text">
+              <h1 className="shop-details__title">Shop Details</h1>
+              <p className="shop-details__subtitle">Manage your shop information</p>
+            </div>
+          </div>
         </div>
 
         <div className="shop-details__banner">

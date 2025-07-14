@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Outlet, NavLink } from 'react-router-dom';
 import { RiMenu3Line } from 'react-icons/ri';
-import { FaCog,FaHotel, FaUser, FaStore, FaCreditCard, FaWallet, FaConciergeBell, FaTags, FaBoxOpen, FaQuestionCircle, FaInfoCircle, FaHeadset, FaSignOutAlt, FaChevronLeft, FaChevronRight, FaTimes, FaHome } from 'react-icons/fa';
+import { FaCog, FaHotel, FaUser, FaStore, FaCreditCard, FaWallet, FaConciergeBell, FaTags, FaBoxOpen, FaQuestionCircle, FaInfoCircle, FaHeadset, FaSignOutAlt, FaChevronLeft, FaChevronRight, FaTimes, FaHome } from 'react-icons/fa';
 import './Settings.css';
 
 function Settings() {
@@ -77,8 +77,6 @@ function Settings() {
     const item = menuItems.find(item => item.key === currentSection);
     return item ? item.color : '#007994';
   };
-
-  const SectionIcon = getSectionIcon();
 
   return (
     <div className="settings">
@@ -157,19 +155,6 @@ function Settings() {
       </aside>
       <main className={`settings__main ${isSidebarCollapsed ? 'settings__main--expanded' : ''}`}>
         <div className="settings__content">
-          <header className="settings__content-header">
-            <div className="settings__content-title">
-              <SectionIcon className="settings__content-icon" style={{ color: getSectionColor() }} />
-              <h1 className="settings__content-heading">{getSectionTitle()}</h1>
-            </div>
-            <div className="settings__content-breadcrumb">
-              <NavLink to="/" className="settings__breadcrumb-link">Home</NavLink>
-              <span className="settings__breadcrumb-separator">/</span>
-              <span className="settings__breadcrumb-current">Settings</span>
-              <span className="settings__breadcrumb-separator">/</span>
-              <span className="settings__breadcrumb-current">{getSectionTitle()}</span>
-            </div>
-          </header>
           <div className="settings__content-body">
             <Outlet />
           </div>

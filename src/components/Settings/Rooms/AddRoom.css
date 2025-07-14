@@ -152,7 +152,6 @@
 }
 
 .add-room__input,
-.add-room__select,
 .add-room__textarea {
   padding: 0.75rem 1rem;
   border: 2px solid rgba(0, 121, 148, 0.1);
@@ -166,7 +165,6 @@
 }
 
 .add-room__input:focus,
-.add-room__select:focus,
 .add-room__textarea:focus {
   outline: none;
   border-color: #007994;
@@ -611,7 +609,6 @@
   }
 
   .add-room__input,
-  .add-room__select,
   .add-room__textarea {
     padding: 0.65rem 0.9rem;
     font-size: clamp(0.9rem, 3vw, 0.95rem);
@@ -782,7 +779,6 @@
   }
 
   .add-room__input,
-  .add-room__select,
   .add-room__textarea {
     padding: 0.6rem 0.8rem;
     font-size: clamp(0.85rem, 3vw, 0.9rem);

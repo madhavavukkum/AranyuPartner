@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
   FaHotel, 
@@ -20,48 +20,53 @@ const RoomsDashboard = () => {
   const [activeTab, setActiveTab] = useState('listings');
   const navigate = useNavigate();
   
-  // Sample data - in real app, this would come from API
-  const [rooms, setRooms] = useState([
-    {
-      id: 1,
-      name: 'Deluxe Ocean View Suite',
-      type: 'Suite',
-      maxGuests: 4,
-      bedType: 'King',
-      size: 450,
-      pricePerNight: 8500,
-      isActive: true,
-      coverImage: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=400',
-      amenities: ['AC', 'WiFi', 'TV', 'Mini Bar', 'Balcony'],
-      bookings: 12
-    },
-    {
-      id: 2,
-      name: 'Standard Double Room',
-      type: 'Double',
-      maxGuests: 2,
-      bedType: 'Double',
-      size: 280,
-      pricePerNight: 3500,
-      isActive: true,
-      coverImage: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=400',
-      amenities: ['AC', 'WiFi', 'TV', 'Private Bathroom'],
-      bookings: 8
-    },
-    {
-      id: 3,
-      name: 'Family Suite',
-      type: 'Suite',
-      maxGuests: 6,
-      bedType: 'King + Twin',
-      size: 550,
-      pricePerNight: 12000,
-      isActive: false,
-      coverImage: 'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=400',
-      amenities: ['AC', 'WiFi', 'TV', 'Mini Bar', 'Balcony', 'Extra Bed Available'],
-      bookings: 5
-    }
-  ]);
+  // Initialize rooms from local storage or fallback to sample data
+  const [rooms, setRooms] = useState(() => {
+    const savedRooms = localStorage.getItem('rooms');
+    return savedRooms ? JSON.parse(savedRooms) : [
+      {
+        id: 1,
+        name: 'Deluxe Ocean View Suite',
+        type: 'Suite',
+        maxGuests: 4,
+        bedType: 'King',
+        size: 450,
+        pricePerNight: 8500,
+        isActive: true,
+        coverImage: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=400',
+        amenities: ['AC', 'WiFi', 'TV', 'Mini Bar', 'Balcony']
+      },
+      {
+        id: 2,
+        name: 'Standard Double Room',
+        type: 'Double',
+        maxGuests: 2,
+        bedType: 'Double',
+        size: 280,
+        pricePerNight: 3500,
+        isActive: true,
+        coverImage: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=400',
+        amenities: ['AC', 'WiFi', 'TV', 'Private Bathroom']
+      },
+      {
+        id: 3,
+        name: 'Family Suite',
+        type: 'Suite',
+        maxGuests: 6,
+        bedType: 'King + Twin',
+        size: 550,
+        pricePerNight: 12000,
+        isActive: false,
+        coverImage: 'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=400',
+        amenities: ['AC', 'WiFi', 'TV', 'Mini Bar', 'Balcony', 'Extra Bed Available']
+      }
+    ];
+  });
+
+  // Update local storage whenever rooms change
+  useEffect(() => {
+    localStorage.setItem('rooms', JSON.stringify(rooms));
+  }, [rooms]);
 
   const toggleRoomStatus = (roomId) => {
     setRooms(rooms.map(room => 
@@ -83,8 +88,6 @@ const RoomsDashboard = () => {
         return renderListings();
       case 'calendar':
         return renderCalendarRedirect();
-      case 'bookings':
-        return renderBookingsRedirect();
       default:
         return renderListings();
     }
@@ -116,7 +119,7 @@ const RoomsDashboard = () => {
           <p className="roomsdashboard__empty-description">
             Start by adding your first room to begin managing your hotel inventory
           </p>
-          <Link to="/add-room" className="btn btn--primary">
+          <Link to="/settings/add-room" className="btn btn--primary">
             <FaPlus /> Add Your First Room
           </Link>
         </div>
@@ -125,7 +128,7 @@ const RoomsDashboard = () => {
           {rooms.map(room => (
             <div key={room.id} className="roomsdashboard__room-card">
               <div className="roomsdashboard__room-image">
-                <img src={room.coverImage} alt={room.name} />
+                <img src={room.coverImage} alt={room.type} />
                 <div className="roomsdashboard__room-status">
                   <span className={`roomsdashboard__status-badge ${room.isActive ? 'roomsdashboard__status-badge--active' : 'roomsdashboard__status-badge--inactive'}`}>
                     {room.isActive ? 'Active' : 'Inactive'}
@@ -135,7 +138,7 @@ const RoomsDashboard = () => {
               
               <div className="roomsdashboard__room-content">
                 <div className="roomsdashboard__room-header">
-                  <h3 className="roomsdashboard__room-name">{room.name}</h3>
+                  <h3 className="roomsdashboard__room-name">{room.type}</h3>
                   <div className="roomsdashboard__room-actions">
                     <button 
                       className="roomsdashboard__action-btn roomsdashboard__action-btn--toggle"
@@ -206,9 +209,6 @@ const RoomsDashboard = () => {
                   <div className="roomsdashboard__room-price">
                     <FaRupeeSign /> {room.pricePerNight.toLocaleString()}/night
                   </div>
-                  <div className="roomsdashboard__room-bookings">
-                    {room.bookings} bookings
-                  </div>
                 </div>
               </div>
             </div>
@@ -229,21 +229,6 @@ const RoomsDashboard = () => {
       </p>
       <Link to="/settings/availability-calendar" className="btn btn--primary">
         <FaCalendarAlt /> Open Calendar
-      </Link>
-    </div>
-  );
-
-  const renderBookingsRedirect = () => (
-    <div className="roomsdashboard__redirect-content">
-      <div className="roomsdashboard__redirect-icon">
-        <FaList />
-      </div>
-      <h3 className="roomsdashboard__redirect-title">Bookings Management</h3>
-      <p className="roomsdashboard__redirect-description">
-        View and manage all your room bookings
-      </p>
-      <Link to="/settings/bookings" className="btn btn--primary">
-        <FaList /> View Bookings
       </Link>
     </div>
   );
@@ -276,12 +261,6 @@ const RoomsDashboard = () => {
               onClick={() => setActiveTab('calendar')}
             >
               <FaCalendarAlt /> Availability Calendar
-            </button>
-            <button 
-              className={`roomsdashboard__nav-tab ${activeTab === 'bookings' ? 'roomsdashboard__nav-tab--active' : ''}`}
-              onClick={() => setActiveTab('bookings')}
-            >
-              <FaList /> Bookings List
             </button>
             <Link 
               to="/settings/my-rooms"

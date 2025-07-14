@@ -38,7 +38,6 @@ import RoomsDashboard from './components/Settings/Rooms/RoomsDashboard';
 import AddRoom from './components/Settings/Rooms/AddRoom';
 import EditRoom from './components/Settings/Rooms/EditRoom';
 import AvailabilityCalendar from './components/Settings/Rooms/AvailabilityCalendar';
-import BookingsList from './components/Settings/Rooms/BookingsList';
 import PreviewRoom from './components/Settings/Rooms/PreviewRoom';
 
 import MyRooms from './components/Settings/Rooms/MyRooms/Myrooms.jsx';
@@ -216,7 +215,6 @@ const AppContent = () => {
             <Route path="add-room" element={<AddRoom />} />
             <Route path="edit-room/:id" element={<EditRoom />} />
             <Route path="availability-calendar" element={<AvailabilityCalendar />} />
-            <Route path="bookings" element={<BookingsList />} />
             <Route path="preview-room/:id" element={<PreviewRoom />} />
             <Route path="my-rooms" element={<MyRooms />} />
             {/* End of Rooms */}

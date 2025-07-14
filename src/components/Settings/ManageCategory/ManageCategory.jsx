@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaUtensils, FaPlane, FaCar, FaBed, FaCampground, FaSave } from 'react-icons/fa';
+import { FaUtensils, FaPlane, FaCar, FaBed, FaCampground, FaSave, FaTags } from 'react-icons/fa';
 import './ManageCategory.css';
 import { showSuccessToast, showErrorToast } from '../../../App';
 
@@ -131,6 +131,18 @@ const ManageCategory = () => {
     setShowResetConfirm(false);
   };
 
+  const getCategoryStats = () => {
+    const enabled = Object.values(categories).reduce((total, categoryObj) => {
+      return total + Object.values(categoryObj).filter(Boolean).length;
+    }, 0);
+    const total = Object.values(categories).reduce((total, categoryObj) => {
+      return total + Object.keys(categoryObj).length;
+    }, 0);
+    return { enabled, total };
+  };
+
+  const { enabled, total } = getCategoryStats();
+
   return (
     <div className="manage-category">
       {showResetConfirm && (
@@ -157,8 +169,13 @@ const ManageCategory = () => {
       <div className="manage-category__container">
         <div className="manage-category__header">
           <div className="manage-category__header-content">
-            <h1 className="manage-category__title">Manage Category</h1>
-            <p className="manage-category__subtitle">Configure your service categories and subcategories</p>
+            <div className="manage-category__header-icon">
+              <FaTags />
+            </div>
+            <div className="manage-category__header-text">
+              <h1 className="manage-category__title">Manage Category</h1>
+              <p className="manage-category__subtitle">Configure your service categories and subcategories</p>
+            </div>
           </div>
         </div>
         <form onSubmit={handleUpdate} className="manage-category__form">

@@ -112,6 +112,9 @@ function ProfileDetails() {
       <div className="profile-details__container">
         <div className="profile-details__header">
           <div className="profile-details__header-content">
+            <div className="profile-details__header-icon">
+              <FaUser />
+            </div>
             <div className="profile-details__header-text">
               <h1 className="profile-details__title">Profile Details</h1>
               <p className="profile-details__subtitle">Manage your personal information</p>
@@ -137,11 +140,9 @@ function ProfileDetails() {
                   <div className="profile-details__user-info">
                     <h3 className="profile-details__user-name">{formData.fullName}</h3>
                     <div className="profile-details__user-badge">
-
-                    <span className={`profile-details__badge ${userData.membership.info === 'Active' ? 'profile-details__badge--active' : 'profile-details__badge--inactive'}`}>
-                      {userData.membership.title} - {userData.membership.info}
-                    </span>
-
+                      <span className={`profile-details__badge ${userData.membership.info === 'Active' ? 'profile-details__badge--active' : 'profile-details__badge--inactive'}`}>
+                        {userData.membership.title} - {userData.membership.info}
+                      </span>
                     </div>
                     <p className="profile-details__user-business">{userData.businessName}</p>
                     <p className="profile-details__user-location">{userData.location}</p>
@@ -506,4 +507,4 @@ function ProfileDetails() {
   );
 }
 
-export default ProfileDetails;
+export default ProfileDetails; 

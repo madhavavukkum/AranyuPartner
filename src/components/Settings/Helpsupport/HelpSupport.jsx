@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaSearch, FaTh, FaDollarSign, FaShoppingCart, FaUser, FaBookOpen, FaExclamationCircle, FaChevronRight } from 'react-icons/fa';
+import { FaSearch, FaTh, FaDollarSign, FaShoppingCart, FaUser, FaBookOpen, FaExclamationCircle, FaChevronRight, FaHeadset } from 'react-icons/fa';
 import './Helpsupport.css';
 
 const menuItems = [
@@ -74,8 +74,13 @@ const HelpSupport = () => {
         {/* Header */}
         <div className="help-support__header">
           <div className="help-support__header-content">
-            <h1 className="help-support__title">Help & Support</h1>
-            <p className="help-support__subtitle">Hi, How can we help you?</p>
+            <div className="help-support__header-icon">
+              <FaHeadset />
+            </div>
+            <div className="help-support__header-text">
+              <h1 className="help-support__title">Help & Support</h1>
+              <p className="help-support__subtitle">Hi, How can we help you?</p>
+            </div>
           </div>
         </div>
 

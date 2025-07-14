@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaUtensils, FaPlane, FaCar, FaBed, FaCampground, FaSave, FaUndo } from 'react-icons/fa';
+import { FaUtensils, FaPlane, FaCar, FaBed, FaCampground, FaSave, FaUndo, FaConciergeBell } from 'react-icons/fa';
 import './ManageServices.css';
 import { showSuccessToast, showErrorToast } from '../../../App';
 
@@ -146,8 +146,15 @@ const ManageServices = () => {
       <div className="manage-services__container">
         <div className="manage-services__header">
           <div className="manage-services__header-content">
-            <h1 className="manage-services__title">Manage Service</h1>
-            <p className="manage-services__subtitle">Enable or disable services for your business</p>
+            <div className="manage-services__header-icon-text">
+              <div className="manage-services__header-icon">
+                <FaConciergeBell />
+              </div>
+              <div className="manage-services__header-text">
+                <h1 className="manage-services__title">Manage Services</h1>
+                <p className="manage-services__subtitle">Enable or disable services for your business</p>
+              </div>
+            </div>
             <div className="manage-services__stats">
               <span className="manage-services__stats-badge">
                 {enabled} / {total} services enabled

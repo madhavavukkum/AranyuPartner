@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaBuilding, FaExclamationTriangle, FaShieldAlt, FaFileContract, FaChevronRight, FaArrowLeft } from 'react-icons/fa';
+import { FaBuilding, FaExclamationTriangle, FaShieldAlt, FaFileContract, FaChevronRight, FaArrowLeft, FaInfoCircle } from 'react-icons/fa';
 import './About.css';
 
 const About = () => {
@@ -49,26 +49,39 @@ const About = () => {
   };
 
   const renderMainView = () => (
-    <div className="about__main-list">
-      {menuItems.map((item) => (
-        <div
-          key={item.id}
-          className="about__list-item"
-          onClick={() => handleItemClick(item.id)}
-          style={{ '--item-color': item.color }}
-        >
-          <div className="about__item-icon" style={{ backgroundColor: item.color }}>
-            <item.icon style={{ color: 'white' }} />
+    <div className="about__main-content">
+      <div className="about__header">
+        <div className="about__header-content">
+          <div className="about__header-icon">
+            <FaInfoCircle />
           </div>
-          <div className="about__item-content">
-            <h3 className="about__item-title">{item.title}</h3>
-            <p className="about__item-description">{item.description}</p>
-          </div>
-          <div className="about__item-arrow">
-            <FaChevronRight />
+          <div className="about__header-text">
+            <h1 className="about__title">About</h1>
+            <p className="about__subtitle">Learn more about Aranyu and our policies</p>
           </div>
         </div>
-      ))}
+      </div>
+      <div className="about__main-list">
+        {menuItems.map((item) => (
+          <div
+            key={item.id}
+            className="about__list-item"
+            onClick={() => handleItemClick(item.id)}
+            style={{ '--item-color': item.color }}
+          >
+            <div className="about__item-icon" style={{ backgroundColor: item.color }}>
+              <item.icon style={{ color: 'white' }} />
+            </div>
+            <div className="about__item-content">
+              <h3 className="about__item-title">{item.title}</h3>
+              <p className="about__item-description">{item.description}</p>
+            </div>
+            <div className="about__item-arrow">
+              <FaChevronRight />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 
@@ -342,7 +355,9 @@ const About = () => {
 
   return (
     <div className="about">
-      {currentView === 'main' ? renderMainView() : renderDetailView()}
+      <div className="about__container">
+        {currentView === 'main' ? renderMainView() : renderDetailView()}
+      </div>
     </div>
   );
 };

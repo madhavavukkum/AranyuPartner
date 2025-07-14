@@ -37,26 +37,22 @@ const AddRoom = () => {
   
   const [formData, setFormData] = useState({
     // Basic Info
-    roomName: '',
-    roomType: 'Single',
+    roomType: '',
     maxGuests: 1,
     bedType: '',
     roomSize: '',
-    
+    roomName: '',
     // Availability
     availableFrom: '',
     availableTo: '',
     isUnavailable: false,
-    
     // Pricing
     pricePerNight: '',
     taxesAndFees: '',
     discount: '',
-    
     // Images
     images: [],
     coverImageIndex: 0,
-    
     // Amenities
     amenities: {
       AC: false,
@@ -70,7 +66,6 @@ const AddRoom = () => {
       'Room Service': false,
       Fan: false
     },
-    
     // Extras
     extras: {
       'Breakfast Included': false,
@@ -78,17 +73,13 @@ const AddRoom = () => {
       'Swimming Pool Access': false,
       'Gym Access': false
     },
-    
     // Cancellation
     cancellationPolicy: 'free',
-    
     // Timing
     checkInTime: '14:00',
     checkOutTime: '11:00',
-    
     // Location
     address: '',
-    
     // Rules
     roomRules: ''
   });
@@ -156,13 +147,34 @@ const AddRoom = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // In a real app, this would send data to an API
-    console.log('Form submitted:', formData);
+    const newRoom = {
+      id: Date.now(),
+      name: formData.roomName,
+      type: formData.roomType,
+      maxGuests: parseInt(formData.maxGuests),
+      bedType: formData.bedType,
+      size: parseInt(formData.roomSize),
+      pricePerNight: parseFloat(formData.pricePerNight),
+      isActive: !formData.isUnavailable,
+      coverImage: formData.images.length > 0 
+        ? formData.images[formData.coverImageIndex].url 
+        : 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=400',
+      amenities: Object.keys(formData.amenities).filter(key => formData.amenities[key]),
+      bookings: 0
+    };
+
+    // Load existing rooms from local storage
+    const existingRooms = JSON.parse(localStorage.getItem('rooms') || '[]');
+    // Add new room
+    const updatedRooms = [...existingRooms, newRoom];
+    // Save to local storage
+    localStorage.setItem('rooms', JSON.stringify(updatedRooms));
+    
+    console.log('Form submitted:', newRoom);
     alert('Room added successfully!');
-    navigate('/rooms');
+    navigate('/settings/rooms');
   };
 
-  const roomTypes = ['Single', 'Double', 'Suite', 'Deluxe'];
   const amenitiesList = ['AC', 'WiFi', 'TV', 'Mini Bar', 'Private Bathroom', 'Balcony', 'Hot Water', 'Extra Bed Available', 'Room Service', 'Fan'];
   const extrasList = ['Breakfast Included', 'Free Parking', 'Swimming Pool Access', 'Gym Access'];
 
@@ -222,31 +234,16 @@ const AddRoom = () => {
 
             <div className="add-room__form-grid">
               <div className="add-room__form-group">
-                <label className="add-room__label">Room Name</label>
+                <label className="add-room__label">Room Type</label>
                 <input
                   type="text"
-                  name="roomName"
-                  value={formData.roomName}
-                  onChange={handleInputChange}
-                  className="add-room__input"
-                  placeholder="e.g., Deluxe Ocean View Suite"
-                  required
-                />
-              </div>
-
-              <div className="add-room__form-group">
-                <label className="add-room__label">Room Type</label>
-                <select
                   name="roomType"
                   value={formData.roomType}
                   onChange={handleInputChange}
-                  className="add-room__select"
+                  className="add-room__input"
+                  placeholder="e.g., Single, Double, Suite, Deluxe"
                   required
-                >
-                  {roomTypes.map(type => (
-                    <option key={type} value={type}>{type}</option>
-                  ))}
-                </select>
+                />
               </div>
 
               <div className="add-room__form-group">
@@ -286,6 +283,18 @@ const AddRoom = () => {
                   className="add-room__input"
                   placeholder="e.g., 350"
                   required
+                />
+              </div>
+
+              <div className="add-room__form-group">
+                <label className="add-room__label">Room Name (Optional)</label>
+                <input
+                  type="text"
+                  name="roomName"
+                  value={formData.roomName}
+                  onChange={handleInputChange}
+                  className="add-room__input"
+                  placeholder="e.g., Deluxe Ocean View Suite"
                 />
               </div>
             </div>

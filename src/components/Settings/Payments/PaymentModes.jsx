@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaArrowLeft, FaPlus, FaEdit, FaTrash, FaChevronRight, FaCheckCircle, FaUniversity } from 'react-icons/fa';
+import { FaArrowLeft, FaPlus, FaEdit, FaTrash, FaChevronRight, FaCheckCircle, FaCreditCard, FaUniversity } from 'react-icons/fa';
 import './PaymentModes.css';
 import AddBankAccount from './AddBankAccount';
 import UpdateBankAccount from './UpdateBankAccount';
@@ -300,8 +300,13 @@ const PaymentModes = () => {
         <>
           <div className="payment-modes__header">
             <div className="payment-modes__header-content">
-              <h2 className="payment-modes__header-title">Payment Modes</h2>
-              <h5 className="payment-modes__header-subtitle">Bank Accounts</h5>
+              <div className="payment-modes__header-icon">
+                <FaCreditCard />
+              </div>
+              <div className="payment-modes__header-text">
+                <h1 className="payment-modes__header-title">Payment Modes</h1>
+                <p className="payment-modes__header-subtitle">Manage your bank accounts</p>
+              </div>
             </div>
           </div>
           {renderActivePayout()}

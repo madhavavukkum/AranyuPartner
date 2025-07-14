@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaEdit, FaTrash, FaBoxOpen, FaPlus, FaClock } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaBoxOpen, FaPlus, FaClock, FaSuitcase } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import PackagesDeleteModal from './PackagesDeleteModal';
 import './Packages.css';
@@ -59,12 +59,11 @@ const EmptyState = ({ onAddNew }) => {
       <h3 className="packages__empty-title">No Packages</h3>
       <p className="packages__empty-description">You haven't created any packages yet.</p>
       <div className="d-flex justify-content-center">
-      <button className="packages__add-btn" onClick={onAddNew}>
-        <FaPlus className="packages__btn-icon" />
-        Add new Package
-      </button>
-    </div>
-
+        <button className="packages__add-btn" onClick={onAddNew}>
+          <FaPlus className="packages__btn-icon" />
+          Add new Package
+        </button>
+      </div>
     </div>
   );
 };
@@ -142,8 +141,13 @@ const Packages = ({ setShowForm, setEditPackageId }) => {
       <div className="packages__container">
         <div className="packages__header">
           <div className="packages__header-content">
-            <h1 className="packages__title">Packages</h1>
-            <p className="packages__subtitle">Manage your travel packages and offerings</p>
+            <div className="packages__header-icon">
+              <FaBoxOpen />
+            </div>
+            <div className="packages__header-text">
+              <h1 className="packages__title">Packages</h1>
+              <p className="packages__subtitle">Manage your travel packages and offerings</p>
+            </div>
           </div>
         </div>
         <div className="packages__content">
