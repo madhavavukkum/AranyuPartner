@@ -133,17 +133,71 @@
   font-size: clamp(0.9rem, 2.5vw, 0.95rem);
 }
 
-/* Filters */
+/* Enhanced Filters */
 .room-management__filters {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
   margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(0, 121, 148, 0.1);
 }
 
-.room-management__filter-row {
+.room-management__filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.room-management__filters-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.room-management__filters-icon {
+  color: #007994;
+  font-size: 1rem;
+}
+
+.room-management__clear-filters {
+  background-color: transparent;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.room-management__clear-filters:hover:not(:disabled) {
+  background-color: #f1f5f9;
+  color: #475569;
+  border-color: #cbd5e1;
+}
+
+.room-management__clear-filters:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.room-management__clear-icon {
+  font-size: 0.75rem;
+}
+
+.room-management__filter-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: 1fr 1fr 1.5fr;
+  gap: 1.5rem;
+  align-items: end;
 }
 
 .room-management__filter-group {
@@ -151,46 +205,92 @@
   flex-direction: column;
 }
 
+.room-management__filter-group--search {
+  min-width: 0;
+}
+
 .room-management__filter-label {
   font-weight: 600;
   color: #374151;
-  font-size: 0.9rem;
-  margin-bottom: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.room-management__filter-select,
-.room-management__filter-input {
+.room-management__label-icon {
+  color: #007994;
+  font-size: 0.875rem;
+}
+
+.room-management__filter-wrapper {
+  position: relative;
+}
+
+.room-management__filter-select {
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
   padding: 0.75rem 1rem;
-  border: 1px solid rgba(0, 121, 148, 0.2);
-  border-radius: 10px;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  color: #374151;
   transition: all 0.3s ease;
-  background: #ffffff;
-  font-weight: 500;
+  width: 100%;
+  cursor: pointer;
 }
 
-.room-management__filter-select:focus,
-.room-management__filter-input:focus {
+.room-management__filter-select:focus {
   outline: none;
   border-color: #007994;
-  box-shadow: 0 0 0 4px rgba(0, 121, 148, 0.1);
-  transform: translateY(-1px);
+  box-shadow: 0 0 0 3px rgba(0, 121, 148, 0.1);
+}
+
+.room-management__search-wrapper {
+  position: relative;
+}
+
+.room-management__search-input-group {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.room-management__search-input {
+  border: 1px solid #d1d5db;
+  border-right: none;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: #374151;
+  transition: all 0.3s ease;
+  border-radius: 8px 0 0 8px;
+}
+
+.room-management__search-input:focus {
+  outline: none;
+  border-color: #007994;
+  box-shadow: 0 0 0 3px rgba(0, 121, 148, 0.1);
 }
 
 .room-management__search-btn {
-  background: linear-gradient(135deg, #007994, #005f73);
-  border: none;
+  background-color: #f8fafc;
+  border: 1px solid #d1d5db;
+  border-left: none;
+  color: #64748b;
   padding: 0.75rem 1rem;
-  border-radius: 0 10px 10px 0;
-  color: white;
   transition: all 0.3s ease;
+  border-radius: 0 8px 8px 0;
 }
 
-.room-management__search-btn:hover {
-  background: linear-gradient(135deg, #005f73, #004a5a);
-  transform: translateY(-1px);
+.room-management__search-btn:hover:not(:disabled) {
+  background-color: #007994;
+  color: white;
+  border-color: #007994;
+}
+
+.room-management__search-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* Floors */
@@ -759,8 +859,14 @@
     font-size: 1rem;
   }
 
-  .room-management__filter-row {
+  .room-management__filter-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .room-management__filters-header {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
   }
 
@@ -817,9 +923,8 @@
     font-size: 0.9rem;
   }
 
-  .room-management__filter-row {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
+  .room-management__filters {
+    padding: 1rem;
   }
 
   .floor-block__list {
@@ -883,7 +988,7 @@
     font-size: 0.85rem;
   }
 
-  .room-management__filter-row {
+  .room-management__filter-grid {
     grid-template-columns: 1fr;
     gap: 0.5rem;
   }

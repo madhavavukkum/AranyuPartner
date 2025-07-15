@@ -106,7 +106,7 @@ const RoomsDashboard = () => {
           </div>
         </div>
         <Link to="/settings/add-room" className="btn btn--primary">
-          <FaPlus /> Add New Room
+          <FaPlus /> Add
         </Link>
       </div>
 

@@ -1,59 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* Availability Calendar Component */
-.availability-calendar {
+.availability {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   min-height: 100vh;
   padding: 2rem;
-  box-sizing: border-box;
 }
 
-.availability-calendar__container {
-  max-width: 1400px;
+.availability__container {
+  max-width: 1200px;
   margin: 0 auto;
-  box-sizing: border-box;
+  width: 100%;
 }
 
 /* Header */
-.availability-calendar__header {
+.availability__header {
   margin-bottom: 2rem;
 }
 
-.availability-calendar__header-content {
+.availability__header-content {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
   padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 121, 148, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   gap: 1.5rem;
 }
 
-.availability-calendar__back-btn {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.availability__header-icon {
+  width: 80px;
+  height: 80px;
   background: linear-gradient(135deg, #007994, #005f73);
-  color: white;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(0, 121, 148, 0.3);
+  color: white;
+  font-size: 2rem;
+  box-shadow: 0 8px 25px rgba(0, 121, 148, 0.3);
   flex-shrink: 0;
 }
 
-.availability-calendar__back-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 121, 148, 0.4);
-  color: white;
-  text-decoration: none;
-}
-
-.availability-calendar__header-text {
+.availability__header-text {
   flex: 1;
 }
 
-.availability-calendar__title {
+.availability__title {
   font-size: 2.5rem;
   font-weight: 700;
   color: #1e293b;
@@ -64,7 +60,7 @@
   background-clip: text;
 }
 
-.availability-calendar__subtitle {
+.availability__subtitle {
   font-size: 1.125rem;
   color: #64748b;
   margin: 0;
@@ -72,903 +68,1107 @@
   line-height: 1.5;
 }
 
-/* Content Layout */
-.availability-calendar__content {
-  display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: 2rem;
-}
-
-.availability-calendar__main {
-  display: flex;
-  flex-direction: column;
-}
-
-.availability-calendar__sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-/* Calendar Section */
-.availability-calendar__calendar-section {
-  padding: 2rem;
-  overflow-x: auto;
-}
-
-.availability-calendar__controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.availability-calendar__room-filter {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.availability-calendar__filter-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #1e293b;
-}
-
-.availability-calendar__filter-select {
-  padding: 0.5rem 1rem;
-  border: 2px solid rgba(0, 121, 148, 0.1);
-  border-radius: 8px;
-  font-size: 0.875rem;
-  background: white;
-  color: #1e293b;
-  min-width: 200px;
-}
-
-.availability-calendar__range-toggle {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.availability-calendar__range-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #1e293b;
-  cursor: pointer;
-}
-
-.availability-calendar__range-checkbox {
-  width: 18px;
-  height: 18px;
-  accent-color: #007994;
-}
-
-.availability-calendar__legend {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.availability-calendar__legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: #64748b;
-  font-weight: 500;
-}
-
-.availability-calendar__legend-icon {
-  font-size: 0.75rem;
-}
-
-.availability-calendar__legend-icon--available {
-  color: #22c55e;
-}
-
-.availability-calendar__legend-icon--booked {
-  color: #3b82f6;
-}
-
-.availability-calendar__legend-icon--blocked {
-  color: #ef4444;
-}
-
-/* Calendar */
-.availability-calendar__calendar {
-  background: white;
+/* Filters */
+.availability__filters {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.availability-calendar__calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 2rem;
-  background: linear-gradient(135deg, #007994, #005f73);
-  color: white;
-}
-
-.availability-calendar__nav-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.availability-calendar__nav-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
-}
-
-.availability-calendar__month-year {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 0;
-}
-
-.availability-calendar__calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 1px;
-  background: #e5e7eb;
-}
-
-.availability-calendar__day-header {
-  background: #f8fafc;
-  padding: 1rem;
-  text-align: center;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #64748b;
-}
-
-.availability-calendar__day {
-  background: white;
-  padding: 1rem;
-  min-height: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-}
-
-.availability-calendar__day:hover {
-  background: #f8fafc;
-}
-
-.availability-calendar__day--empty {
-  background: #f9fafb;
-  cursor: default;
-}
-
-.availability-calendar__day--available {
-  border-left: 4px solid #22c55e;
-}
-
-.availability-calendar__day--booked {
-  border-left: 4px solid #3b82f6;
-  background: rgba(59, 130, 246, 0.05);
-}
-
-.availability-calendar__day--blocked {
-  border-left: 4px solid #ef4444;
-  background: rgba(239, 68, 68, 0.05);
-}
-
-.availability-calendar__day--selected {
-  background: rgba(0, 121, 148, 0.1);
-  border: 2px solid #007994;
-}
-
-.availability-calendar__day--in-range {
-  background: rgba(0, 121, 148, 0.1);
-}
-
-.availability-calendar__day--range-start {
-  background: rgba(0, 121, 148, 0.2);
-  border: 2px solid #007994;
-}
-
-.availability-calendar__day--range-end {
-  background: rgba(0, 121, 148, 0.2);
-  border: 2px solid #007994;
-}
-
-.availability-calendar__day-number {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1e293b;
-  margin-bottom: 0.5rem;
-}
-
-.availability-calendar__booking-indicator {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  width: 20px;
-  height: 20px;
-  background: #3b82f6;
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-/* Range Actions */
-.availability-calendar__range-actions {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background: rgba(0, 121, 148, 0.05);
-  border-radius: 12px;
-  border: 1px solid rgba(0, 121, 148, 0.1);
-}
-
-.availability-calendar__range-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #1e293b;
-  margin-bottom: 1rem;
-}
-
-.availability-calendar__range-buttons {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.availability-calendar__range-block-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  background: #ef4444;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.availability-calendar__range-block-btn:hover {
-  background: #dc2626;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
-}
-
-/* Sidebar */
-.availability-calendar__room-status,
-.availability-calendar__date-info {
-  padding: 1.5rem;
-}
-
-.availability-calendar__section-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  box-shadow: 0 6px 24px rgba(0, 121, 148, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.25rem;
   margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
+}
+
+.availability__filters-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
   border-bottom: 1px solid rgba(0, 121, 148, 0.1);
 }
 
-.availability-calendar__section-icon {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #007994, #005f73);
-  border-radius: 10px;
+.availability__filters-left {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.125rem;
-  flex-shrink: 0;
-}
-
-.availability-calendar__section-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin: 0;
-}
-
-/* Room Status */
-.availability-calendar__rooms-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.availability-calendar__room-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background: rgba(0, 121, 148, 0.05);
-  border-radius: 8px;
-  border: 1px solid rgba(0, 121, 148, 0.1);
-}
-
-.availability-calendar__room-info {
+  gap: 0.75rem;
   flex: 1;
 }
 
-.availability-calendar__room-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1e293b;
-  margin-bottom: 0.25rem;
+.availability__filters-icon {
+  color: #007994;
+  font-size: 1.2rem;
 }
 
-.availability-calendar__room-type {
-  font-size: 0.875rem;
-  color: #64748b;
+.availability__filters-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1e293b;
   margin: 0;
 }
 
-.availability-calendar__room-controls {
-  flex-shrink: 0;
-}
-
-.availability-calendar__status-btn {
-  padding: 0.5rem 1rem;
+.availability__clear-filters {
+  background: linear-gradient(135deg, #007994, #005f73);
+  color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 3px 12px rgba(0, 121, 148, 0.3);
 }
 
-.availability-calendar__status-btn--active {
-  background: #22c55e;
-  color: white;
+.availability__clear-filters:hover,
+.availability__clear-filters:active {
+  background: linear-gradient(135deg, #005f73, #004a5a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 121, 148, 0.4);
 }
 
-.availability-calendar__status-btn--inactive {
-  background: #ef4444;
-  color: white;
+.availability__filters-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
 }
 
-.availability-calendar__status-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* Date Info */
-.availability-calendar__bookings-list {
+.availability__filter-group {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+}
+
+.availability__filter-label {
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.availability__filter-select {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background-color: #ffffff;
+  color: #374151;
+  transition: border-color 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  height: 40px;
+}
+
+.availability__filter-group select:focus {
+  outline: none;
+  border-color: #007994;
+  box-shadow: 0 0 0 3px rgba(0, 121, 148, 0.1);
+}
+
+/* Main Content */
+.availability__main {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1.5rem;
+}
+
+.availability__calendar-section {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 121, 148, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.5rem;
+}
+
+/* Current Room Info */
+.availability__current-room {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  border-left: 3px solid #007994;
+}
+
+.availability__current-room-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.availability__current-room-floor {
+  font-size: 0.85rem;
+  color: white;
+  background: linear-gradient(135deg, #007994, #005f73);
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  font-weight: 500;
+}
+
+/* Calendar Navigation */
+.availability__calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1.5rem;
 }
 
-.availability-calendar__booking-item {
-  padding: 1rem;
-  background: rgba(59, 130, 246, 0.05);
-  border-radius: 8px;
-  border: 1px solid rgba(59, 130, 246, 0.1);
-}
-
-.availability-calendar__booking-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.75rem;
-}
-
-.availability-calendar__guest-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1e293b;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.availability-calendar__nights-badge {
-  padding: 0.25rem 0.75rem;
-  background: #3b82f6;
-  color: white;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.availability-calendar__booking-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.availability-calendar__room-booked,
-.availability-calendar__contact-info,
-.availability-calendar__booking-amount,
-.availability-calendar__booking-id {
-  font-size: 0.875rem;
-  color: #64748b;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.availability-calendar__booking-amount,
-.availability-calendar__booking-id {
-  color: #1e293b;
-  font-weight: 600;
-}
-
-.availability-calendar__booking-actions {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.availability-calendar__view-booking-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: #a855f7;
+.availability__nav-btn {
+  background: linear-gradient(135deg, #007994, #005f73);
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 0.875rem;
+  border-radius: 10px;
+  padding: 0.6rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  touch-action: manipulation;
 }
 
-.availability-calendar__view-booking-btn:hover {
-  background: #9333ea;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(168, 85, 247, 0.3);
+.availability__nav-btn:active {
+  background: linear-gradient(135deg, #005f73, #004a5a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 121, 148, 0.4);
 }
 
-.availability-calendar__no-bookings {
-  text-align: center;
-  padding: 2rem;
-  color: #64748b;
-}
-
-.availability-calendar__no-bookings p {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.availability-calendar__no-bookings small {
-  font-size: 0.875rem;
-  color: #9ca3af;
-}
-
-/* Date Actions */
-.availability-calendar__date-actions {
-  border-top: 1px solid rgba(0, 121, 148, 0.1);
-  padding-top: 1.5rem;
-}
-
-.availability-calendar__actions-title {
-  font-size: 1rem;
+.availability__month-title {
+  font-size: 1.5rem;
   font-weight: 600;
   color: #1e293b;
-  margin-bottom: 1rem;
+  margin: 0;
 }
 
-.availability-calendar__actions-grid {
+/* Legend */
+.availability__legend {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.availability-calendar__action-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem;
-  background: rgba(0, 121, 148, 0.05);
-  border-radius: 6px;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
   border: 1px solid rgba(0, 121, 148, 0.1);
 }
 
-.availability-calendar__action-room-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.availability-calendar__action-room {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #1e293b;
-}
-
-.availability-calendar__booked-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #3b82f6;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.availability-calendar__block-reason {
-  font-size: 0.75rem;
-  color: #ef4444;
-  font-style: italic;
-}
-
-.availability-calendar__action-btn {
+.availability__legend-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  color: #374151;
+  font-weight: 500;
+  min-width: 80px;
+}
+
+.availability__legend-color {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1px solid #e5e7eb;
+}
+
+.availability__legend-color--available {
+  background-color: #007994;
+}
+
+.availability__legend-color--booked {
+  background-color: #10b981;
+}
+
+.availability__legend-color--cancelled {
+  background-color: #f97316;
+}
+
+.availability__legend-color--blocked {
+  background-color: #ef4444;
+}
+
+/* Calendar Grid */
+.availability__calendar-wrapper {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+.availability__calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(40px, 1fr));
+  gap: 4px;
+  grid-template-rows: auto;
+  min-width: 280px;
+}
+
+.availability__day-header {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #1e293b;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 121, 148, 0.1);
+}
+
+.availability__day {
+  background: rgba(255, 255, 255, 0.9);
+  min-height: 50px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  position: relative;
+  border: 1px solid rgba(0, 121, 148, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  touch-action: manipulation;
+}
+
+.availability__day:active {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.availability__day-number {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.availability__day--available {
+  background-color: #007994;
+  color: white;
+}
+
+.availability__day--available:active {
+  background-color: #005f73;
+}
+
+.availability__day--booked {
+  background-color: #10b981;
+  color: white;
+}
+
+.availability__day--booked:active {
+  background-color: #059669;
+}
+
+.availability__day--cancelled {
+  background-color: #f97316;
+  color: white;
+}
+
+.availability__day--cancelled:active {
+  background-color: #ea580c;
+}
+
+.availability__day--blocked {
+  background-color: #ef4444;
+  color: white;
+}
+
+.availability__day--blocked:active {
+  background-color: #dc2626;
+}
+
+.availability__day--selected {
+  box-shadow: 0 0 0 3px rgba(0, 121, 148, 0.5);
+  z-index: 2;
+}
+
+/* Room Selection State */
+.availability__room-selection {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 121, 148, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.availability__room-selection-content {
+  text-align: center;
+  max-width: 400px;
+}
+
+.availability__room-selection-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 121, 148, 0.1);
+  border: 1px solid rgba(0, 121, 148, 0.2);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: #007994;
+  font-size: 2rem;
+}
+
+.availability__room-selection-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.availability__room-selection-description {
+  font-size: 1rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.availability__room-selection-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.availability__stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 121, 148, 0.1);
+  min-width: 90px;
+}
+
+.availability__stat-number {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #007994;
+  margin-bottom: 0.5rem;
+}
+
+.availability__stat-label {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Details Panel */
+.availability__details {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 121, 148, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.5rem;
+  height: fit-content;
+  position: sticky;
+  top: 1.5rem;
+  transition: all 0.3s;
+}
+
+.availability__details-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0, 121, 148, 0.1);
+}
+
+.availability__details-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.availability__details-content {
+  line-height: 1.6;
+}
+
+.availability__details-info {
+  margin-bottom: 1rem;
+}
+
+.availability__details-date,
+.availability__details-room {
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.availability__details-blocked,
+.availability__details-booking,
+.availability__details-available {
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.availability__details-blocked {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.availability__details-booking {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.availability__details-available {
+  background-color: #f0f9ff;
+  border: 1px solid #bae6fd;
+}
+
+.availability__details-status-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.availability__details-blocked .availability__details-status-title {
+  color: #ef4444;
+}
+
+.availability__details-booking .availability__details-status-title {
+  color: #10b981;
+}
+
+.availability__details-available .availability__details-status-title {
+  color: #0284c7;
+}
+
+.availability__booking-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.availability__booking-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.availability__booking-icon {
+  color: #007994;
+  font-size: 0.85rem;
+  width: 14px;
+}
+
+.availability__status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+.availability__status--booked {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.availability__status--cancelled {
+  background-color: #fed7aa;
+  color: #9a3412;
+}
+
+.availability__block-btn {
+  background-color: #ef4444;
+  color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 0.75rem;
+  border-radius: 10px;
+  padding: 0.75rem 1.25rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  flex-shrink: 0;
+  margin-top: 1rem;
+  width: 100%;
+  touch-action: manipulation;
 }
 
-.availability-calendar__action-btn--block {
-  background: #ef4444;
-  color: white;
+.availability__block-btn:active {
+  background-color: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
 }
 
-.availability-calendar__action-btn--unblock {
-  background: #22c55e;
-  color: white;
+.availability__details-empty {
+  text-align: center;
+  color: #64748b;
+  padding: 2rem 1rem;
+  font-size: 0.95rem;
 }
 
-.availability-calendar__action-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+/* Modal */
+.availability__modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
-/* Glass Card */
-.glass-card {
+.availability__modal {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 121, 148, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  max-width: 450px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.availability__modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(0, 121, 148, 0.1);
+}
+
+.availability__modal-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.availability__modal-icon {
+  color: #f97316;
+}
+
+.availability__modal-close {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  touch-action: manipulation;
+}
+
+.availability__modal-close:active {
+  background-color: rgba(0, 121, 148, 0.1);
+}
+
+.availability__modal-content {
+  padding: 1.5rem;
+}
+
+.availability__modal-text {
+  font-size: 0.95rem;
+  color: #374151;
+  margin-bottom: 1.25rem;
+}
+
+.availability__modal-form {
+  margin-top: 1rem;
+}
+
+.availability__modal-label {
+  display: block;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.availability__modal-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  color: #374151;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.availability__modal-textarea:focus {
+  outline: none;
+  border-color: #007994;
+  box-shadow: 0 0 0 3px rgba(0, 121, 148, 0.1);
+}
+
+.availability__modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border-top: 1px solid rgba(0, 121, 148, 0.1);
+}
+
+.availability__modal-btn {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.9rem;
+  touch-action: manipulation;
+}
+
+.availability__modal-btn--cancel {
+  background: rgba(0, 121, 148, 0.1);
+  color: #64748b;
+}
+
+.availability__modal-btn--cancel:active {
+  background: rgba(0, 121, 148, 0.2);
+}
+
+.availability__modal-btn--confirm {
+  background-color: #ef4444;
+  color: white;
+}
+
+.availability__modal-btn--confirm:active {
+  background-color: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
+
+.availability__modal-btn--confirm:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .availability-calendar__content {
-    grid-template-columns: 1fr;
+  .availability {
+    padding: 1.5rem;
   }
 
-  .availability-calendar__sidebar {
-    order: -1;
+  .availability__container {
+    max-width: 100%;
+    padding: 0 1rem;
   }
 
-  .availability-calendar__controls {
-    flex-direction: column;
-    align-items: flex-start;
+  .availability__main {
+    grid-template-columns: 1fr 280px;
+    gap: 1rem;
   }
 
-  .availability-calendar__legend {
-    order: 1;
+  .availability__details {
+    position: static;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .availability__calendar-grid {
+    grid-template-columns: repeat(7, minmax(35px, 1fr));
+  }
+
+  .availability__day {
+    min-height: 45px;
+  }
+
+  .availability__day-number {
+    font-size: 0.85rem;
+  }
+
+  .availability__header-content {
+    padding: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .availability__header-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 1.75rem;
+    border-radius: 17.5px;
+  }
+
+  .availability__title {
+    font-size: 2.25rem;
+  }
+
+  .availability__subtitle {
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 768px) {
-  .availability-calendar {
+  .availability {
     padding: 1rem;
   }
 
-  .availability-calendar__header-content {
-    padding: 1rem;
+  .availability__main {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .availability__details {
+    position: relative;
+    max-height: none;
+    overflow-y: visible;
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .availability__details--collapsed {
+    transform: translateY(100%);
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .availability__filters-content {
+    grid-template-columns: 1fr;
     gap: 0.75rem;
+  }
+
+  .availability__filter-select {
+    height: 38px;
+    padding: 0.6rem;
+  }
+
+  .availability__legend {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(80px, 1fr));
+    gap: 0.75rem;
+    justify-content: space-between;
+    padding: 0.75rem;
+  }
+
+  .availability__legend-item {
+    font-size: 0.8rem;
+    min-width: 0;
+  }
+
+  .availability__current-room {
     flex-direction: row;
     align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
   }
 
-  .availability-calendar__back-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 0.9rem;
+  .availability__current-room-title {
+    font-size: 1.3rem;
   }
 
-  .availability-calendar__header-text {
-    display: flex;
-    align-items: center;
-  }
-
-  .availability-calendar__title {
-    font-size: clamp(1.5rem, 5vw, 1.75rem);
-    margin-bottom: 0;
-  }
-
-  .availability-calendar__subtitle {
-    display: none;
-  }
-
-  .availability-calendar__calendar-section,
-  .availability-calendar__room-status,
-  .availability-calendar__date-info {
+  .availability__calendar-section {
     padding: 1rem;
   }
 
-  .availability-calendar__calendar {
-    max-width: 100%;
-    overflow-x: auto;
+  .availability__calendar-grid {
+    grid-template-columns: repeat(7, minmax(35px, 1fr));
+    gap: 3px;
   }
 
-  .availability-calendar__calendar-header {
-    padding: 1rem 1.5rem;
+  .availability__day {
+    min-height: 40px;
   }
 
-  .availability-calendar__nav-btn {
-    width: 32px;
-    height: 32px;
-    font-size: 0.9rem;
+  .availability__day-number {
+    font-size: 0.8rem;
   }
 
-  .availability-calendar__month-year {
-    font-size: clamp(1.25rem, 4vw, 1.35rem);
+  .availability__room-selection {
+    padding: 1.5rem 1rem;
+    min-height: 300px;
   }
 
-  .availability-calendar__calendar-grid {
-    gap: 0.5px;
-    min-width: 320px; /* Ensure minimum width for small screens */
+  .availability__room-selection-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
-  .availability-calendar__day-header {
+  .availability__stat-item {
     padding: 0.75rem;
-    font-size: clamp(0.75rem, 2.5vw, 0.8rem);
+    min-width: 80px;
   }
 
-  .availability-calendar__day {
-    min-height: 50px;
-    padding: 0.5rem;
+  .availability__stat-number {
+    font-size: 1.5rem;
   }
 
-  .availability-calendar__day-number {
-    font-size: clamp(0.85rem, 2.5vw, 0.9rem);
-    margin-bottom: 0.25rem;
+  .availability__header-content {
+    padding: 1.25rem;
+    gap: 1rem;
   }
 
-  .availability-calendar__booking-indicator {
-    width: 16px;
-    height: 16px;
-    font-size: 0.65rem;
-    top: 0.25rem;
-    right: 0.25rem;
+  .availability__header-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    border-radius: 15px;
   }
 
-  .availability-calendar__room-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-    padding: 0.75rem;
+  .availability__title {
+    font-size: 2rem;
   }
 
-  .availability-calendar__room-controls {
-    width: 100%;
-  }
-
-  .availability-calendar__status-btn {
-    width: 100%;
-    padding: 0.4rem 0.8rem;
-    font-size: clamp(0.8rem, 2.5vw, 0.85rem);
-  }
-
-  .availability-calendar__section-icon {
-    width: 32px;
-    height: 32px;
-    font-size: 0.9rem;
-  }
-
-  .availability-calendar__section-title {
-    font-size: clamp(1rem, 3.5vw, 1.1rem);
-  }
-
-  .availability-calendar__room-name {
-    font-size: clamp(0.9rem, 3vw, 0.95rem);
-  }
-
-  .availability-calendar__room-type {
-    font-size: clamp(0.75rem, 2.5vw, 0.8rem);
-  }
-
-  .availability-calendar__range-buttons {
-    flex-direction: column;
-  }
-
-  .availability-calendar__range-block-btn {
-    width: 100%;
-    justify-content: center;
-    padding: 0.6rem 0.8rem;
-    font-size: clamp(0.8rem, 2.5vw, 0.85rem);
-  }
-
-  .availability-calendar__range-title {
-    font-size: clamp(1rem, 3.5vw, 1.05rem);
+  .availability__subtitle {
+    font-size: 0.95rem;
   }
 }
 
 @media (max-width: 480px) {
-  .availability-calendar {
+  .availability {
+    padding: 0.75rem;
+  }
+
+  .availability__container {
+    padding: 0 0.5rem;
+  }
+
+  .availability__header-content {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .availability__header-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+    border-radius: 12.5px;
+  }
+
+  .availability__title {
+    font-size: 1.75rem;
+  }
+
+  .availability__subtitle {
+    font-size: 0.9rem;
+  }
+
+  .availability__filters {
+    padding: 1rem;
+  }
+
+  .availability__filters-title {
+    font-size: 1.2rem;
+  }
+
+  .availability__filter-select {
+    font-size: 0.85rem;
+    height: 36px;
     padding: 0.5rem;
   }
 
-  .availability-calendar__header-content {
-    padding: 0.75rem;
-    gap: 0.5rem;
-    flex-direction: row;
-    align-items: center;
+  .availability__calendar-section {
+    padding: 1rem;
   }
 
-  .availability-calendar__back-btn {
-    width: 32px;
-    height: 32px;
-    font-size: 0.8rem;
-  }
-
-  .availability-calendar__header-text {
-    display: flex;
-    align-items: center;
-  }
-
-  .availability-calendar__title {
-    font-size: clamp(1.25rem, 4.5vw, 1.5rem);
-    margin-bottom: 0;
-  }
-
-  .availability-calendar__subtitle {
-    display: none;
-  }
-
-  .availability-calendar__calendar-section,
-  .availability-calendar__room-status,
-  .availability-calendar__date-info {
-    padding: 0.75rem;
-  }
-
-  .availability-calendar__calendar {
-    max-width: 100%;
+  .availability__calendar-wrapper {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .availability-calendar__calendar-header {
-    padding: 0.75rem 1rem;
+  .availability__calendar-grid {
+    grid-template-columns: repeat(7, minmax(32px, 1fr));
+    gap: 2px;
+    min-width: 260px;
   }
 
-  .availability-calendar__nav-btn {
-    width: 28px;
-    height: 28px;
+  .availability__day {
+    min-height: 38px;
+  }
+
+  .availability__day-number {
+    font-size: 0.75rem;
+  }
+
+  .availability__day-header {
+    padding: 0.5rem;
     font-size: 0.8rem;
   }
 
-  .availability-calendar__month-year {
-    font-size: clamp(1.1rem, 3.5vw, 1.2rem);
+  .availability__month-title {
+    font-size: 1.3rem;
   }
 
-  .availability-calendar__calendar-grid {
-    gap: 0.25px;
-    min-width: 280px; /* Further reduced for very small screens */
-  }
-
-  .availability-calendar__day-header {
+  .availability__nav-btn {
+    min-width: 36px;
+    height: 36px;
     padding: 0.5rem;
-    font-size: clamp(0.7rem, 2.5vw, 0.75rem);
   }
 
-  .availability-calendar__day {
-    min-height: 40px;
-    padding: 0.4rem;
-  }
-
-  .availability-calendar__day-number {
-    font-size: clamp(0.8rem, 2.5vw, 0.85rem);
-    margin-bottom: 0.2rem;
-  }
-
-  .availability-calendar__booking-indicator {
-    width: 14px;
-    height: 14px;
-    font-size: 0.6rem;
-    top: 0.2rem;
-    right: 0.2rem;
-  }
-
-  .availability-calendar__controls {
+  .availability__legend {
+    grid-template-columns: repeat(2, minmax(70px, 1fr));
     gap: 0.5rem;
+    padding: 0.75rem;
   }
 
-  .availability-calendar__legend {
-    gap: 0.5rem;
+  .availability__legend-item {
+    font-size: 0.75rem;
   }
 
-  .availability-calendar__legend-item {
-    font-size: clamp(0.75rem, 2.5vw, 0.8rem);
-  }
-
-  .availability-calendar__filter-select {
-    min-width: 120px;
-    padding: 0.4rem 0.8rem;
-    font-size: clamp(0.8rem, 2.5vw, 0.85rem);
-  }
-
-  .availability-calendar__room-item {
-    padding: 0.5rem;
-    gap: 0.4rem;
-  }
-
-  .availability-calendar__section-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 0.8rem;
-  }
-
-  .availability-calendar__section-title {
-    font-size: clamp(0.95rem, 3vw, 1rem);
-  }
-
-  .availability-calendar__room-name {
-    font-size: clamp(0.85rem, 3vw, 0.9rem);
-  }
-
-  .availability-calendar__room-type {
-    font-size: clamp(0.7rem, 2.5vw, 0.75rem);
-  }
-
-  .availability-calendar__status-btn {
-    padding: 0.35rem 0.7rem;
-    font-size: clamp(0.75rem, 2.5vw, 0.8rem);
-  }
-
-  .availability-calendar__action-item {
+  .availability__current-room {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.4rem;
+    padding: 0.75rem;
+  }
+
+  .availability__current-room-title {
+    font-size: 1.2rem;
+  }
+
+  .availability__current-room-floor {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .availability__details {
+    padding: 1rem;
+  }
+
+  .availability__details-title {
+    font-size: 1.3rem;
+  }
+
+  .availability__modal {
+    width: 95%;
+    margin: 0.5rem;
+  }
+
+  .availability__modal-content,
+  .availability__modal-header,
+  .availability__modal-actions {
+    padding: 1rem;
+  }
+
+  .availability__modal-title {
+    font-size: 1.2rem;
+  }
+
+  .availability__modal-text {
+    font-size: 0.9rem;
+  }
+
+  .availability__modal-textarea {
+    min-height: 70px;
+    font-size: 0.85rem;
+  }
+
+  .availability__modal-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .availability__room-selection {
+    padding: 1rem;
+    min-height: 250px;
+  }
+
+  .availability__room-selection-title {
+    font-size: 1.5rem;
+  }
+
+  .availability__room-selection-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .availability__room-selection-stats {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .availability__stat-item {
+    padding: 0.5rem;
+    min-width: 70px;
+  }
+
+  .availability__stat-number {
+    font-size: 1.25rem;
+  }
+
+  .availability__stat-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .availability {
     padding: 0.5rem;
   }
 
-  .availability-calendar__action-btn {
-    width: 100%;
-    justify-content: center;
-    padding: 0.35rem 0.7rem;
-    font-size: clamp(0.7rem, 2.5vw, 0.75rem);
+  .availability__container {
+    padding: 0 0.25rem;
   }
 
-  .availability-calendar__range-block-btn {
-    padding: 0.5rem 0.7rem;
-    font-size: clamp(0.75rem, 2.5vw, 0.8rem);
+  .availability__header-content {
+    padding: 0.75rem;
+    gap: 0.5rem;
   }
 
-  .availability-calendar__range-title {
-    font-size: clamp(0.95rem, 3vw, 1rem);
+  .availability__header-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.125rem;
+    border-radius: 11.25px;
+  }
+
+  .availability__title {
+    font-size: 1.5rem;
+  }
+
+  .availability__subtitle {
+    font-size: 0.8rem;
+  }
+
+  .availability__calendar-grid {
+    grid-template-columns: repeat(7, minmax(30px, 1fr));
+    min-width: 240px;
+  }
+
+  .availability__day {
+    min-height: 36px;
+  }
+
+  .availability__day-number {
+    font-size: 0.7rem;
+  }
+
+  .availability__day-header {
+    padding: 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  .availability__legend {
+    grid-template-columns: repeat(2, minmax(60px, 1fr));
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .availability__legend-item {
+    font-size: 0.7rem;
+  }
+
+  .availability__modal {
+    width: 98%;
   }
 }

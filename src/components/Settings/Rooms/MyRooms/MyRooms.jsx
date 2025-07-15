@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom'; // Import Link for back button
+import { useNavigate, Link } from 'react-router-dom';
 import { Modal, Button, Form, InputGroup } from 'react-bootstrap';
-import { FaArrowLeft, FaPlus, FaEdit, FaTrash, FaSearch, FaBed, FaUsers, FaHome, FaCrown } from 'react-icons/fa'; // Use FaArrowLeft, remove FaHotel
+import { FaArrowLeft, FaPlus, FaEdit, FaTrash, FaSearch, FaBed, FaUsers, FaHome, FaCrown, FaTimes, FaBuilding, FaFilter } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import './MyRooms.css';
 
@@ -88,6 +88,8 @@ const MyRooms = () => {
     }
     if (!roomData.type.trim()) {
       newErrors.roomType = 'Please enter a room type';
+    } else if (!roomTypes.includes(roomData.type.toLowerCase())) {
+      newErrors.roomType = 'Please select a valid room type from the list';
     }
     const floor = hotelData.floors.find(f => f.number === currentFloor);
     if (floor && (!isEdit || roomData.number !== originalNumber)) {
@@ -203,6 +205,10 @@ const MyRooms = () => {
     setFilters({ ...filters, [name]: value });
   };
 
+  const clearFilters = () => {
+    setFilters({ type: '', floor: '', search: '' });
+  };
+
   const filteredFloors = hotelData.floors
     .filter(f => !filters.floor || f.number.toString() === filters.floor)
     .sort((a, b) => a.number - b.number);
@@ -234,61 +240,98 @@ const MyRooms = () => {
               Add Floor
             </Button>
           </div>
+          
           <div className="room-management__filters">
-            <h3 className="room-management__content-title">Filter & Search</h3>
-            <div className="room-management__filter-row">
+            <div className="room-management__filters-header">
+              <h3 className="room-management__filters-title">
+                <FaFilter className="room-management__filters-icon" />
+                Filter & Search
+              </h3>
+              <button 
+                className="room-management__clear-filters"
+                onClick={clearFilters}
+                disabled={!filters.type && !filters.floor && !filters.search}
+              >
+                <FaTimes className="room-management__clear-icon" />
+                Clear All
+              </button>
+            </div>
+            
+            <div className="room-management__filter-grid">
               <div className="room-management__filter-group">
-                <Form.Label className="room-management__filter-label">Room Type</Form.Label>
-                <Form.Select
-                  name="type"
-                  value={filters.type}
-                  onChange={handleFilterChange}
-                  className="room-management__filter-select form-select"
-                >
-                  <option value="">All Types</option>
-                  {roomTypes.map(type => (
-                    <option key={type} value={type}>
-                      {type.charAt(0).toUpperCase() + type.slice(1)}
-                    </option>
-                  ))}
-                </Form.Select>
-              </div>
-              <div className="room-management__filter-group">
-                <Form.Label className="room-management__filter-label">Floor</Form.Label>
-                <Form.Select
-                  name="floor"
-                  value={filters.floor}
-                  onChange={handleFilterChange}
-                  className="room-management__filter-select form-select"
-                >
-                  <option value="">All Floors</option>
-                  {hotelData.floors
-                    .sort((a, b) => a.number - b.number)
-                    .map(floor => (
-                      <option key={floor.number} value={floor.number}>
-                        Floor {floor.number}
+                <label className="room-management__filter-label">
+                  <FaBed className="room-management__label-icon" />
+                  Room Type
+                </label>
+                <div className="room-management__filter-wrapper">
+                  <Form.Select
+                    name="type"
+                    value={filters.type}
+                    onChange={handleFilterChange}
+                    className="room-management__filter-select"
+                  >
+                    <option value="">All Types</option>
+                    {roomTypes.map(type => (
+                      <option key={type} value={type}>
+                        {type.charAt(0).toUpperCase() + type.slice(1)}
                       </option>
                     ))}
-                </Form.Select>
+                  </Form.Select>
+                </div>
               </div>
+              
               <div className="room-management__filter-group">
-                <Form.Label className="room-management__filter-label">Search Room</Form.Label>
-                <InputGroup>
-                  <Form.Control
-                    type="text"
-                    name="search"
-                    value={filters.search}
+                <label className="room-management__filter-label">
+                  <FaBuilding className="room-management__label-icon" />
+                  Floor
+                </label>
+                <div className="room-management__filter-wrapper">
+                  <Form.Select
+                    name="floor"
+                    value={filters.floor}
                     onChange={handleFilterChange}
-                    placeholder="Room number or label..."
-                    className="room-management__filter-input form-control"
-                  />
-                  <Button variant="primary" className="room-management__search-btn">
-                    <FaSearch />
-                  </Button>
-                </InputGroup>
+                    className="room-management__filter-select"
+                  >
+                    <option value="">All Floors</option>
+                    {hotelData.floors
+                      .sort((a, b) => a.number - b.number)
+                      .map(floor => (
+                        <option key={floor.number} value={floor.number}>
+                          Floor {floor.number}
+                        </option>
+                      ))}
+                  </Form.Select>
+                </div>
+              </div>
+              
+              <div className="room-management__filter-group room-management__filter-group--search">
+                <label className="room-management__filter-label">
+                  <FaSearch className="room-management__label-icon" />
+                  Search Room
+                </label>
+                <div className="room-management__search-wrapper">
+                  <InputGroup className="room-management__search-input-group">
+                    <Form.Control
+                      type="text"
+                      name="search"
+                      value={filters.search}
+                      onChange={handleFilterChange}
+                      placeholder="Room number or label..."
+                      className="room-management__search-input"
+                    />
+                    <Button 
+                      variant="outline-secondary" 
+                      className="room-management__search-btn"
+                      disabled={!filters.search}
+                    >
+                      <FaSearch />
+                    </Button>
+                  </InputGroup>
+                </div>
               </div>
             </div>
           </div>
+          
           <div className="room-management__floors">
             {filteredFloors.length === 0 ? (
               <div className="room-management__empty-state">
@@ -529,20 +572,19 @@ const MyRooms = () => {
             </Form.Group>
             <Form.Group className="room-form__group">
               <Form.Label className="room-form__label">Room Type</Form.Label>
-              <Form.Control
-                type="text"
+              <Form.Select
                 value={roomData.type}
                 onChange={e => setRoomData({ ...roomData, type: e.target.value })}
-                placeholder="Enter room type"
-                className="room-form__input"
-                list="room-types"
+                className="room-form__select"
                 required
-              />
-              <datalist id="room-types">
+              >
+                <option value="">Select Room Type</option>
                 {roomTypes.map(type => (
-                  <option key={type} value={type.charAt(0).toUpperCase() + type.slice(1)} />
+                  <option key={type} value={type.charAt(0).toUpperCase() + type.slice(1)}>
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </option>
                 ))}
-              </datalist>
+              </Form.Select>
               {errors.roomType && <small className="room-form__error">{errors.roomType}</small>}
             </Form.Group>
             <Form.Group className="room-form__group">
@@ -632,20 +674,19 @@ const MyRooms = () => {
             </Form.Group>
             <Form.Group className="room-form__group">
               <Form.Label className="room-form__label">Room Type</Form.Label>
-              <Form.Control
-                type="text"
+              <Form.Select
                 value={roomData.type}
                 onChange={e => setRoomData({ ...roomData, type: e.target.value })}
-                placeholder="Enter room type"
-                className="room-form__input"
-                list="room-types"
+                className="room-form__select"
                 required
-              />
-              <datalist id="room-types">
+              >
+                <option value="">Select Room Type</option>
                 {roomTypes.map(type => (
-                  <option key={type} value={type.charAt(0).toUpperCase() + type.slice(1)} />
+                  <option key={type} value={type.charAt(0).toUpperCase() + type.slice(1)}>
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </option>
                 ))}
-              </datalist>
+              </Form.Select>
               {errors.roomType && <small className="room-form__error">{errors.roomType}</small>}
             </Form.Group>
             <Form.Group className="room-form__group">

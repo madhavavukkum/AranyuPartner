@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { 
   FaArrowLeft, 
-  FaEye, 
   FaBed,
   FaUsers,
   FaRupeeSign,
@@ -33,8 +32,6 @@ const PreviewRoom = () => {
   const [roomData, setRoomData] = useState(null);
 
   useEffect(() => {
-    // In a real app, fetch room data by ID
-    // For now, using mock data
     const mockRoomData = {
       id: parseInt(id),
       name: 'Deluxe Ocean View Suite',
@@ -184,42 +181,54 @@ const PreviewRoom = () => {
                 </div>
               </div>
 
+              {/* Room Information */}
               <div className="preview-room__room-info">
-                <div className="preview-room__info-grid">
-                  <div className="preview-room__info-item">
-                    <FaBed className="preview-room__info-icon" />
-                    <div>
-                      <div className="preview-room__info-label">Bed Type</div>
-                      <div className="preview-room__info-value">{roomData.bedType}</div>
-                    </div>
+                <div className="preview-room__section-header">
+                  <div className="preview-room__section-icon">
+                    <FaCheck />
                   </div>
-                  <div className="preview-room__info-item">
-                    <FaCalendarAlt className="preview-room__info-icon" />
-                    <div>
-                      <div className="preview-room__info-label">Available Period</div>
-                      <div className="preview-room__info-value">
-                        {new Date(roomData.availableFrom).toLocaleDateString()} - {new Date(roomData.availableTo).toLocaleDateString()}
-                      </div>
-                    </div>
+                  <div>
+                    <h3 className="preview-room__section-title">Room Information</h3>
+                    <p className="preview-room__section-subtitle">Key details about the room</p>
                   </div>
-                  <div className="preview-room__info-item">
-                    <FaClock className="preview-room__info-icon" />
-                    <div>
-                      <div className="preview-room__info-label">Check-in / Check-out</div>
-                      <div className="preview-room__info-value">
-                        {roomData.checkInTime} / {roomData.checkOutTime}
-                      </div>
+                </div>
+                <div className="preview-room__amenities-grid">
+                  <div className="preview-room__amenity-item">
+                    <div className="preview-room__amenity-icon">
+                      <FaBed />
                     </div>
+                    <span className="preview-room__amenity-text">Bed Type: {roomData.bedType}</span>
+                  </div>
+                  <div className="preview-room__amenity-item">
+                    <div className="preview-room__amenity-icon">
+                      <FaCalendarAlt />
+                    </div>
+                    <span className="preview-room__amenity-text">
+                      Available: {new Date(roomData.availableFrom).toLocaleDateString()} - {new Date(roomData.availableTo).toLocaleDateString()}
+                    </span>
+                  </div>
+                  <div className="preview-room__amenity-item">
+                    <div className="preview-room__amenity-icon">
+                      <FaClock />
+                    </div>
+                    <span className="preview-room__amenity-text">
+                      Check-in / Check-out: {roomData.checkInTime} / {roomData.checkOutTime}
+                    </span>
                   </div>
                 </div>
               </div>
 
               {/* Amenities */}
               <div className="preview-room__amenities-section">
-                <h3 className="preview-room__section-title">
-                  <FaCheck className="preview-room__section-icon" />
-                  Room Amenities
-                </h3>
+                <div className="preview-room__section-header">
+                  <div className="preview-room__section-icon">
+                    <FaCheck />
+                  </div>
+                  <div>
+                    <h3 className="preview-room__section-title">Room Amenities</h3>
+                    <p className="preview-room__section-subtitle">Available amenities in the room</p>
+                  </div>
+                </div>
                 <div className="preview-room__amenities-grid">
                   {roomData.amenities.map(amenity => (
                     <div key={amenity} className="preview-room__amenity-item">
@@ -235,17 +244,22 @@ const PreviewRoom = () => {
               {/* Extras */}
               {roomData.extras.length > 0 && (
                 <div className="preview-room__extras-section">
-                  <h3 className="preview-room__section-title">
-                    <FaPlus className="preview-room__section-icon" />
-                    Additional Services
-                  </h3>
-                  <div className="preview-room__extras-grid">
+                  <div className="preview-room__section-header">
+                    <div className="preview-room__section-icon">
+                      <FaPlus />
+                    </div>
+                    <div>
+                      <h3 className="preview-room__section-title">Additional Services</h3>
+                      <p className="preview-room__section-subtitle">Extra services and features</p>
+                    </div>
+                  </div>
+                  <div className="preview-room__amenities-grid">
                     {roomData.extras.map(extra => (
-                      <div key={extra} className="preview-room__extra-item">
-                        <div className="preview-room__extra-icon">
+                      <div key={extra} className="preview-room__amenity-item">
+                        <div className="preview-room__amenity-icon">
                           {getExtraIcon(extra)}
                         </div>
-                        <span className="preview-room__extra-text">{extra}</span>
+                        <span className="preview-room__amenity-text">{extra}</span>
                       </div>
                     ))}
                   </div>
@@ -254,33 +268,51 @@ const PreviewRoom = () => {
 
               {/* Location */}
               <div className="preview-room__location-section">
-                <h3 className="preview-room__section-title">
-                  <FaMapMarkerAlt className="preview-room__section-icon" />
-                  Location
-                </h3>
-                <p className="preview-room__address">{roomData.address}</p>
+                <div className="preview-room__section-header">
+                  <div className="preview-room__section-icon">
+                    <FaMapMarkerAlt />
+                  </div>
+                  <div>
+                    <h3 className="preview-room__section-title">Location</h3>
+                    <p className="preview-room__section-subtitle">Property location details</p>
+                  </div>
+                </div>
+                <div className="preview-room__amenities-grid">
+                  <div className="preview-room__amenity-item">
+                    <div className="preview-room__amenity-icon">
+                      <FaMapMarkerAlt />
+                    </div>
+                    <span className="preview-room__amenity-text">{roomData.address}</span>
+                  </div>
+                </div>
               </div>
 
               {/* Room Rules */}
               {roomData.roomRules && (
                 <div className="preview-room__rules-section">
-                  <h3 className="preview-room__section-title">
-                    <FaCheck className="preview-room__section-icon" />
-                    Room Rules & Policies
-                  </h3>
-                  <div className="preview-room__rules-content">
-                    <p className="preview-room__rules-text">{roomData.roomRules}</p>
-                    <div className="preview-room__cancellation-policy">
-                      <strong>Cancellation Policy:</strong>{' '}
-                      {roomData.cancellationPolicy === 'free' ? (
-                        <span className="preview-room__policy-text preview-room__policy-text--free">
-                          <FaCheck /> Free cancellation until check-in date
-                        </span>
-                      ) : (
-                        <span className="preview-room__policy-text preview-room__policy-text--no-cancel">
-                          <FaTimes /> No cancellation allowed after booking
-                        </span>
-                      )}
+                  <div className="preview-room__section-header">
+                    <div className="preview-room__section-icon">
+                      <FaCheck />
+                    </div>
+                    <div>
+                      <h3 className="preview-room__section-title">Room Rules & Policies</h3>
+                      <p className="preview-room__section-subtitle">Rules and cancellation policy</p>
+                    </div>
+                  </div>
+                  <div className="preview-room__amenities-grid">
+                    <div className="preview-room__amenity-item">
+                      <div className="preview-room__amenity-icon">
+                        <FaCheck />
+                      </div>
+                      <span className="preview-room__amenity-text">{roomData.roomRules}</span>
+                    </div>
+                    <div className="preview-room__amenity-item">
+                      <div className="preview-room__amenity-icon">
+                        {roomData.cancellationPolicy === 'free' ? <FaCheck /> : <FaTimes />}
+                      </div>
+                      <span className="preview-room__amenity-text">
+                        Cancellation Policy: {roomData.cancellationPolicy === 'free' ? 'Free cancellation until check-in date' : 'No cancellation allowed after booking'}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -294,7 +326,6 @@ const PreviewRoom = () => {
               <div className="preview-room__pricing-header">
                 <h3 className="preview-room__pricing-title">Pricing</h3>
               </div>
-              
               <div className="preview-room__pricing-details">
                 <div className="preview-room__price-item">
                   <span className="preview-room__price-label">Base Price</span>
