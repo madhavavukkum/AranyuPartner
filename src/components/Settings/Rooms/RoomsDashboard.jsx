@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { 
   FaHotel, 
   FaPlus, 
@@ -8,8 +8,6 @@ import {
   FaEye, 
   FaEdit, 
   FaTrash, 
-  FaToggleOn, 
-  FaToggleOff,
   FaBed,
   FaUsers,
   FaRupeeSign
@@ -18,7 +16,6 @@ import './RoomsDashboard.css';
 
 const RoomsDashboard = () => {
   const [activeTab, setActiveTab] = useState('listings');
-  const navigate = useNavigate();
   
   // Initialize rooms from local storage or fallback to sample data
   const [rooms, setRooms] = useState(() => {
@@ -32,7 +29,6 @@ const RoomsDashboard = () => {
         bedType: 'King',
         size: 450,
         pricePerNight: 8500,
-        isActive: true,
         coverImage: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=400',
         amenities: ['AC', 'WiFi', 'TV', 'Mini Bar', 'Balcony']
       },
@@ -44,7 +40,6 @@ const RoomsDashboard = () => {
         bedType: 'Double',
         size: 280,
         pricePerNight: 3500,
-        isActive: true,
         coverImage: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=400',
         amenities: ['AC', 'WiFi', 'TV', 'Private Bathroom']
       },
@@ -56,7 +51,6 @@ const RoomsDashboard = () => {
         bedType: 'King + Twin',
         size: 550,
         pricePerNight: 12000,
-        isActive: false,
         coverImage: 'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=400',
         amenities: ['AC', 'WiFi', 'TV', 'Mini Bar', 'Balcony', 'Extra Bed Available']
       }
@@ -67,13 +61,6 @@ const RoomsDashboard = () => {
   useEffect(() => {
     localStorage.setItem('rooms', JSON.stringify(rooms));
   }, [rooms]);
-
-  const toggleRoomStatus = (roomId) => {
-    setRooms(rooms.map(room => 
-      room.id === roomId ? { ...room, isActive: !room.isActive } : room
-    ));
-    console.log(`Toggled status for room ${roomId}`);
-  };
 
   const deleteRoom = (roomId) => {
     if (window.confirm('Are you sure you want to delete this room?')) {
@@ -101,7 +88,7 @@ const RoomsDashboard = () => {
             <FaList />
           </div>
           <div>
-            <h2 className="roomsdashboard__content-title">My Room Listings</h2>
+            <h2 className="roomsdashboard__content-title">Types of Rooms</h2>
             <p className="roomsdashboard__content-subtitle">Manage your hotel rooms and their availability</p>
           </div>
         </div>
@@ -129,24 +116,12 @@ const RoomsDashboard = () => {
             <div key={room.id} className="roomsdashboard__room-card">
               <div className="roomsdashboard__room-image">
                 <img src={room.coverImage} alt={room.type} />
-                <div className="roomsdashboard__room-status">
-                  <span className={`roomsdashboard__status-badge ${room.isActive ? 'roomsdashboard__status-badge--active' : 'roomsdashboard__status-badge--inactive'}`}>
-                    {room.isActive ? 'Active' : 'Inactive'}
-                  </span>
-                </div>
               </div>
               
               <div className="roomsdashboard__room-content">
                 <div className="roomsdashboard__room-header">
                   <h3 className="roomsdashboard__room-name">{room.type}</h3>
                   <div className="roomsdashboard__room-actions">
-                    <button 
-                      className="roomsdashboard__action-btn roomsdashboard__action-btn--toggle"
-                      onClick={() => toggleRoomStatus(room.id)}
-                      title={room.isActive ? 'Deactivate' : 'Activate'}
-                    >
-                      {room.isActive ? <FaToggleOn /> : <FaToggleOff />}
-                    </button>
                     <Link 
                       to={`/settings/preview-room/${room.id}`}
                       className="roomsdashboard__action-btn roomsdashboard__action-btn--view"
@@ -173,21 +148,20 @@ const RoomsDashboard = () => {
 
                 <div className="roomsdashboard__room-details">
                   <div className="roomsdashboard__room-detail">
-                    <span className="roomsdashboard__detail-label">Type:</span>
-                    <span className="roomsdashboard__detail-value">{room.type}</span>
+                    <span className="roomsdashboard__detail-label">Type: {room.type}</span>
                   </div>
                   <div className="roomsdashboard__room-detail">
-                    <span className="roomsdashboard__detail-label">Guests:</span>
+                    <span className="roomsdashboard__detail-label">Guests: </span>
                     <span className="roomsdashboard__detail-value">
                       <FaUsers /> {room.maxGuests}
                     </span>
                   </div>
                   <div className="roomsdashboard__room-detail">
-                    <span className="roomsdashboard__detail-label">Size:</span>
+                    <span className="roomsdashboard__detail-label">Size: </span>
                     <span className="roomsdashboard__detail-value">{room.size} sq ft</span>
                   </div>
                   <div className="roomsdashboard__room-detail">
-                    <span className="roomsdashboard__detail-label">Bed:</span>
+                    <span className="roomsdashboard__detail-label">Bed: </span>
                     <span className="roomsdashboard__detail-value">{room.bedType}</span>
                   </div>
                 </div>
@@ -227,9 +201,12 @@ const RoomsDashboard = () => {
       <p className="roomsdashboard__redirect-description">
         Manage room availability and view bookings on the calendar
       </p>
-      <Link to="/settings/availability-calendar" className="btn btn--primary">
-        <FaCalendarAlt /> Open Calendar
-      </Link>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Link to="/settings/availability-calendar" className="btn btn--primary">
+          <FaCalendarAlt /> Open Calendar
+        </Link>
+      </div>
+
     </div>
   );
 

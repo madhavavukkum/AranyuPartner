@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FaCalendarAlt, FaFilter, FaUser, FaPhone, FaIdCard, FaTimes, FaExclamationTriangle, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import {  FaCalendarAlt, FaFilter, FaUser, FaPhone, FaIdCard, FaTimes, FaExclamationTriangle, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaPersonWalkingDashedLineArrowRight, FaPersonWalkingLuggage } from "react-icons/fa6";
 import { roomTypes, floors, rooms, bookingsData, blockedDates } from '../../../data/roomsbookingdata';
 import './AvailabilityCalendar.css';
 
@@ -395,9 +396,11 @@ const AvailabilityCalendar = () => {
                               <span><strong>Booking ID:</strong> {booking.id}</span>
                             </div>
                             <div className="availability__booking-item">
+                              <FaPersonWalkingLuggage className="availability__booking-icon" />
                               <span><strong>Check-in:</strong> {new Date(booking.checkIn).toLocaleDateString()}</span>
                             </div>
                             <div className="availability__booking-item">
+                              <FaPersonWalkingDashedLineArrowRight className="availability__booking-icon" />
                               <span><strong>Check-out:</strong> {new Date(booking.checkOut).toLocaleDateString()}</span>
                             </div>
                             <div className="availability__booking-item">
