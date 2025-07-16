@@ -38,6 +38,7 @@ const PackageForm = ({ setShowForm, editPackageId, setEditPackageId }) => {
     childPrice: '',
     tripPrice: '',
     isActive: true,
+    termsAccepted: false,
   });
   const [placeSearch, setPlaceSearch] = useState('');
   const [allPlaces, setAllPlaces] = useState([
@@ -77,6 +78,7 @@ const PackageForm = ({ setShowForm, editPackageId, setEditPackageId }) => {
           childPrice: pkg.childPrice.toString(),
           tripPrice: pkg.tripPrice.toString(),
           isActive: pkg.isActive,
+          termsAccepted: false,
         });
       }
     } else {
@@ -95,6 +97,7 @@ const PackageForm = ({ setShowForm, editPackageId, setEditPackageId }) => {
         childPrice: '',
         tripPrice: '',
         isActive: true,
+        termsAccepted: false,
       });
     }
   }, [editPackageId]);
@@ -111,6 +114,10 @@ const PackageForm = ({ setShowForm, editPackageId, setEditPackageId }) => {
         ? prev.services.filter((s) => s !== value)
         : [...prev.services, value],
     }));
+  };
+
+  const handleTermsChange = () => {
+    setFormData((prev) => ({ ...prev, termsAccepted: !prev.termsAccepted }));
   };
 
   const handlePlaceSearch = (e) => {
@@ -159,6 +166,11 @@ const PackageForm = ({ setShowForm, editPackageId, setEditPackageId }) => {
       (formData.type === 'Custom' && (!formData.customType || !formData.numberOfDays))
     ) {
       showErrorToast('Please fill in all required fields.');
+      return;
+    }
+
+    if (!formData.termsAccepted) {
+      showErrorToast('Please click on the checkbox to accept terms and conditions.');
       return;
     }
 
@@ -481,6 +493,20 @@ const PackageForm = ({ setShowForm, editPackageId, setEditPackageId }) => {
                   />
                 </div>
               </div>
+            </div>
+            <div className="package-form__form-group">
+              <label className="package-form__terms-label">
+                <input
+                  type="checkbox"
+                  className="package-form__terms-checkbox"
+                  checked={formData.termsAccepted}
+                  onChange={handleTermsChange}
+                />
+                <span className="package-form__checkbox-custom"></span>
+                <span className="package-form__terms-text">
+                  I accept the terms and conditions
+                </span>
+              </label>
             </div>
             <div className="package-form__form-actions">
               <button

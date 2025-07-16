@@ -205,6 +205,58 @@
   color: #1e293b;
 }
 
+/* Terms Checkbox */
+.add-room__terms-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.add-room__terms-label:hover {
+  background: rgba(0, 121, 148, 0.05);
+}
+
+.add-room__terms-checkbox {
+  display: none;
+}
+
+.add-room__checkbox-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #007994;
+  border-radius: 5px;
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: white;
+}
+
+.add-room__terms-checkbox:checked + .add-room__checkbox-custom {
+  background: #007994;
+  border-color: #007994;
+}
+
+.add-room__terms-checkbox:checked + .add-room__checkbox-custom::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.add-room__terms-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1e293b;
+}
+
 /* Image Upload */
 .add-room__upload-area {
   margin-bottom: 2rem;

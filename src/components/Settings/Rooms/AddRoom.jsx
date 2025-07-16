@@ -81,7 +81,9 @@ const AddRoom = () => {
     // Location
     address: '',
     // Rules
-    roomRules: ''
+    roomRules: '',
+    // Terms
+    termsAccepted: false
   });
 
   const handleInputChange = (e) => {
@@ -109,6 +111,13 @@ const AddRoom = () => {
         ...prev.extras,
         [extra]: !prev.extras[extra]
       }
+    }));
+  };
+
+  const handleTermsChange = () => {
+    setFormData(prev => ({
+      ...prev,
+      termsAccepted: !prev.termsAccepted
     }));
   };
 
@@ -147,6 +156,27 @@ const AddRoom = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      !formData.roomType ||
+      !formData.maxGuests ||
+      !formData.bedType ||
+      !formData.roomSize ||
+      !formData.availableFrom ||
+      !formData.availableTo ||
+      !formData.pricePerNight ||
+      !formData.checkInTime ||
+      !formData.checkOutTime ||
+      !formData.address
+    ) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    if (!formData.termsAccepted) {
+      alert('Please click on the checkbox to accept terms and conditions.');
+      return;
+    }
+
     const newRoom = {
       id: Date.now(),
       name: formData.roomName,
@@ -565,7 +595,7 @@ const AddRoom = () => {
                   className="add-room__policy-radio"
                 />
                 <div className="add-room__policy-content">
-                  <div className="add-room__policy-title">No Cancellation</div>
+                  < div className="add-room__policy-title">No Cancellation</div>
                   <div className="add-room__policy-description">No cancellation allowed after booking</div>
                 </div>
               </label>
@@ -659,6 +689,24 @@ const AddRoom = () => {
                 placeholder="e.g., No smoking, ID required at check-in, Pet-friendly, etc."
                 rows="4"
               />
+            </div>
+          </div>
+
+          {/* Terms and Conditions */}
+          <div className="add-room__section glass-card">
+            <div className="add-room__form-group">
+              <label className="add-room__terms-label">
+                <input
+                  type="checkbox"
+                  checked={formData.termsAccepted}
+                  onChange={handleTermsChange}
+                  className="add-room__terms-checkbox"
+                />
+                <span className="add-room__checkbox-custom"></span>
+                <span className="add-room__terms-text">
+                  I accept the terms and conditions
+                </span>
+              </label>
             </div>
           </div>
 

@@ -222,9 +222,35 @@
   background: rgba(0, 121, 148, 0.05);
 }
 
+/* Terms Checkbox */
+.package-form__terms-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.6rem;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.package-form__terms-label:hover {
+  background: rgba(0, 121, 148, 0.05);
+}
+
+.package-form__terms-checkbox {
+  display: none;
+}
+
+.package-form__terms-text {
+  font-size: clamp(0.9rem, 2.5vw, 0.95rem);
+  font-weight: 500;
+  color: #1e293b;
+}
+
 /* Custom Checkbox */
 .package-form__place-checkbox,
-.package-form__service-checkbox {
+.package-form__service-checkbox,
+.package-form__terms-checkbox {
   display: none;
 }
 
@@ -240,13 +266,15 @@
 }
 
 .package-form__place-checkbox:checked + .package-form__checkbox-custom,
-.package-form__service-checkbox:checked + .package-form__checkbox-custom {
+.package-form__service-checkbox:checked + .package-form__checkbox-custom,
+.package-form__terms-checkbox:checked + .package-form__checkbox-custom {
   background: #007994;
   border-color: #007994;
 }
 
 .package-form__place-checkbox:checked + .package-form__checkbox-custom::after,
-.package-form__service-checkbox:checked + .package-form__checkbox-custom::after {
+.package-form__service-checkbox:checked + .package-form__checkbox-custom::after,
+.package-form__terms-checkbox:checked + .package-form__checkbox-custom::after {
   content: '✓';
   position: absolute;
   top: 50%;
